@@ -1,27 +1,28 @@
-# README #
+# README
 
 This is a MERN stack to create a recipe app
 MERN stands for MongoDB, Express, React, Node, after the four key technologies that make up the stack.
 
-* MongoDB - document database
-* Express(.js) - Node.js web framework
-* React(.js) - a client-side JavaScript framework
-* Node(.js) - the premier JavaScript web server
+-   MongoDB - document database
+-   Express(.js) - Node.js web framework
+-   React(.js) - a client-side JavaScript framework
+-   Node(.js) - the premier JavaScript web server
 
-### Functionality ###
+### Functionality
 
-* Login
-* Personal shopping lists
-* Add ingredients  to shopping list from recipes
-* Adding new recipes
+-   Login
+-   Personal shopping lists
+-   Add ingredients to shopping list from recipes
+-   Adding new recipes
 
-### How do I get set up? ###
+### How do I get set up?
+
 WIP/TBD
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
+-   During development run `npm run dev` in root folder to start both frontend and backend
+-   Summary of set up
+-   Configuration
+-   Dependencies
+-   Database configuration
+-   How to run tests
+-   Deployment instructions

@@ -1,0 +1,20 @@
+{
+	"name": "mern-recipe-app",
+	"version": "1.0.0",
+	"description": "This is a MERN stack to create a recipe app\r MERN stands for MongoDB, Express, React, Node, after the four key technologies that make up the stack.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\" "
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://romaswe@bitbucket.org/romaswe/mern-recipe-app.git"
+	},
+	"author": "Sebastian",
+	"license": "ISC",
+	"homepage": "https://bitbucket.org/romaswe/mern-recipe-app#readme",
+	"devDependencies": {
+		"concurrently": "^6.2.0"
+	}
+}
