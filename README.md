@@ -1,14 +1,22 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This is a MERN stack to create a recipe app
+MERN stands for MongoDB, Express, React, Node, after the four key technologies that make up the stack.
 
-### What is this repository for? ###
+* MongoDB - document database
+* Express(.js) - Node.js web framework
+* React(.js) - a client-side JavaScript framework
+* Node(.js) - the premier JavaScript web server
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Functionality ###
+
+* Login
+* Personal shopping lists
+* Add ingredients  to shopping list from recipes
+* Adding new recipes
 
 ### How do I get set up? ###
+WIP/TBD
 
 * Summary of set up
 * Configuration
@@ -17,13 +25,3 @@ This README would normally document whatever steps are necessary to get your app
 * How to run tests
 * Deployment instructions
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
