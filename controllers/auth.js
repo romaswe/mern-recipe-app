@@ -1,20 +1,19 @@
+const crypto = require('crypto');
 const User = require('../models/Users');
 const ErrorResponse = require('../utils/errorResponse');
 
 exports.register = async (req, res, next) => {
-	const { username, email, password } = req.body;
-
+	const { username, email, password, role } = req.body;
+	console.log(role);
 	try {
 		const user = await User.create({
 			username,
 			email,
 			password,
+			role,
 		});
 
-		res.status(201).json({
-			success: true,
-			user,
-		});
+		sendToken(user, 201, res);
 	} catch (error) {
 		next(error);
 	}
@@ -42,19 +41,68 @@ exports.login = async (req, res, next) => {
 			);
 		}
 
+		sendToken(user, 200, res);
+	} catch (error) {
+		return next(error);
+	}
+};
+
+exports.forgotpassword = async (req, res, next) => {
+	const { email } = req.body;
+
+	try {
+		const user = await User.findOne({ email });
+		if (!user) {
+			return next(new ErrorResponse('Email could not be sent', 404));
+		}
+
+		const resetToken = user.getResetPasswordToken();
+
+		await user.save();
+
+		const resetUrl = `${process.env.PASSWORD_RESET_URL}${resetToken}`;
+		console.log(`Resetpasswordlink for user ${user.email}: ${resetUrl}`);
 		res.status(200).json({
 			success: true,
-			token: 'someToken',
+			data: `check logfile for ${user.email}`,
 		});
 	} catch (error) {
 		return next(error);
 	}
 };
 
-exports.forgotpassword = (req, res, next) => {
-	res.send('Forgot password Route');
+exports.resetpassword = async (req, res, next) => {
+	const resetPasswordToken = crypto
+		.createHash('sha256')
+		.update(req.params.resetToken)
+		.digest('hex');
+
+	try {
+		const user = await User.findOne({
+			resetPasswordToken,
+			resetPasswordExpire: { $gt: Date.now() },
+		});
+
+		if (!user) {
+			return next(new ErrorResponse('Invalid Reset Token', 400));
+		}
+
+		user.password = req.body.password;
+		user.resetPasswordToken = undefined;
+		user.resetPasswordExpire = undefined;
+
+		await user.save();
+
+		res.status(201).json({
+			success: true,
+			data: 'Password Reset Success',
+		});
+	} catch (error) {
+		return next(error);
+	}
 };
 
-exports.resetpassword = (req, res, next) => {
-	res.send('Reset Password Route');
+const sendToken = (user, statusCode, res) => {
+	const token = user.getSignedToken();
+	res.status(statusCode).json({ success: true, token });
 };

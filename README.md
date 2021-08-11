@@ -2,7 +2,6 @@
 
 This is a MERN stack to create a recipe app
 MERN stands for MongoDB, Express, React, Node, after the four key technologies that make up the stack.
-To setup the projeckt a guide was used (https://www.youtube.com/watch?v=YocRq-KesCM)
 
 -   MongoDB - document database
 -   Express(.js) - Node.js web framework

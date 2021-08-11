@@ -8,6 +8,7 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/private', require('./routes/private'));
 
 // Error Handler (Last middleware that shuld be used)
 app.use(errorHandler);
