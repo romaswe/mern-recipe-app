@@ -16,7 +16,8 @@ MERN stands for MongoDB, Express, React, Node, after the four key technologies t
 -   Adding new recipes
 
 ### How do I get set up?
-
-WIP/TBD
-
--   During development run `npm run dev` in root folder to start both frontend and backend
+-   To only start mongoDB run `cd docker` then `docker-compose up` 
+    -   You can then reach the mongo-express GUI from `http://localhost:PORT/`
+-   To start client run `cd client` then `npm start`
+-   To start server run `cd server` then `npm run server`
+-   To run in docker run `docker-compose up --build`

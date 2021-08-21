@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './RegisterScreen.css';
 
+const apiUrl = process.env.REACT_APP_BASE_URL;
+
 const RegisterScreen = ({ history }) => {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
@@ -31,7 +33,7 @@ const RegisterScreen = ({ history }) => {
 
 		try {
 			const { data } = await axios.post(
-				'/api/auth/register',
+				apiUrl + '/api/auth/register',
 				{
 					username,
 					email,

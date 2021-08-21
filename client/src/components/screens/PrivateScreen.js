@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './PrivateScreen.css';
 
+const apiUrl = process.env.REACT_APP_BASE_URL;
 const PrivateScreen = ({ history }) => {
 	const [error, setError] = useState('');
 	const [privateData, setPrivateData] = useState('');
@@ -18,7 +19,10 @@ const PrivateScreen = ({ history }) => {
 			};
 
 			try {
-				const { data } = await axios.get('/api/private', config);
+				const { data } = await axios.get(
+					apiUrl + '/api/private',
+					config
+				);
 				setPrivateData(data.data);
 			} catch (error) {
 				localStorage.removeItem('authToken');

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './LoginScreen.css';
 
+const apiUrl = process.env.REACT_APP_BASE_URL;
 const LoginScreen = ({ history }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -25,7 +26,7 @@ const LoginScreen = ({ history }) => {
 
 		try {
 			const { data } = await axios.post(
-				'/api/auth/login',
+				apiUrl + '/api/auth/login',
 				{ email, password },
 				config
 			);
