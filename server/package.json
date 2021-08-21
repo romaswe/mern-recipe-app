@@ -5,8 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node server.js",
-		"server": "nodemon server.js",
-		"dev": "concurrently \"npm run server\" \"cd frontend && npm start\" "
+		"server": "nodemon server.js"
 	},
 	"repository": {
 		"type": "git",

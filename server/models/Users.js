@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
 		minlength: 6,
 		select: false,
 	},
-	role: { type: String, default: 'user' },
+	role: { type: String, default: 'viewer' }, // Roles can be, viewer(can only se recipies), user(can add to crocery list) or admin(can add new recipies)
 	resetPasswordToken: String,
 	resetPasswordExpire: Date,
 });
