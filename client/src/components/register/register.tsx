@@ -97,7 +97,7 @@ const RegisterComponent = () => {
 					<div className='form-group row'>
 						<label
 							htmlFor='password'
-							className='form-text-align col-6'
+							className='form-text-align col-s-12 col-6'
 						>
 							Password:
 						</label>

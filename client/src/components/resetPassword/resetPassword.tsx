@@ -6,11 +6,11 @@ import axios, { AxiosRequestConfig } from 'axios';
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 type Props = {
-    resetToken: string;
-}
+	resetToken: string;
+};
 
 const ResetPasswordComponent = ({ match }: RouteComponentProps<Props>) => {
-    const history = useHistory();
+	const history = useHistory();
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [error, setError] = useState('');
@@ -54,48 +54,62 @@ const ResetPasswordComponent = ({ match }: RouteComponentProps<Props>) => {
 	};
 
 	return (
-		<div className='resetpassword-screen'>
-			<form
-				onSubmit={resetPasswordHandler}
-				className='resetpassword-screen__form'
-			>
-				<h3 className='resetpassword-screen__title'>Forgot Password</h3>
-				{error && <span className='error-message'>{error} </span>}
-				{success && (
-					<span className='success-message'>
-						{success} <Link to='/login'>Login</Link>
-					</span>
-				)}
-				<div className='form-group'>
-					<label htmlFor='password'>New Password:</label>
-					<input
-						type='password'
-						required
-						id='password'
-						placeholder='Enter new password'
-						autoComplete='true'
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='confirmpassword'>
-						Confirm New Password:
-					</label>
-					<input
-						type='password'
-						required
-						id='confirmpassword'
-						placeholder='Confirm new password'
-						autoComplete='true'
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-					/>
-				</div>
-				<button type='submit' className='btn btn-primary'>
-					Reset Password
-				</button>
-			</form>
+		<div className='resetpassword-screen grid'>
+			<div className='col-s-0 col-3'></div>
+			<div className='col-s-12 col-6 form-wrapper'>
+				<form
+					onSubmit={resetPasswordHandler}
+					className='resetpassword-screen__form'
+				>
+					<h3 className='resetpassword-screen__title'>
+						Forgot Password
+					</h3>
+					{error && <span className='error-message'>{error} </span>}
+					{success && (
+						<span className='success-message'>
+							{success} <Link to='/login'>Login</Link>
+						</span>
+					)}
+					<div className='form-group row'>
+						<label
+							htmlFor='password'
+							className='form-text-align col-s-12 col-3'
+						>
+							New Password:
+						</label>
+						<input
+							type='password'
+							required
+							id='password'
+							placeholder='Enter new password'
+							autoComplete='true'
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+						/>
+					</div>
+					<div className='form-group row'>
+						<label
+							htmlFor='confirmpassword'
+							className='form-text-align col-s-12 col-3'
+						>
+							Confirm New Password:
+						</label>
+						<input
+							type='password'
+							required
+							id='confirmpassword'
+							placeholder='Confirm new password'
+							autoComplete='true'
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
+						/>
+					</div>
+					<button type='submit' className='standard-button'>
+						Reset Password
+					</button>
+				</form>
+			</div>
+			<div className='col-s-0 col-3'></div>
 		</div>
 	);
 };
