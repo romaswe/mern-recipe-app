@@ -10,6 +10,7 @@ import LoginScreen from './components/screens/LoginScreen';
 import RegisterScreen from './components/screens/RegisterScreen';
 import ForgotPasswordScreen from './components/screens/ForgotPasswordScreen';
 import ResetPasswordScreen from './components/screens/ResetPasswordScreen';
+import LoginComponent from './components/Login/login'
 
 const App = () => {
 	return (
@@ -17,7 +18,7 @@ const App = () => {
 			<div className='app'>
 				<Switch>
 					<PrivateRoute exact path='/' component={PrivateScreen} />
-					<Route exact path='/login' component={LoginScreen} />
+					<Route exact path='/login' component={LoginComponent} />
 					<Route exact path='/register' component={RegisterScreen} />
 					<Route
 						exact
