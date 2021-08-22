@@ -12,6 +12,26 @@ code {
 		monospace;
 }
 
+.error-message {
+	width: 100%;
+	display: inline-block;
+	padding: 5px;
+	background: red;
+	color: rgb(0, 0, 0);
+	text-align: center;
+	margin: 0.5rem 0;
+}
+
+.success-message {
+	width: 100%;
+	display: inline-block;
+	padding: 5px;
+	background: green;
+	color: rgb(0, 0, 0);
+	text-align: center;
+	margin: 0.5rem 0;
+}
+
 .standard-button {
 	background-color: white;
 	color: black;
@@ -24,6 +44,15 @@ code {
 	margin: 4px 2px;
 	transition-duration: 0.4s;
 	cursor: pointer;
+}
+
+.form-wrapper {
+	box-shadow: 0 0 1rem rgba(17, 68, 34, 0.2);
+	margin: 0.5rem;
+	padding: 1rem;
+	position: relative;
+	min-height: 15.625rem;
+	border-radius: 1rem;
 }
 
 .standard-button:hover {

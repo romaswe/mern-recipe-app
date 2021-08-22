@@ -94,6 +94,7 @@ const LoginComponent = () => {
 						<button
 							type='submit'
 							className='standard-button col-s-12 col-6 col-xl-3'
+							tabIndex={3}
 						>
 							Login
 						</button>
