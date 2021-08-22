@@ -12,6 +12,13 @@ code {
 		monospace;
 }
 
+.form-text-align {
+	text-align: end;
+	margin-top: auto;
+	margin-bottom: auto;
+	padding-right: 1rem;
+}
+
 .error-message {
 	width: 100%;
 	display: inline-block;

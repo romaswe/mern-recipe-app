@@ -64,7 +64,7 @@ exports.forgotpassword = async (req, res, next) => {
 		console.log(`Resetpasswordlink for user ${user.email}: ${resetUrl}`);
 		res.status(200).json({
 			success: true,
-			data: `check logfile for ${user.email}`,
+			data: `Check logfile for ${user.email}`,
 		});
 	} catch (error) {
 		return next(error);
