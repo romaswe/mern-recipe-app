@@ -5,30 +5,29 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 // Screens
-import PrivateScreen from './components/screens/PrivateScreen';
-import LoginScreen from './components/screens/LoginScreen';
-import RegisterScreen from './components/screens/RegisterScreen';
-import ForgotPasswordScreen from './components/screens/ForgotPasswordScreen';
-import ResetPasswordScreen from './components/screens/ResetPasswordScreen';
-import LoginComponent from './components/Login/login'
+import LoginComponent from './components/login/login'
+import RegisterComponent from './components/register/register';
+import ForgotPasswordComponent from './components/forgotPassword/forgotPassword';
+import ResetPasswordComponent from './components/resetPassword/resetPassword';
+import PrivateComponent from './components/private/private';
 
 const App = () => {
 	return (
 		<Router>
 			<div className='app'>
 				<Switch>
-					<PrivateRoute exact path='/' component={PrivateScreen} />
+					<PrivateRoute exact path='/' component={PrivateComponent} />
 					<Route exact path='/login' component={LoginComponent} />
-					<Route exact path='/register' component={RegisterScreen} />
+					<Route exact path='/register' component={RegisterComponent} />
 					<Route
 						exact
 						path='/forgotpassword'
-						component={ForgotPasswordScreen}
+						component={ForgotPasswordComponent}
 					/>
 					<Route
 						exact
 						path='/passwordreset/:resetToken'
-						component={ResetPasswordScreen}
+						component={ResetPasswordComponent}
 					/>
 				</Switch>
 			</div>
