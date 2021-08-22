@@ -1,102 +1,176 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+		'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+		'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
 }
 
 .standard-button {
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-  padding: 10px 50px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
+	background-color: white;
+	color: black;
+	border: 2px solid #555555;
+	padding: 10px 50px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
 }
 
 .standard-button:hover {
-  background-color: #555555;
-  color: white;
+	background-color: #555555;
+	color: white;
 }
 
 input {
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
 }
 
 input:focus {
-  border: 1px solid #555;
+	border: 1px solid #555;
 }
 
 .row,
 .grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
 }
 
- /* For mobile phones: */
- [class*="col-"] {
-  grid-column: span 12;
+/* For mobile phones: */
+[class*='col-'] {
+	grid-column: span 12;
 }
 
 @media only screen and (min-width: 600px) {
-  /* For tablets: */
-  .col-s-0 {width: 0;}
-  .col-s-1 {grid-column: span 1;}
-  .col-s-2 {grid-column: span 2;}
-  .col-s-3 {grid-column: span 3;}
-  .col-s-4 {grid-column: span 4;}
-  .col-s-5 {grid-column: span 5;}
-  .col-s-6 {grid-column: span 6;}
-  .col-s-7 {grid-column: span 7;}
-  .col-s-8 {grid-column: span 8;}
-  .col-s-9 {grid-column: span 9;}
-  .col-s-10 {grid-column: span 10;}
-  .col-s-11 {grid-column: span 11;}
-  .col-s-12 {grid-column: span 12;}
+	/* For tablets: */
+	.col-s-0 {
+		width: 0;
+	}
+	.col-s-1 {
+		grid-column: span 1;
+	}
+	.col-s-2 {
+		grid-column: span 2;
+	}
+	.col-s-3 {
+		grid-column: span 3;
+	}
+	.col-s-4 {
+		grid-column: span 4;
+	}
+	.col-s-5 {
+		grid-column: span 5;
+	}
+	.col-s-6 {
+		grid-column: span 6;
+	}
+	.col-s-7 {
+		grid-column: span 7;
+	}
+	.col-s-8 {
+		grid-column: span 8;
+	}
+	.col-s-9 {
+		grid-column: span 9;
+	}
+	.col-s-10 {
+		grid-column: span 10;
+	}
+	.col-s-11 {
+		grid-column: span 11;
+	}
+	.col-s-12 {
+		grid-column: span 12;
+	}
 }
 
 @media only screen and (min-width: 1000px) {
-  /* For desktop: */
-  .col-1 {grid-column: span 1;}
-  .col-2 {grid-column: span 2;}
-  .col-3 {grid-column: span 3;}
-  .col-4 {grid-column: span 4;}
-  .col-5 {grid-column: span 5;}
-  .col-6 {grid-column: span 6;}
-  .col-7 {grid-column: span 7;}
-  .col-8 {grid-column: span 8;}
-  .col-9 {grid-column: span 9;}
-  .col-10 {grid-column: span 10;}
-  .col-11 {grid-column: span 11;}
-  .col-12 {grid-column: span 12;}
-} 
+	/* For desktop: */
+	.col-1 {
+		grid-column: span 1;
+	}
+	.col-2 {
+		grid-column: span 2;
+	}
+	.col-3 {
+		grid-column: span 3;
+	}
+	.col-4 {
+		grid-column: span 4;
+	}
+	.col-5 {
+		grid-column: span 5;
+	}
+	.col-6 {
+		grid-column: span 6;
+	}
+	.col-7 {
+		grid-column: span 7;
+	}
+	.col-8 {
+		grid-column: span 8;
+	}
+	.col-9 {
+		grid-column: span 9;
+	}
+	.col-10 {
+		grid-column: span 10;
+	}
+	.col-11 {
+		grid-column: span 11;
+	}
+	.col-12 {
+		grid-column: span 12;
+	}
+}
 
 @media only screen and (min-width: 2000px) {
-  /* Extra large devices (large laptops and desktops) */
-  .col-xl-1 {grid-column: span 1;}
-  .col-xl-2 {grid-column: span 2;}
-  .col-xl-3 {grid-column: span 3;}
-  .col-xl-4 {grid-column: span 4;}
-  .col-xl-5 {grid-column: span 5;}
-  .col-xl-6 {grid-column: span 6;}
-  .col-xl-7 {grid-column: span 7;}
-  .col-xl-8 {grid-column: span 8;}
-  .col-xl-9 {grid-column: span 9;}
-  .col-xl-10 {grid-column: span 10;}
-  .col-xl-11 {grid-column: span 11;}
-  .col-xl-12 {grid-column: span 12;}
+	/* Extra large devices (large laptops and desktops) */
+	.col-xl-1 {
+		grid-column: span 1;
+	}
+	.col-xl-2 {
+		grid-column: span 2;
+	}
+	.col-xl-3 {
+		grid-column: span 3;
+	}
+	.col-xl-4 {
+		grid-column: span 4;
+	}
+	.col-xl-5 {
+		grid-column: span 5;
+	}
+	.col-xl-6 {
+		grid-column: span 6;
+	}
+	.col-xl-7 {
+		grid-column: span 7;
+	}
+	.col-xl-8 {
+		grid-column: span 8;
+	}
+	.col-xl-9 {
+		grid-column: span 9;
+	}
+	.col-xl-10 {
+		grid-column: span 10;
+	}
+	.col-xl-11 {
+		grid-column: span 11;
+	}
+	.col-xl-12 {
+		grid-column: span 12;
+	}
 }

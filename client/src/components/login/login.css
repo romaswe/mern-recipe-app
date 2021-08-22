@@ -1,9 +1,9 @@
 .login-screen {
-    text-align: center;
+	text-align: center;
 }
 
 .form-wrapper {
-    box-shadow: 0 0 1rem rgba(17, 68, 34, 0.2);
+	box-shadow: 0 0 1rem rgba(17, 68, 34, 0.2);
 	margin: 0.5rem;
 	padding: 1rem;
 	position: relative;
