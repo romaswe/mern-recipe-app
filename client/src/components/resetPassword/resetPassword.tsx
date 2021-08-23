@@ -1,6 +1,6 @@
 import './resetPassword.css';
 import { useState } from 'react';
-import { Link, useHistory, RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import axios, { AxiosRequestConfig } from 'axios';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const ResetPasswordComponent = ({ match }: RouteComponentProps<Props>) => {
-	const history = useHistory();
+	//	const history = useHistory();
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [error, setError] = useState('');
