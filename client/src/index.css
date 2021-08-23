@@ -13,7 +13,8 @@ code {
 }
 
 .form-text-align {
-	text-align: end;
+	/* The design is mobile first so if we are in mobile we want the text to be at start, else at end (see media queries */
+	text-align: start;
 	margin-top: auto;
 	margin-bottom: auto;
 	padding-right: 1rem;
@@ -133,6 +134,12 @@ input:focus {
 
 @media only screen and (min-width: 1000px) {
 	/* For desktop: */
+	.form-text-align {
+		text-align: end;
+		margin-top: auto;
+		margin-bottom: auto;
+		padding-right: 1rem;
+	}
 	.col-1 {
 		grid-column: span 1;
 	}

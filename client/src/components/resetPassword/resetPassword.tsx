@@ -73,7 +73,7 @@ const ResetPasswordComponent = ({ match }: RouteComponentProps<Props>) => {
 					<div className='form-group row'>
 						<label
 							htmlFor='password'
-							className='form-text-align col-s-12 col-3'
+							className='form-text-align form-text-align-center col-s-12 col-3'
 						>
 							New Password:
 						</label>
