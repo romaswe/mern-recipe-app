@@ -12,6 +12,7 @@ const PrivateComponent = () => {
 	const history = useHistory();
 	const [error, setError] = useState('');
 	const [privateData, setPrivateData] = useState('');
+	const [activeNavItem, setactiveNavItem] = useState('recipes');
 	const decodedJWT = useRef<jwtData>();
 	useEffect(() => {
 		const fetchPrivateData = async () => {
@@ -50,26 +51,45 @@ const PrivateComponent = () => {
 		history.push('/login');
 	};
 
+	const isActive = (item: string) => {
+		if (item === activeNavItem) {
+			return true;
+		}
+		return false;
+	};
+
 	return error ? (
 		<span className='error-message'>{error}</span>
 	) : (
 		<div className='grid' id='topContainer'>
 			<div className='col-12'>
-				<Navnbar jwtData={decodedJWT.current} />
+				<Navnbar
+					jwtData={decodedJWT.current}
+					activeNavItem={activeNavItem}
+					setactiveNavItem={setactiveNavItem}
+				/>
 			</div>
-			<div className='col-12 wrapper'>
-				<p>Här kommer första synas</p>
-			</div>
+			{isActive('groceries') && (
+				<div className='col-12 wrapper'>
+					<p>Här kommer första synas</p>
+				</div>
+			)}
 
-			<div className='col-12'>
-				<p>Här kommer andra synas</p>
-			</div>
+			{isActive('recipes') && (
+				<div className='col-12'>
+					<p>Här kommer andra synas</p>
+				</div>
+			)}
 
-			<div className='col-12'>
-				<p>Här kommer tredje synas</p>
-			</div>
+			{isActive('admin') && (
+				<div className='col-12'>
+					<p>Här kommer tredje synas</p>
+				</div>
+			)}
 
-			<button onClick={logoutHandler}>Logout</button>
+			<button className='standard-button' onClick={logoutHandler}>
+				Logout
+			</button>
 		</div>
 	);
 };
