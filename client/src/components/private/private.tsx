@@ -7,6 +7,7 @@ import { JwtData } from '../../entities/jwt';
 import { isAdmin } from '../../utils/userUtils';
 import { Navnbar } from './navbar/navbar';
 import AdminComponent from './admin/admin';
+import MeasurementsComponent from './mesaurement/measurement';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
 const PrivateComponent = () => {
@@ -79,6 +80,12 @@ const PrivateComponent = () => {
 			{isActive('recipes') && (
 				<div className='col-12'>
 					<p>Här kommer andra synas</p>
+				</div>
+			)}
+
+			{isActive('tips') && (
+				<div className='col-12'>
+					<MeasurementsComponent />
 				</div>
 			)}
 

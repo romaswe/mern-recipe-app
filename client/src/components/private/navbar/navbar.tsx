@@ -31,7 +31,7 @@ export const Navnbar = (props: any) => {
 							handleOnclick('groceries');
 						}}
 					>
-						Groceries
+						Inköpslista
 					</li>
 					<li
 						key='recipes'
@@ -42,7 +42,18 @@ export const Navnbar = (props: any) => {
 							handleOnclick('recipes');
 						}}
 					>
-						Recipes
+						Recept
+					</li>
+					<li
+						key='tips'
+						className={`col-3 navbar-item ${
+							isActive('tips') ? 'active' : ''
+						}`}
+						onClick={() => {
+							handleOnclick('tips');
+						}}
+					>
+						Mått &amp; tips
 					</li>
 					{isAdmin(jwtData) && (
 						<li

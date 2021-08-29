@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Ingrediens, Recipes } from '../../../../entities/recipes';
 import MeasurementsComponent from '../../mesaurement/measurement';
 import IngrediensComponent from './ingrediens/ingrediens';
@@ -18,6 +18,8 @@ const RecipesComponent = () => {
 
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState('');
+
+	const [showMeasurement, setShowMeasurement] = useState(false);
 
 	const submitRecipe = async (e: any) => {
 		e.preventDefault();
@@ -118,10 +120,22 @@ const RecipesComponent = () => {
 					<button type='submit' className='submit-button'>
 						Spara
 					</button>
+
+					<button
+						type='button'
+						className='standard-button'
+						onClick={() => setShowMeasurement(!showMeasurement)}
+					>
+						Visa enhetstabeller
+					</button>
 				</div>
 			</form>
 
-			<MeasurementsComponent />
+			{showMeasurement && (
+				<div className='col-12'>
+					<MeasurementsComponent />
+				</div>
+			)}
 		</div>
 	);
 };
