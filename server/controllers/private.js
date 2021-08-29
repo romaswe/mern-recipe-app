@@ -19,6 +19,19 @@ exports.getRecipes = async (req, res, next) => {
 	}
 };
 
+exports.getRecipeByName = async (req, res, next) => {
+	const recipeName = req.params.recipeName;
+	try {
+		const recipes = await Recipe.findOne({ name: recipeName });
+		res.status(200).json({
+			success: true,
+			data: recipes,
+		});
+	} catch (error) {
+		return next(error);
+	}
+};
+
 exports.addRecipe = async (req, res, next) => {
 	const { name, url, notes, ingrediens, instructions } = req.body;
 	try {
