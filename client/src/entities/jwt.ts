@@ -1,4 +1,4 @@
-export interface jwtData {
+export interface JwtData {
 	id: String;
 	role: String;
 	username: String;

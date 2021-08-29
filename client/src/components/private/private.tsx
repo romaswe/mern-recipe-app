@@ -3,9 +3,10 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import { jwtData } from '../../entities/jwt';
+import { JwtData } from '../../entities/jwt';
 import { isAdmin } from '../../utils/userUtils';
 import { Navnbar } from './navbar/navbar';
+import AdminComponent from './admin/admin';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
 const PrivateComponent = () => {
@@ -13,7 +14,7 @@ const PrivateComponent = () => {
 	const [error, setError] = useState('');
 	const [privateData, setPrivateData] = useState('');
 	const [activeNavItem, setactiveNavItem] = useState('recipes');
-	const decodedJWT = useRef<jwtData>();
+	const decodedJWT = useRef<JwtData>();
 	useEffect(() => {
 		const fetchPrivateData = async () => {
 			const config = {
@@ -83,13 +84,15 @@ const PrivateComponent = () => {
 
 			{isActive('admin') && (
 				<div className='col-12'>
-					<p>Här kommer tredje synas</p>
+					<AdminComponent />
 				</div>
 			)}
 
-			<button className='standard-button' onClick={logoutHandler}>
-				Logout
-			</button>
+			<div className='logout-button col-12'>
+				<button className='standard-button' onClick={logoutHandler}>
+					Logout
+				</button>
+			</div>
 		</div>
 	);
 };

@@ -1,9 +1,9 @@
-import { jwtData } from '../../../entities/jwt';
+import { JwtData } from '../../../entities/jwt';
 import { isAdmin } from '../../../utils/userUtils';
 import './navbar.css';
 
 export const Navnbar = (props: any) => {
-	const jwtData: jwtData = props.jwtData;
+	const jwtData: JwtData = props.jwtData;
 	const setactiveNavItem = props.setactiveNavItem;
 	const activeNavItem = props.activeNavItem;
 
@@ -15,7 +15,6 @@ export const Navnbar = (props: any) => {
 	};
 
 	const handleOnclick = (clickedName: string) => {
-		console.log(clickedName);
 		setactiveNavItem(clickedName);
 	};
 
@@ -24,6 +23,7 @@ export const Navnbar = (props: any) => {
 			<nav>
 				<ul className='navbar'>
 					<li
+						key='groceries'
 						className={`col-3 navbar-item ${
 							isActive('groceries') ? 'active' : ''
 						}`}
@@ -34,6 +34,7 @@ export const Navnbar = (props: any) => {
 						Groceries
 					</li>
 					<li
+						key='recipes'
 						className={`col-3 navbar-item ${
 							isActive('recipes') ? 'active' : ''
 						}`}
@@ -45,6 +46,7 @@ export const Navnbar = (props: any) => {
 					</li>
 					{isAdmin(jwtData) && (
 						<li
+							key='admin'
 							className={`col-3 navbar-item ${
 								isActive('admin') ? 'active' : ''
 							}`}

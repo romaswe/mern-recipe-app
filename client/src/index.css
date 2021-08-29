@@ -55,6 +55,68 @@ code {
 	cursor: pointer;
 }
 
+.standard-button:hover {
+	background-color: #555555;
+	color: white;
+}
+
+.add-button {
+	background-color: white;
+	color: black;
+	border: 2px solid #079112;
+	padding: 10px 50px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+.add-button:hover {
+	background-color: #079112;
+	color: white;
+}
+
+.remove-button {
+	background-color: white;
+	color: black;
+	border: 2px solid #a50808;
+	padding: 10px 50px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+.remove-button:hover {
+	background-color: #a50808;
+	color: white;
+}
+
+.submit-button {
+	background-color: white;
+	color: black;
+	border: 2px solid #1c098b;
+	padding: 10px 50px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+.submit-button:hover {
+	background-color: #1c098b;
+	color: white;
+}
+
 .form-wrapper {
 	box-shadow: 0 0 1rem rgba(17, 68, 34, 0.2);
 	margin: 0.5rem;
@@ -62,11 +124,6 @@ code {
 	position: relative;
 	min-height: 15.625rem;
 	border-radius: 1rem;
-}
-
-.standard-button:hover {
-	background-color: #555555;
-	color: white;
 }
 
 input {
