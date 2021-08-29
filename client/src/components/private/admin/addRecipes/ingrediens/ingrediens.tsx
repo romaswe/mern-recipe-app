@@ -25,8 +25,13 @@ const IngrediensComponent = (props: any) => {
 				list[index].name = item.value;
 				break;
 			default:
+				console.log(item);
+
 				break;
 		}
+		console.log(item);
+		console.log(item.name);
+		console.log(item.value);
 
 		setingrediensList(list);
 	};
@@ -46,16 +51,28 @@ const IngrediensComponent = (props: any) => {
 		]);
 	};
 
+	const handleKeyDown = (e: any) => {
+		const regexp = /^[0-9]/;
+
+		if (e.key === 'Backspace' || e.key === 'Tab') {
+			return;
+		}
+
+		if (!regexp.test(e.key)) {
+			e.preventDefault();
+		}
+	};
+
 	return (
 		<div>
-			<h3>Ingrediens</h3>
+			<h4>Ingredienser</h4>
 			{ingrediensList.map((x: Ingrediens, i: number) => {
 				return (
 					<div className='row' key={i}>
 						<div className='col-12'>
 							<input
 								name='name'
-								placeholder='Enter Name'
+								placeholder='Skriv Namn'
 								value={x.name}
 								onChange={(e) =>
 									handleIngrediensInputChange(e, i)
@@ -64,21 +81,40 @@ const IngrediensComponent = (props: any) => {
 							<input
 								className=''
 								name='amount'
-								placeholder='Enter amount'
+								type='number'
+								min='0'
+								placeholder='Skriv Mängd'
 								value={x.amount}
+								onKeyDown={(e) => handleKeyDown(e)}
 								onChange={(e) =>
 									handleIngrediensInputChange(e, i)
 								}
 							/>
-							<input
+
+							<select
 								className=''
 								name='unit'
-								placeholder='Enter unit'
+								placeholder='Skriv Enhet'
 								value={x.unit}
 								onChange={(e) =>
 									handleIngrediensInputChange(e, i)
 								}
-							/>
+							>
+								<option disabled value=''>
+									{' '}
+									-- Välj Enhet --{' '}
+								</option>
+								<option value='st'>st</option>
+								<option value='g'>Gram</option>
+								<option value='kg'>Kilogram</option>
+								<option value='krm'>Kryddmått</option>
+								<option value='tsk'>Tesked</option>
+								<option value='msk'>Matsked</option>
+								<option value='ml'>Milliliters </option>
+								<option value='cl'>Centiliter </option>
+								<option value='dl'>Deciliters</option>
+								<option value='l'>Liter</option>
+							</select>
 						</div>
 						<div className='btn-box col-12'>
 							{ingrediensList.length !== 1 && (
@@ -86,7 +122,7 @@ const IngrediensComponent = (props: any) => {
 									className='remove-button'
 									onClick={() => handleRemoveClick(i)}
 								>
-									Remove
+									Ta bort
 								</button>
 							)}
 							{ingrediensList.length - 1 === i && (
@@ -94,7 +130,7 @@ const IngrediensComponent = (props: any) => {
 									className='add-button'
 									onClick={handleAddClick}
 								>
-									Add
+									Lägg till
 								</button>
 							)}
 						</div>

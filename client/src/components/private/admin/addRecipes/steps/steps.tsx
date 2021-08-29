@@ -38,14 +38,14 @@ const StepsComponent = (props: any) => {
 
 	return (
 		<div>
-			<h3>Steps</h3>
+			<h4>Steg</h4>
 			{stepsList.map((x: string, i: number) => {
 				return (
 					<div className='row' key={i}>
 						<div className='col-12'>
 							<input
 								name='step'
-								placeholder='Enter Step'
+								placeholder='Skriv steg'
 								value={x}
 								onChange={(e) => handleStepsInputChange(e, i)}
 							/>
@@ -56,7 +56,7 @@ const StepsComponent = (props: any) => {
 									className='remove-button'
 									onClick={() => handleRemoveClick(i)}
 								>
-									Remove
+									Ta bort
 								</button>
 							)}
 							{stepsList.length - 1 === i && (
@@ -64,7 +64,7 @@ const StepsComponent = (props: any) => {
 									className='add-button'
 									onClick={handleAddClick}
 								>
-									Add
+									Lägg till
 								</button>
 							)}
 						</div>

@@ -31,7 +31,7 @@ exports.addRecipe = async (req, res, next) => {
 		});
 		res.status(200).json({
 			success: true,
-			data: `You added recipe Name: ${name} to the DB`,
+			data: `You added recipe ${name}`,
 		});
 	} catch (error) {
 		next(error);

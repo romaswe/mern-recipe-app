@@ -136,6 +136,12 @@ input:focus {
 	border: 1px solid #555;
 }
 
+select {
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+}
+
 .row,
 .grid {
 	display: grid;

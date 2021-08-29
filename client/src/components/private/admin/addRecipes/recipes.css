@@ -1,3 +1,8 @@
 .add-recipes-wrapper {
 	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.submit-wrapper {
+	padding-top: 1rem;
 }
