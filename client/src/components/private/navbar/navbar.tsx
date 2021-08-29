@@ -68,6 +68,18 @@ export const Navnbar = (props: any) => {
 							Admin
 						</li>
 					)}
+
+					<li
+						key='om'
+						className={`col-3 navbar-item ${
+							isActive('om') ? 'active' : ''
+						}`}
+						onClick={() => {
+							handleOnclick('om');
+						}}
+					>
+						Om
+					</li>
 					<li className='user-role-info'>
 						<p>
 							{jwtData?.username}: {jwtData?.role}

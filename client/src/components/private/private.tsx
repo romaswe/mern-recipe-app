@@ -4,16 +4,16 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { JwtData } from '../../entities/jwt';
-import { isAdmin } from '../../utils/userUtils';
 import { Navnbar } from './navbar/navbar';
 import AdminComponent from './admin/admin';
 import MeasurementsComponent from './mesaurement/measurement';
+import RecipesListComponent from './recipes/recipesList';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
 const PrivateComponent = () => {
 	const history = useHistory();
 	const [error, setError] = useState('');
-	const [privateData, setPrivateData] = useState('');
+	const [, setPrivateData] = useState('');
 	const [activeNavItem, setactiveNavItem] = useState('recipes');
 	const decodedJWT = useRef<JwtData>();
 	useEffect(() => {
@@ -42,8 +42,6 @@ const PrivateComponent = () => {
 
 		var token = localStorage.getItem('authToken') ?? '';
 		decodedJWT.current = jwt_decode(token);
-
-		console.log(isAdmin(decodedJWT.current));
 
 		fetchPrivateData();
 	}, []);
@@ -79,7 +77,7 @@ const PrivateComponent = () => {
 
 			{isActive('recipes') && (
 				<div className='col-12'>
-					<p>Här kommer andra synas</p>
+					<RecipesListComponent />
 				</div>
 			)}
 

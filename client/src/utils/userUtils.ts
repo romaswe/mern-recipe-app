@@ -8,3 +8,19 @@ export const isAdmin = (jwt: JwtData | undefined) => {
 
 	return false;
 };
+
+export const isUser = (jwt: JwtData | undefined) => {
+	if (jwt?.role === UserRoles.user) {
+		return true;
+	}
+
+	return false;
+};
+
+export const isViewer = (jwt: JwtData | undefined) => {
+	if (jwt?.role === UserRoles.viewer) {
+		return true;
+	}
+
+	return false;
+};

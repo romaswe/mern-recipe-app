@@ -29,9 +29,6 @@ const IngrediensComponent = (props: any) => {
 
 				break;
 		}
-		console.log(item);
-		console.log(item.name);
-		console.log(item.value);
 
 		setingrediensList(list);
 	};
@@ -51,10 +48,15 @@ const IngrediensComponent = (props: any) => {
 		]);
 	};
 
-	const handleKeyDown = (e: any) => {
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		const regexp = /^[0-9]/;
 
-		if (e.key === 'Backspace' || e.key === 'Tab') {
+		if (
+			e.key === 'Backspace' ||
+			e.key === 'Tab' ||
+			e.key === ',' ||
+			e.key === '.'
+		) {
 			return;
 		}
 
@@ -83,6 +85,7 @@ const IngrediensComponent = (props: any) => {
 								name='amount'
 								type='number'
 								min='0'
+								step='0.01'
 								placeholder='Skriv Mängd'
 								value={x.amount}
 								onKeyDown={(e) => handleKeyDown(e)}
