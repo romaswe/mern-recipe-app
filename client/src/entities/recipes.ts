@@ -5,20 +5,12 @@ export interface Ingrediens {
 	name: string;
 }
 
-export interface Recipes {
-	name: string;
-	url: string;
-	notes: string;
-	ingrediens: Ingrediens[];
-	instructions: string[];
-}
-
 export interface RecipesListJSON {
 	success: boolean;
-	data: Recipe[];
+	data: Recipes[];
 }
 
-export interface Recipe {
+export interface Recipes {
 	instructions?: string[];
 	_id?: string;
 	name: string;

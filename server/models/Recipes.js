@@ -17,6 +17,10 @@ const RecipeSchema = new mongoose.Schema({
 	notes: {
 		type: String,
 	},
+	description: {
+		type: String,
+	},
+	categories: [{ type: String }],
 	ingrediens: [listIngrediens],
 
 	instructions: [{ type: String }],

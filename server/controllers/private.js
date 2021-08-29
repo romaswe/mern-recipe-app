@@ -33,12 +33,22 @@ exports.getRecipeByName = async (req, res, next) => {
 };
 
 exports.addRecipe = async (req, res, next) => {
-	const { name, url, notes, ingrediens, instructions } = req.body;
+	const {
+		name,
+		url,
+		notes,
+		description,
+		categories,
+		ingrediens,
+		instructions,
+	} = req.body;
 	try {
 		const recipe = await Recipe.create({
 			name,
 			url,
 			notes,
+			description,
+			categories,
 			ingrediens,
 			instructions,
 		});

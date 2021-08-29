@@ -15,6 +15,7 @@ const RecipesComponent = () => {
 	const [recipeName, setRecipeName] = useState('');
 	const [recipeURL, setRecipeURL] = useState('');
 	const [recipeNotes, setRecipeNotes] = useState('');
+	const [recipeDescription, setRecipeDescription] = useState('');
 
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState('');
@@ -27,6 +28,7 @@ const RecipesComponent = () => {
 			name: recipeName,
 			url: recipeURL,
 			notes: recipeNotes,
+			description: recipeDescription,
 			ingrediens: ingrediensList,
 			instructions: stepsList,
 		};
@@ -104,6 +106,17 @@ const RecipesComponent = () => {
 						placeholder='Skriv notiser'
 						onChange={(e) => setRecipeNotes(e.target.value)}
 						value={recipeNotes}
+					/>
+				</div>
+
+				<div className='description-input-wrapper'>
+					<textarea
+						className='col-6'
+						id='notes'
+						autoComplete='true'
+						placeholder='Skriv beskrivning'
+						onChange={(e) => setRecipeDescription(e.target.value)}
+						value={recipeDescription}
 					/>
 				</div>
 				<div className='dynamic'>
