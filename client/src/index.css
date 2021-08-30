@@ -153,8 +153,8 @@ select {
 	grid-column: span 12;
 }
 
-@media only screen and (min-width: 600px) {
-	/* For tablets: */
+@media only screen {
+	/* For mobile/tablets: */
 	.col-s-0 {
 		width: 0;
 	}

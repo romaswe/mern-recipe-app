@@ -47,6 +47,7 @@ const StepsComponent = (props: any) => {
 								name='step'
 								placeholder='Skriv steg'
 								value={x}
+								required
 								onChange={(e) => handleStepsInputChange(e, i)}
 							/>
 						</div>

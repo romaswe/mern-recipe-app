@@ -1,0 +1,11 @@
+.url-wrapper {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.ingredent-row p {
+	margin: 0;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}

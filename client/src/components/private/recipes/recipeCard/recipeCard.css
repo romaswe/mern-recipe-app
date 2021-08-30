@@ -8,5 +8,13 @@
 }
 .recipe-card-wrapper:hover {
 	background-color: rgba(128, 128, 128, 0.685);
+}
+
+.recipe-card-header {
 	cursor: pointer;
+}
+
+hr.rounded {
+	border-top: 1px solid rgba(128, 128, 128, 0.685);
+	border-radius: 5px;
 }

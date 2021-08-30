@@ -76,6 +76,7 @@ const IngrediensComponent = (props: any) => {
 								name='name'
 								placeholder='Skriv Namn'
 								value={x.name}
+								required
 								onChange={(e) =>
 									handleIngrediensInputChange(e, i)
 								}
