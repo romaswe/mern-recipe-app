@@ -70,12 +70,12 @@ export const Navnbar = (props: any) => {
 					)}
 
 					<li
-						key='om'
+						key='about'
 						className={`col-3 navbar-item ${
-							isActive('om') ? 'active' : ''
+							isActive('about') ? 'active' : ''
 						}`}
 						onClick={() => {
-							handleOnclick('om');
+							handleOnclick('about');
 						}}
 					>
 						Om

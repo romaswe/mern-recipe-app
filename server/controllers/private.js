@@ -65,10 +65,8 @@ exports.addRecipe = async (req, res, next) => {
 	}
 };
 
-exports.getGrocerieListById = async (req, res, next) => {
-	const userID = req.params.userID;
+exports.getGrocerieList = async (req, res, next) => {
 	let token;
-
 	if (
 		req.headers.authorization &&
 		req.headers.authorization.startsWith('Bearer')
@@ -85,15 +83,12 @@ exports.getGrocerieListById = async (req, res, next) => {
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-		if (decoded.id !== userID) {
-			return next(new ErrorResponse('Your not logged in as that user', 401));
-		}
-
-		const user = await User.findById(userID);
+		const user = await User.findById(decoded.id);
+		console.log(decoded.id);
 		if (!user) {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
-		const grocerieList = await Groceries.findOne({ owner: userID });
+		const grocerieList = await Groceries.findOne({ owner: decoded.id });
 		res.status(200).json({
 			success: true,
 			data: grocerieList,
@@ -106,7 +101,6 @@ exports.getGrocerieListById = async (req, res, next) => {
 
 exports.addGroceries = async (req, res, next) => {
 	const {
-		owner,
 		name,
 		groceries,
 	} = req.body;
@@ -127,24 +121,20 @@ exports.addGroceries = async (req, res, next) => {
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-
-		if (decoded.id !== owner) {
-			return next(new ErrorResponse('Your not logged in as that user', 401));
-		}
-
-		const user = await User.findById(owner);
+		const userID = decoded.id
+		const user = await User.findById(userID);
 		if (!user) {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
 
 		const grocerie = await Groceries.findOneAndUpdate({
-			owner,
+			userID,
 			name,
 			groceries
 		});
 		if (!grocerie) {
 			const grocerie = await Groceries.create({
-				owner,
+				userID,
 				name,
 				groceries
 			});

@@ -8,6 +8,7 @@ import { Navnbar } from './navbar/navbar';
 import AdminComponent from './admin/admin';
 import MeasurementsComponent from './mesaurement/measurement';
 import RecipesListComponent from './recipes/recipesList';
+import { Groceries } from './groceries/groceries';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
 const PrivateComponent = () => {
@@ -71,7 +72,7 @@ const PrivateComponent = () => {
 			</div>
 			{isActive('groceries') && (
 				<div className='col-12 wrapper'>
-					<p>Här kommer första synas</p>
+					<Groceries jwtData={decodedJWT.current}/>
 				</div>
 			)}
 
@@ -90,6 +91,12 @@ const PrivateComponent = () => {
 			{isActive('admin') && (
 				<div className='col-12'>
 					<AdminComponent />
+				</div>
+			)}
+
+			{isActive('about') && (
+				<div className='col-12'>
+					<p>Här kommer om sidan</p>
 				</div>
 			)}
 
