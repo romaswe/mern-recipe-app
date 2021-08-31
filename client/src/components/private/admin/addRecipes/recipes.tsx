@@ -24,11 +24,12 @@ const RecipesComponent = () => {
 
 	const submitRecipe = async (e: any) => {
 		e.preventDefault();
+
 		const recipe: Recipes = {
-			name: recipeName,
-			url: recipeURL,
-			notes: recipeNotes,
-			description: recipeDescription,
+			name: recipeName.trim(),
+			url: recipeURL.trim(),
+			notes: recipeNotes.trim(),
+			description: recipeDescription.trim(),
 			ingrediens: ingrediensList,
 			instructions: stepsList,
 		};
@@ -65,6 +66,7 @@ const RecipesComponent = () => {
 		setRecipeName('');
 		setRecipeURL('');
 		setRecipeNotes('');
+		setRecipeDescription('');
 	};
 
 	return (

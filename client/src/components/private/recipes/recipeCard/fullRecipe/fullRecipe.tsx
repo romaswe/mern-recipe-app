@@ -59,8 +59,7 @@ export const FullRecipe = (props: any) => {
 										<div className='row ingredent-row'>
 											<div className='col-s-3 col-3'>
 												<p>
-													{ingredient.amount}
-													{ingredient.unit}
+													{ingredient.amount} {ingredient.unit}
 												</p>
 											</div>
 											<div className='col-s-9 col-9'>

@@ -63,6 +63,7 @@ yarn-error.log*
 /.pnp
 .pnp.js
 /docker/res/*
+/docker/mongodbRes/*
 
 
 # testing

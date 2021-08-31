@@ -1,4 +1,8 @@
+const jwt = require('jsonwebtoken');
+const Groceries = require('../models/Groceries');
 const Recipe = require('../models/Recipes');
+const User = require('../models/Users');
+const ErrorResponse = require('../utils/errorResponse');
 
 exports.getPrivateRoute = (req, res, next) => {
 	res.status(200).json({
@@ -55,6 +59,99 @@ exports.addRecipe = async (req, res, next) => {
 		res.status(200).json({
 			success: true,
 			data: `You added recipe ${name}`,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
+exports.getGrocerieListById = async (req, res, next) => {
+	const userID = req.params.userID;
+	let token;
+
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if (!token) {
+		return next(
+			new ErrorResponse('Not authorized to access this route', 401)
+		);
+	}
+
+	try {
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+		if (decoded.id !== userID) {
+			return next(new ErrorResponse('Your not logged in as that user', 401));
+		}
+
+		const user = await User.findById(userID);
+		if (!user) {
+			return next(new ErrorResponse('Not a valid user', 401));
+		}
+		const grocerieList = await Groceries.findOne({ owner: userID });
+		res.status(200).json({
+			success: true,
+			data: grocerieList,
+		});
+	} catch (error) {
+		return next(error);
+	}
+};
+
+
+exports.addGroceries = async (req, res, next) => {
+	const {
+		owner,
+		name,
+		groceries,
+	} = req.body;
+	let token;
+
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if (!token) {
+		return next(
+			new ErrorResponse('Not authorized to access this route', 401)
+		);
+	}
+	try {
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+
+		if (decoded.id !== owner) {
+			return next(new ErrorResponse('Your not logged in as that user', 401));
+		}
+
+		const user = await User.findById(owner);
+		if (!user) {
+			return next(new ErrorResponse('Not a valid user', 401));
+		}
+
+		const grocerie = await Groceries.findOneAndUpdate({
+			owner,
+			name,
+			groceries
+		});
+		if (!grocerie) {
+			const grocerie = await Groceries.create({
+				owner,
+				name,
+				groceries
+			});
+		}
+		res.status(200).json({
+			success: true,
+			data: `You added ${grocerie.groceries.length} groceries`,
 		});
 	} catch (error) {
 		next(error);
