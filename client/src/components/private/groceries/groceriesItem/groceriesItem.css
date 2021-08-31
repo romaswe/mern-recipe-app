@@ -1,0 +1,7 @@
+.grocerie-name-wrapper {
+	box-shadow: 0 0 1rem rgba(17, 68, 34, 0.2);
+	margin: 0.25rem;
+	padding: 0.25rem;
+	position: relative;
+	border-radius: 1rem;
+}

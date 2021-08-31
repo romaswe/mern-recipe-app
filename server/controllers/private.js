@@ -88,7 +88,9 @@ exports.getGrocerieList = async (req, res, next) => {
 		if (!user) {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
-		const grocerieList = await Groceries.findOne({ owner: decoded.id });
+		const grocerieList = await Groceries.findOne({
+			owner: decoded.id,
+		}).select('groceries -_id');
 		res.status(200).json({
 			success: true,
 			data: grocerieList,
@@ -98,12 +100,8 @@ exports.getGrocerieList = async (req, res, next) => {
 	}
 };
 
-
 exports.addGroceries = async (req, res, next) => {
-	const {
-		name,
-		groceries,
-	} = req.body;
+	const { name, groceries } = req.body;
 	let token;
 
 	if (
@@ -121,22 +119,22 @@ exports.addGroceries = async (req, res, next) => {
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-		const userID = decoded.id
-		const user = await User.findById(userID);
+		const owner = decoded.id;
+		const user = await User.findById(owner);
 		if (!user) {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
 
 		const grocerie = await Groceries.findOneAndUpdate({
-			userID,
+			owner,
 			name,
-			groceries
+			groceries,
 		});
 		if (!grocerie) {
 			const grocerie = await Groceries.create({
-				userID,
+				owner,
 				name,
-				groceries
+				groceries,
 			});
 		}
 		res.status(200).json({
