@@ -7,6 +7,7 @@ const {
 	addRecipe,
 	getGrocerieList,
 	addGroceries,
+	getGroceriesInfo,
 } = require('../controllers/private');
 const { protect, adminProtect } = require('../middleware/auth');
 
@@ -20,6 +21,8 @@ router.route('/recipes').post(adminProtect, addRecipe);
 
 router.route('/getGrocerieList').get(protect, getGrocerieList);
 
-router.route('/groceries').post(adminProtect, addGroceries);
+router.route('/groceries').post(protect, addGroceries);
+
+router.route('/getGroceriesInfo').get(protect, getGroceriesInfo);
 
 module.exports = router;

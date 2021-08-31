@@ -6,6 +6,7 @@
 	min-height: 5rem;
 	border-radius: 1rem;
 }
+
 .recipe-card-wrapper:hover {
 	background-color: rgba(128, 128, 128, 0.685);
 }

@@ -82,9 +82,7 @@ exports.getGrocerieList = async (req, res, next) => {
 
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
 		const user = await User.findById(decoded.id);
-		console.log(decoded.id);
 		if (!user) {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
@@ -143,5 +141,43 @@ exports.addGroceries = async (req, res, next) => {
 		});
 	} catch (error) {
 		next(error);
+	}
+};
+
+exports.getGroceriesInfo = async (req, res, next) => {
+	let token;
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if (!token) {
+		return next(
+			new ErrorResponse('Not authorized to access this route', 401)
+		);
+	}
+
+	try {
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		const user = await User.findById(decoded.id);
+		if (!user) {
+			return next(new ErrorResponse('Not a valid user', 401));
+		}
+
+		const grocerieInfo = await Groceries.findOne({
+			owner: decoded.id,
+		}).select('name groceries -_id');
+		const returnInfo = {
+			name: grocerieInfo.name,
+			size: grocerieInfo.groceries.length,
+		};
+		res.status(200).json({
+			success: true,
+			data: returnInfo,
+		});
+	} catch (error) {
+		return next(error);
 	}
 };

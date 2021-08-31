@@ -10,5 +10,6 @@ export interface Data {
 	_id?: string;
 	owner?: string;
 	name?: string;
+	size?: number;
 	__v?: number;
 }

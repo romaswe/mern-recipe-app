@@ -8,8 +8,6 @@ export const RecipeCard = (props: any) => {
 	const [showRecipe, setShowRecipe] = useState(false);
 
 	const handleOnclick = () => {
-		console.log('clicked');
-		console.log(recipe.name);
 		setShowRecipe(!showRecipe);
 	};
 

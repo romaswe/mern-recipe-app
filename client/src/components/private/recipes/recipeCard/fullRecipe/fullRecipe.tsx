@@ -3,7 +3,6 @@ import './fullRecipe.css';
 
 export const FullRecipe = (props: any) => {
 	const recipe: Recipes = props.recipe;
-	console.log(recipe);
 
 	const checkArray = (array: Array<string>) => {
 		if (array.length > 0) {
@@ -59,7 +58,8 @@ export const FullRecipe = (props: any) => {
 										<div className='row ingredent-row'>
 											<div className='col-s-3 col-3'>
 												<p>
-													{ingredient.amount} {ingredient.unit}
+													{ingredient.amount}{' '}
+													{ingredient.unit}
 												</p>
 											</div>
 											<div className='col-s-9 col-9'>
