@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { GroceriesJson } from '../../../entities/groceries';
 import { JwtData } from '../../../entities/jwt';
+import { AddGroceries } from './addGroceries/addGroceries';
 import './groceries.css';
 import { GroceriesInfo } from './groceriesInfo/groceriesInfo';
 import { GroceriesItem } from './groceriesItem/groceriesItem';
@@ -53,7 +54,19 @@ export const Groceries = (props: any) => {
 	) : (
 		<div className='row'>
 			<div className='col-s-12 col-3'>
-				<GroceriesInfo groceriesInfo={groceriesInfo} />
+				<div className='row'>
+					<div className='col-12'>
+						{groceriesInfo && (
+							<GroceriesInfo groceriesInfo={groceriesInfo} />
+						)}
+					</div>
+					<div className='col-12'>
+						<AddGroceries
+							groceriesList={groceriesList}
+							setGroceriesList={setGroceriesList}
+						/>
+					</div>
+				</div>
 			</div>
 			<div className='col-s-12 col-9'>
 				{groceriesList?.data && (

@@ -12,13 +12,18 @@ export const GroceriesInfo = (props: any) => {
 		<div className='col-s-12 col-6'>
 			<div className='grocerie-info-wrapper'>
 				<h4>Information</h4>
-				<p>Antal i listan: {groceriesInfo.data.size}</p>
+				<p>
+					Antal i listan:{' '}
+					{groceriesInfo && groceriesInfo.data
+						? groceriesInfo?.data.size
+						: '0'}
+				</p>
 				<div className='remove-button-wrapper'>
 					<button
 						className='remove-button'
 						onClick={() => handleRemoveClick()}
 					>
-						Tabort alla i listan!
+						Tabort allt i listan!
 					</button>
 				</div>
 			</div>

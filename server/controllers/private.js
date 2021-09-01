@@ -116,18 +116,19 @@ exports.addGroceries = async (req, res, next) => {
 	}
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
 		const owner = decoded.id;
 		const user = await User.findById(owner);
 		if (!user) {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
 
-		const grocerie = await Groceries.findOneAndUpdate({
-			owner,
-			name,
-			groceries,
-		});
+		const filter = { owner: owner, name: name }
+		const update = { $addToSet: {groceries: groceries} } // Use push to add, or use addToSet to only add unique  
+
+		const grocerie = await Groceries.findOneAndUpdate(
+			filter,
+			update
+		);
 		if (!grocerie) {
 			const grocerie = await Groceries.create({
 				owner,
