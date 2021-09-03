@@ -123,7 +123,7 @@ exports.addGroceries = async (req, res, next) => {
 		}
 
 		const filter = { owner: owner, name: name }
-		const update = { $addToSet: {groceries: groceries} } // Use push to add, or use addToSet to only add unique  
+		const update = { $push: {groceries: groceries} } // Use push to add, or use addToSet to only add unique  
 
 		const grocerie = await Groceries.findOneAndUpdate(
 			filter,
@@ -140,6 +140,50 @@ exports.addGroceries = async (req, res, next) => {
 			success: true,
 			data: `You added ${grocerie.groceries.length} groceries`,
 		});
+	} catch (error) {
+		next(error);
+	}
+};
+
+exports.deleteGroceries = async (req, res, next) => {
+	const { name, groceries } = req.body;
+	let token;
+	const numberOfItems = groceries.length
+
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if (!token) {
+		return next(
+			new ErrorResponse('Not authorized to access this route', 401)
+		);
+	}
+
+	try {
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		const owner = decoded.id;
+		const user = await User.findById(owner);
+		if (!user) {
+			return next(new ErrorResponse('Not a valid user', 401));
+		}
+
+		const filter = { owner: owner, name: name }
+		const update = { $pull: {groceries: { $in: groceries } } }
+
+		const grocerie = await Groceries.updateMany(
+			filter,
+			update,
+		);
+
+		res.status(200).json({
+			success: true,
+			data: `You deleted ${numberOfItems} groceries`,
+		});
+
 	} catch (error) {
 		next(error);
 	}
