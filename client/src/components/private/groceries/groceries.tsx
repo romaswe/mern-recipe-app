@@ -64,6 +64,8 @@ export const Groceries = (props: any) => {
 						<AddGroceries
 							groceriesList={groceriesList}
 							setGroceriesList={setGroceriesList}
+							setGroceriesInfo={setGroceriesInfo}
+							groceriesInfo={groceriesInfo}
 						/>
 					</div>
 				</div>

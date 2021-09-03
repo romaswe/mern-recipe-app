@@ -7,6 +7,8 @@ const apiUrl = process.env.REACT_APP_BASE_URL;
 export const AddGroceries = (props: any) => {
 	const groceriesList = props.groceriesList;
 	const setGroceriesList = props.setGroceriesList;
+	const setGroceriesInfo = props.setGroceriesInfo;
+	const groceriesInfo = props.groceriesInfo;
 
 	const [addGrocerie, setAddGrocerie] = useState('');
 	const [error, setError] = useState('');
@@ -29,7 +31,20 @@ export const AddGroceries = (props: any) => {
 				config
 			);
 
-			// TODO: We need to refresh the list in grocerie view
+			setGroceriesList({
+				...groceriesList,
+				data: {
+					groceries: [...groceriesList.data.groceries, addGrocerie],
+				},
+			});
+
+			setGroceriesInfo({
+				...groceriesInfo,
+				data: {
+					size: groceriesList.data.groceries.length + 1,
+				},
+			});
+
 			setAddGrocerie('');
 		} catch (error) {
 			console.log(error);
