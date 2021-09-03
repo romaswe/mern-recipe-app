@@ -145,7 +145,7 @@ exports.addGroceries = async (req, res, next) => {
 	}
 };
 
-exports.deleteGroceries = async (req, res, next) => {
+exports.deleteGroceries = async (req, res, next) => { // This needs work, if you send in "1" and have 2 "1" in the array, both are removed
 	const { name, groceries } = req.body;
 	let token;
 	const numberOfItems = groceries.length
@@ -171,10 +171,11 @@ exports.deleteGroceries = async (req, res, next) => {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
 
+
 		const filter = { owner: owner, name: name }
 		const update = { $pull: {groceries: { $in: groceries } } }
 
-		const grocerie = await Groceries.updateMany(
+		const grocerie = await Groceries.updateOne(
 			filter,
 			update,
 		);
@@ -182,6 +183,51 @@ exports.deleteGroceries = async (req, res, next) => {
 		res.status(200).json({
 			success: true,
 			data: `You deleted ${numberOfItems} groceries`,
+		});
+
+	} catch (error) {
+		next(error);
+	}
+};
+
+exports.setGroceries = async (req, res, next) => {
+	const { name, groceries } = req.body;
+	let token;
+	const numberOfItems = groceries.length
+
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if (!token) {
+		return next(
+			new ErrorResponse('Not authorized to access this route', 401)
+		);
+	}
+
+	try {
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		const owner = decoded.id;
+		const user = await User.findById(owner);
+		if (!user) {
+			return next(new ErrorResponse('Not a valid user', 401));
+		}
+
+
+		const filter = { owner: owner, name: name }
+		const update = {groceries: groceries }
+
+		const grocerie = await Groceries.findOneAndUpdate(
+			filter,
+			update,
+		);
+
+		res.status(200).json({
+			success: true,
+			data: `You changed to: ${numberOfItems} groceries`,
 		});
 
 	} catch (error) {

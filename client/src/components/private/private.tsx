@@ -34,7 +34,7 @@ const PrivateComponent = () => {
 					config
 				);
 				setPrivateData(data.data);
-			} catch (error) {
+			} catch (error: any) {
 				localStorage.removeItem('authToken');
 				console.log(error.response.data.error);
 				setError('You are not authorized please login');
@@ -72,7 +72,7 @@ const PrivateComponent = () => {
 			</div>
 			{isActive('groceries') && (
 				<div className='col-12 wrapper'>
-					<Groceries jwtData={decodedJWT.current}/>
+					<Groceries jwtData={decodedJWT.current} />
 				</div>
 			)}
 

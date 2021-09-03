@@ -35,7 +35,7 @@ const LoginComponent = () => {
 			localStorage.setItem('authToken', data.token);
 
 			history.push('/');
-		} catch (error) {
+		} catch (error: any) {
 			setError(error.response.data.error);
 			setTimeout(() => {
 				setError('');

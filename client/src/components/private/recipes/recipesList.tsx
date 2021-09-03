@@ -26,7 +26,7 @@ const RecipesListComponent = () => {
 					config
 				);
 				setRecipesList(data);
-			} catch (error) {
+			} catch (error: any) {
 				console.log(error.response.data.error);
 				setError(error.response.data.error);
 			}

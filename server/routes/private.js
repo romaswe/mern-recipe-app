@@ -9,6 +9,7 @@ const {
 	addGroceries,
 	getGroceriesInfo,
 	deleteGroceries,
+	setGroceries,
 } = require('../controllers/private');
 const { protect, adminProtect } = require('../middleware/auth');
 
@@ -25,6 +26,8 @@ router.route('/getGrocerieList').get(protect, getGrocerieList);
 router.route('/groceries').post(protect, addGroceries);
 
 router.route('/groceries').delete(protect, deleteGroceries);
+
+router.route('/groceries').put(protect, setGroceries);
 
 router.route('/getGroceriesInfo').get(protect, getGroceriesInfo);
 

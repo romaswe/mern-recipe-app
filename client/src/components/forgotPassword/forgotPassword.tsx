@@ -25,7 +25,7 @@ const ForgotPasswordComponent = () => {
 			);
 
 			setSuccess(data.data);
-		} catch (error) {
+		} catch (error: any) {
 			setError(error.response.data.error);
 			setEmail('');
 			setTimeout(() => {

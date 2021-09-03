@@ -46,7 +46,7 @@ export const AddGroceries = (props: any) => {
 			});
 
 			setAddGrocerie('');
-		} catch (error) {
+		} catch (error: any) {
 			console.log(error);
 			setError(error.response.data.error);
 		}

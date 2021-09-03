@@ -52,7 +52,7 @@ const RecipesComponent = () => {
 
 			setSuccess(data.data);
 			clearFields();
-		} catch (error) {
+		} catch (error: any) {
 			setError(error.response.data.error);
 			setTimeout(() => {
 				setError('');

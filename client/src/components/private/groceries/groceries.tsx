@@ -27,7 +27,7 @@ export const Groceries = (props: any) => {
 					config
 				);
 				setGroceriesList(data);
-			} catch (error) {
+			} catch (error: any) {
 				console.log(error.response.data.error);
 				setError(error.response.data.error);
 			}
@@ -40,7 +40,7 @@ export const Groceries = (props: any) => {
 					config
 				);
 				setGroceriesInfo(data);
-			} catch (error) {
+			} catch (error: any) {
 				console.log(error.response.data.error);
 				setError(error.response.data.error);
 			}
@@ -57,7 +57,12 @@ export const Groceries = (props: any) => {
 				<div className='row'>
 					<div className='col-12'>
 						{groceriesInfo && (
-							<GroceriesInfo groceriesInfo={groceriesInfo} />
+							<GroceriesInfo
+								groceriesList={groceriesList}
+								setGroceriesList={setGroceriesList}
+								setGroceriesInfo={setGroceriesInfo}
+								groceriesInfo={groceriesInfo}
+							/>
 						)}
 					</div>
 					<div className='col-12'>
