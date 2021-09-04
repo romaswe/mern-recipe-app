@@ -58,8 +58,11 @@ export const GroceriesItem = (props: any) => {
 				<div className='col-10'>
 					<p>{grocerieName}</p>
 				</div>
-				<div className='col-2'>
-					<button className='remove-button' onClick={handleAddClick}>
+				<div className='col-2 button-wrapper'>
+					<button
+						className='remove-grocerie-button'
+						onClick={handleAddClick}
+					>
 						<RiDeleteBin2Fill />
 					</button>
 				</div>

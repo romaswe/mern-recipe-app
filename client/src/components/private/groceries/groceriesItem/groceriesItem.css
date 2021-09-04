@@ -2,6 +2,28 @@
 	box-shadow: 0 0 1rem rgba(17, 68, 34, 0.2);
 	margin: 0.25rem;
 	padding: 0.25rem;
+	padding-left: 0.5rem;
 	position: relative;
 	border-radius: 1rem;
+}
+.button-wrapper {
+	text-align: center;
+}
+
+.remove-grocerie-button {
+	background-color: white;
+	color: black;
+	border: 2px solid #a50808;
+	padding: 0.75rem 2rem;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1rem;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+.remove-grocerie-button:hover {
+	background-color: #a50808;
+	color: white;
 }
