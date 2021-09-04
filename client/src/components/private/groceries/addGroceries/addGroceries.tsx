@@ -1,7 +1,7 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { useState } from 'react';
-import { Data } from '../../../../entities/groceries';
+import { Groceri } from '../../../../entities/groceries';
 import { JwtData } from '../../../../entities/jwt';
 import { isViewer } from '../../../../utils/userUtils';
 import './addGroceries.css';
@@ -37,7 +37,7 @@ export const AddGroceries = (props: any) => {
 					)}`,
 				},
 			};
-			const grocerie: Data = {
+			const grocerie: Groceri = {
 				name: 'MyList',
 				groceries: [addGrocerie],
 			};

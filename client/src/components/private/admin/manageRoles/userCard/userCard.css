@@ -1,0 +1,12 @@
+.user-card-wrapper {
+	box-shadow: 0 0 1rem rgba(17, 68, 34, 0.2);
+	margin: 0.5rem;
+	padding: 1rem;
+	position: relative;
+	min-height: 5rem;
+	border-radius: 1rem;
+}
+hr.rounded {
+	border-top: 1px solid rgba(128, 128, 128, 0.685);
+	border-radius: 5px;
+}

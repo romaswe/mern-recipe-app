@@ -10,6 +10,8 @@ const {
 	getGroceriesInfo,
 	deleteGroceries,
 	setGroceries,
+	getUsers,
+	setUserRole,
 } = require('../controllers/private');
 const { protect, adminProtect } = require('../middleware/auth');
 
@@ -30,5 +32,9 @@ router.route('/groceries').delete(protect, deleteGroceries);
 router.route('/groceries').put(protect, setGroceries);
 
 router.route('/getGroceriesInfo').get(protect, getGroceriesInfo);
+
+router.route('/getUsers').get(adminProtect, getUsers);
+
+router.route('/changeUserRole').put(adminProtect, setUserRole);
 
 module.exports = router;

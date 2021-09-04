@@ -285,3 +285,29 @@ exports.getGroceriesInfo = async (req, res, next) => {
 		return next(error);
 	}
 };
+
+exports.getUsers = async (req, res, next) => {
+	try {
+		const users = await User.find({});
+		res.status(200).json({
+			success: true,
+			data: users,
+		});
+	} catch (error) {
+		return next(error);
+	}
+};
+
+exports.setUserRole = async (req, res, next) => {
+	const { userID, role } = req.body;
+	try {
+		const update = { $set: { role: role } };
+		const user = await User.findByIdAndUpdate(userID, update);
+		res.status(200).json({
+			success: true,
+			data: `Role changed to ${role}`,
+		});
+	} catch (error) {
+		return next(error);
+	}
+};

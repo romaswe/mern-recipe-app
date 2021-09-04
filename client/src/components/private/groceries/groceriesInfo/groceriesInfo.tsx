@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Data, GroceriesJson } from '../../../../entities/groceries';
+import { Groceri, GroceriesJson } from '../../../../entities/groceries';
 import './groceriesInfo.css';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
@@ -21,7 +21,7 @@ export const GroceriesInfo = (props: any) => {
 			},
 		};
 
-		const grocerie: Data = {
+		const grocerie: Groceri = {
 			name: 'MyList',
 			groceries: [],
 		};

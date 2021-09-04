@@ -2,10 +2,10 @@
 
 export interface GroceriesJson {
 	success: boolean;
-	data: Data;
+	data: Groceri;
 }
 
-export interface Data {
+export interface Groceri {
 	groceries: string[];
 	_id?: string;
 	owner?: string;

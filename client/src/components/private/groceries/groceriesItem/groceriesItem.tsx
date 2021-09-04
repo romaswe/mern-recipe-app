@@ -1,7 +1,7 @@
 import './groceriesItem.css';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import axios from 'axios';
-import { Data } from '../../../../entities/groceries';
+import { Groceri } from '../../../../entities/groceries';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
 export const GroceriesItem = (props: any) => {
@@ -23,7 +23,7 @@ export const GroceriesItem = (props: any) => {
 			},
 		};
 
-		const grocerie: Data = {
+		const grocerie: Groceri = {
 			name: 'MyList',
 			groceries: tempList,
 		};

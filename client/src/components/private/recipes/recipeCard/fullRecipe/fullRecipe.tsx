@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Data } from '../../../../../entities/groceries';
+import { Groceri } from '../../../../../entities/groceries';
 import { Ingrediens, Recipes } from '../../../../../entities/recipes';
 import './fullRecipe.css';
 
@@ -29,7 +29,7 @@ export const FullRecipe = (props: any) => {
 				});
 
 				if (listToAdd) {
-					const grocerie: Data = {
+					const grocerie: Groceri = {
 						name: 'MyList',
 						groceries: listToAdd,
 					};
