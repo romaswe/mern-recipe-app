@@ -27,7 +27,7 @@ export const GroceriesInfo = (props: any) => {
 		};
 
 		try {
-			const { data } = await axios.put(
+			await axios.put(
 				apiUrl + '/api/private/groceries',
 				grocerie,
 				config

@@ -29,7 +29,7 @@ export const UserCardComponent = (props: any) => {
 		};
 
 		try {
-			const { data } = await axios.put(
+			await axios.put(
 				apiUrl + '/api/private/changeUserRole',
 				body,
 				config

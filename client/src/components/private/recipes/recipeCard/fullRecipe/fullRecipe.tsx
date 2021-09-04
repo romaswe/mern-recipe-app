@@ -33,7 +33,7 @@ export const FullRecipe = (props: any) => {
 						name: 'MyList',
 						groceries: listToAdd,
 					};
-					const { data } = await axios.post(
+					await axios.post(
 						apiUrl + '/api/private/groceries',
 						grocerie,
 						config
