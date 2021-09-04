@@ -9,3 +9,8 @@
 .remove-button-wrapper {
 	text-align: center;
 }
+
+.max-groceries {
+	color: red;
+	text-decoration: underline;
+}

@@ -61,6 +61,12 @@ export const GroceriesInfo = (props: any) => {
 					{groceriesInfo && groceriesInfo.data
 						? groceriesInfo?.data.size
 						: '0'}
+					{(groceriesInfo?.data?.size ?? 0) >= 75 && (
+						<h4 className='max-groceries'>
+							Max antal i inköpslistan, Tabort innan du lägger
+							till fler
+						</h4>
+					)}
 				</p>
 				<div className='remove-button-wrapper'>
 					<button

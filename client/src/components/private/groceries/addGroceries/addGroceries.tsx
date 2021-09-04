@@ -84,6 +84,9 @@ export const AddGroceries = (props: any) => {
 		} catch (error: any) {
 			console.log(error);
 			setError(error?.response?.data.error);
+			setTimeout(() => {
+				setError('');
+			}, 5000);
 		}
 	};
 

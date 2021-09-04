@@ -125,7 +125,7 @@ exports.addGroceries = async (req, res, next) => {
 		const update = { $push: { groceries: groceries } }; // Use push to add, or use addToSet to only add unique
 		const findGroceriList = await Groceries.findOne(filter);
 		if (findGroceriList) {
-			if (findGroceriList.groceries.length > 75) {
+			if (findGroceriList.groceries.length >= 75) {
 				return next(
 					new ErrorResponse(
 						'You have reach max number of groceries',
