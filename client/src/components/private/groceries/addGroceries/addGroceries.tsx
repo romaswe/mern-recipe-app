@@ -18,6 +18,7 @@ export const AddGroceries = (props: any) => {
 	const handleAddClick = async () => {
 		var token = localStorage.getItem('authToken') ?? '';
 		const jwtData: JwtData = jwt_decode(token);
+		setError('');
 		if (isViewer(jwtData)) {
 			alert("Du kan inte använda denna funktion, läs mer under 'om'");
 			return;

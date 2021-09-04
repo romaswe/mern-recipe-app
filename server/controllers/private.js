@@ -129,6 +129,14 @@ exports.addGroceries = async (req, res, next) => {
 			update
 		);
 
+		if (grocerie) {
+			if (grocerie.groceries.length > 75) {
+				return next(
+					new ErrorResponse('You have reach max number of groceries', 303)
+				);
+			}	
+		}
+
 		if (!grocerie) {
 			const grocerie = await Groceries.create({
 				owner,
