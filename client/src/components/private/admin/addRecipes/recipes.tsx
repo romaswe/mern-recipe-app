@@ -16,6 +16,7 @@ const RecipesComponent = () => {
 	const [recipeURL, setRecipeURL] = useState('');
 	const [recipeNotes, setRecipeNotes] = useState('');
 	const [recipeDescription, setRecipeDescription] = useState('');
+	const [recipeCategories, setRecipeCategories] = useState('');
 
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState('');
@@ -25,17 +26,21 @@ const RecipesComponent = () => {
 	const submitRecipe = async (e: any) => {
 		e.preventDefault();
 
+		const categories = recipeCategories
+			.split(',')
+			.map((item) => item.trim().toLowerCase())
+			.filter((e) => e);
+
 		const recipe: Recipes = {
 			name: recipeName.trim(),
 			url: recipeURL.trim(),
+			categories: categories,
 			notes: recipeNotes.trim(),
 			description: recipeDescription.trim(),
 			ingrediens: ingrediensList,
 			instructions: stepsList,
 		};
 
-		console.log(recipe);
-		console.log(JSON.stringify(recipe));
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
@@ -67,6 +72,7 @@ const RecipesComponent = () => {
 		setRecipeURL('');
 		setRecipeNotes('');
 		setRecipeDescription('');
+		setRecipeCategories('');
 	};
 
 	return (
@@ -98,6 +104,28 @@ const RecipesComponent = () => {
 						onChange={(e) => setRecipeURL(e.target.value)}
 						value={recipeURL}
 					/>
+				</div>
+
+				<div className='categories-input-wrapper'>
+					<input
+						className='col-6'
+						type='text'
+						id='categories'
+						autoComplete='true'
+						placeholder='Skriv kategorier'
+						onChange={(e) => setRecipeCategories(e.target.value)}
+						value={recipeCategories}
+					/>
+				</div>
+				<div className='col-12'>
+					<p>Kategorier sepperaras med , tecken</p>
+					<p>
+						Tillgängliga kategorier är:{' '}
+						<b>
+							kyckling, fisk, kött, förrätt, varmrätt, efterrätt,
+							soppa, gryta, bröd, bakning och matlådor
+						</b>
+					</p>
 				</div>
 
 				<div className='notes-input-wrapper'>
