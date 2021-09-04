@@ -4,7 +4,6 @@ const ErrorResponse = require('../utils/errorResponse');
 
 exports.register = async (req, res, next) => {
 	const { username, email, password, role } = req.body;
-	console.log(role);
 	try {
 		const user = await User.create({
 			username,

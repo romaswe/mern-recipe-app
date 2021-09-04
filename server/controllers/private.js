@@ -124,11 +124,11 @@ exports.addGroceries = async (req, res, next) => {
 
 		const filter = { owner: owner, name: name }
 		const update = { $push: {groceries: groceries} } // Use push to add, or use addToSet to only add unique  
-
 		const grocerie = await Groceries.findOneAndUpdate(
 			filter,
 			update
 		);
+
 		if (!grocerie) {
 			const grocerie = await Groceries.create({
 				owner,
@@ -138,7 +138,7 @@ exports.addGroceries = async (req, res, next) => {
 		}
 		res.status(200).json({
 			success: true,
-			data: `You added ${grocerie.groceries.length} groceries`,
+			data: `You added groceries`,
 		});
 	} catch (error) {
 		next(error);
@@ -260,14 +260,28 @@ exports.getGroceriesInfo = async (req, res, next) => {
 		const grocerieInfo = await Groceries.findOne({
 			owner: decoded.id,
 		}).select('name groceries -_id');
-		const returnInfo = {
-			name: grocerieInfo.name,
-			size: grocerieInfo.groceries.length,
-		};
-		res.status(200).json({
-			success: true,
-			data: returnInfo,
-		});
+
+		if (grocerieInfo) {
+			const returnInfo = {
+				name: grocerieInfo.name,
+				size: grocerieInfo.groceries.length,
+			};
+			res.status(200).json({
+				success: true,
+				data: returnInfo,
+			});
+		} else {
+			const returnInfo = {
+				name: "",
+				size: 0,
+			};
+			res.status(200).json({
+				success: true,
+				data: returnInfo,
+			});
+		}
+		
+		
 	} catch (error) {
 		return next(error);
 	}

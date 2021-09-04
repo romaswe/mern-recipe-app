@@ -39,6 +39,7 @@ export const Groceries = (props: any) => {
 					apiUrl + `/api/private/getGroceriesInfo`,
 					config
 				);
+
 				setGroceriesInfo(data);
 			} catch (error: any) {
 				console.log(error.response.data.error);
@@ -84,6 +85,10 @@ export const Groceries = (props: any) => {
 									<GroceriesItem
 										key={i}
 										grocerieName={grocerieName}
+										groceriesList={groceriesList}
+										setGroceriesList={setGroceriesList}
+										setGroceriesInfo={setGroceriesInfo}
+										groceriesInfo={groceriesInfo}
 									/>
 								);
 							}

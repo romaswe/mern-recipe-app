@@ -46,7 +46,7 @@ const RegisterComponent = () => {
 			localStorage.setItem('authToken', data.token);
 
 			history.push('/');
-		} catch (error any) {
+		} catch (error: any) {
 			console.log(error.response.data.error);
 			setError(error.response.data.error);
 			setTimeout(() => {

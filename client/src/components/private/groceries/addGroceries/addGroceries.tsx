@@ -1,6 +1,9 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import { useState } from 'react';
 import { Data } from '../../../../entities/groceries';
+import { JwtData } from '../../../../entities/jwt';
+import { isViewer } from '../../../../utils/userUtils';
 import './addGroceries.css';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
@@ -13,42 +16,73 @@ export const AddGroceries = (props: any) => {
 	const [addGrocerie, setAddGrocerie] = useState('');
 	const [error, setError] = useState('');
 	const handleAddClick = async () => {
-		const config = {
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-			},
-		};
+		var token = localStorage.getItem('authToken') ?? '';
+		const jwtData: JwtData = jwt_decode(token);
+		if (isViewer(jwtData)) {
+			alert("Du kan inte använda denna funktion, läs mer under 'om'");
+			return;
+		}
 
-		const grocerie: Data = {
-			name: 'MyList',
-			groceries: [addGrocerie],
-		};
+		if (!addGrocerie) {
+			return;
+		}
+
 		try {
+			const config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${localStorage.getItem(
+						'authToken'
+					)}`,
+				},
+			};
+			const grocerie: Data = {
+				name: 'MyList',
+				groceries: [addGrocerie],
+			};
 			const { data } = await axios.post(
 				apiUrl + '/api/private/groceries',
 				grocerie,
 				config
 			);
 
-			setGroceriesList({
-				...groceriesList,
-				data: {
-					groceries: [...groceriesList.data.groceries, addGrocerie],
-				},
-			});
+			if (groceriesList.data) {
+				setGroceriesList({
+					...groceriesList,
+					data: {
+						groceries: [
+							...groceriesList.data.groceries,
+							addGrocerie,
+						],
+					},
+				});
 
-			setGroceriesInfo({
-				...groceriesInfo,
-				data: {
-					size: groceriesList.data.groceries.length + 1,
-				},
-			});
+				setGroceriesInfo({
+					...groceriesInfo,
+					data: {
+						size: groceriesList.data.groceries.length + 1,
+					},
+				});
+			} else {
+				setGroceriesList({
+					...groceriesList,
+					data: {
+						groceries: [addGrocerie],
+					},
+				});
+
+				setGroceriesInfo({
+					...groceriesInfo,
+					data: {
+						size: 1,
+					},
+				});
+			}
 
 			setAddGrocerie('');
 		} catch (error: any) {
 			console.log(error);
-			setError(error.response.data.error);
+			setError(error?.response?.data.error);
 		}
 	};
 
