@@ -1,7 +1,10 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import { useState } from 'react';
 import { Groceri } from '../../../../../entities/groceries';
+import { JwtData } from '../../../../../entities/jwt';
 import { Ingrediens, Recipes } from '../../../../../entities/recipes';
+import { isViewer } from '../../../../../utils/userUtils';
 import './fullRecipe.css';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
@@ -11,6 +14,12 @@ export const FullRecipe = (props: any) => {
 	const [success, setSuccess] = useState('');
 
 	const handleAddClick = async () => {
+		var token = localStorage.getItem('authToken') ?? '';
+		const jwtData: JwtData = jwt_decode(token);
+		if (isViewer(jwtData)) {
+			alert("Du kan inte använda denna funktion, läs mer under 'om'");
+			return;
+		}
 		try {
 			const config = {
 				headers: {
@@ -122,8 +131,13 @@ export const FullRecipe = (props: any) => {
 						)}
 					</div>
 				)}
-				{error && <span className='error-message'>{error}</span>}
-				{success && <span className='success-message'>{success}</span>}
+				<div className='col-12'>
+					{error && <span className='error-message'>{error}</span>}
+					{success && (
+						<span className='success-message'>{success}</span>
+					)}
+				</div>
+
 				<button className='submit-button' onClick={handleAddClick}>
 					Lägg till inköpslistan
 				</button>

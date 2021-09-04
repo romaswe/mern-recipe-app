@@ -41,7 +41,7 @@ export const AddGroceries = (props: any) => {
 				name: 'MyList',
 				groceries: [addGrocerie],
 			};
-			const { data } = await axios.post(
+			await axios.post(
 				apiUrl + '/api/private/groceries',
 				grocerie,
 				config

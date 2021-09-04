@@ -10,6 +10,7 @@ import MeasurementsComponent from './mesaurement/measurement';
 import RecipesListComponent from './recipes/recipesList';
 import { Groceries } from './groceries/groceries';
 import { AboutComponent } from './about/about';
+import LogRocket from 'logrocket';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
 const PrivateComponent = () => {
@@ -44,6 +45,18 @@ const PrivateComponent = () => {
 
 		var token = localStorage.getItem('authToken') ?? '';
 		decodedJWT.current = jwt_decode(token);
+
+		const logRocketUserID =
+			decodedJWT.current?.id.toString() ?? 'ID_NOT_FOUND';
+		const logRocketUserUsername =
+			decodedJWT.current?.username.toString() ?? 'USERNAME_NOT_FOUND';
+		const logRocketUserRole =
+			decodedJWT.current?.role.toString() ?? 'ROLE_NOT_FOUND';
+
+		LogRocket.identify(logRocketUserID, {
+			name: logRocketUserUsername,
+			role: logRocketUserRole,
+		});
 
 		fetchPrivateData();
 	}, []);

@@ -43,3 +43,4 @@ The env file in root is used for configure the server.
 We need a `.env` file in the client folder containing.
 The env file in root is used for configure the client.  
 `REACT_APP_BASE_URL=BASE URL FOR BACKEND`  
+`REACT_APP_VERSION=Application version`  
