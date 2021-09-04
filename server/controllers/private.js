@@ -121,29 +121,31 @@ exports.addGroceries = async (req, res, next) => {
 		if (!user) {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
-
-		const filter = { owner: owner, name: name }
-		const update = { $push: {groceries: groceries} } // Use push to add, or use addToSet to only add unique  
-		const grocerie = await Groceries.findOneAndUpdate(
-			filter,
-			update
-		);
-
-		if (grocerie) {
-			if (grocerie.groceries.length > 75) {
+		const filter = { owner: owner, name: name };
+		const update = { $push: { groceries: groceries } }; // Use push to add, or use addToSet to only add unique
+		const findGroceriList = await Groceries.findOne(filter);
+		if (findGroceriList) {
+			if (findGroceriList.groceries.length > 75) {
 				return next(
-					new ErrorResponse('You have reach max number of groceries', 303)
+					new ErrorResponse(
+						'You have reach max number of groceries',
+						303
+					)
 				);
-			}	
-		}
-
-		if (!grocerie) {
+			} else {
+				const grocerie = await Groceries.findOneAndUpdate(
+					filter,
+					update
+				);
+			}
+		} else {
 			const grocerie = await Groceries.create({
 				owner,
 				name,
 				groceries,
 			});
 		}
+
 		res.status(200).json({
 			success: true,
 			data: `You added groceries`,
@@ -153,10 +155,11 @@ exports.addGroceries = async (req, res, next) => {
 	}
 };
 
-exports.deleteGroceries = async (req, res, next) => { // This needs work, if you send in "1" and have 2 "1" in the array, both are removed
+exports.deleteGroceries = async (req, res, next) => {
+	// This needs work, if you send in "1" and have 2 "1" in the array, both are removed
 	const { name, groceries } = req.body;
 	let token;
-	const numberOfItems = groceries.length
+	const numberOfItems = groceries.length;
 
 	if (
 		req.headers.authorization &&
@@ -179,20 +182,15 @@ exports.deleteGroceries = async (req, res, next) => { // This needs work, if you
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
 
+		const filter = { owner: owner, name: name };
+		const update = { $pull: { groceries: { $in: groceries } } };
 
-		const filter = { owner: owner, name: name }
-		const update = { $pull: {groceries: { $in: groceries } } }
-
-		const grocerie = await Groceries.updateOne(
-			filter,
-			update,
-		);
+		const grocerie = await Groceries.updateOne(filter, update);
 
 		res.status(200).json({
 			success: true,
 			data: `You deleted ${numberOfItems} groceries`,
 		});
-
 	} catch (error) {
 		next(error);
 	}
@@ -201,7 +199,7 @@ exports.deleteGroceries = async (req, res, next) => { // This needs work, if you
 exports.setGroceries = async (req, res, next) => {
 	const { name, groceries } = req.body;
 	let token;
-	const numberOfItems = groceries.length
+	const numberOfItems = groceries.length;
 
 	if (
 		req.headers.authorization &&
@@ -224,20 +222,15 @@ exports.setGroceries = async (req, res, next) => {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
 
+		const filter = { owner: owner, name: name };
+		const update = { groceries: groceries };
 
-		const filter = { owner: owner, name: name }
-		const update = {groceries: groceries }
-
-		const grocerie = await Groceries.findOneAndUpdate(
-			filter,
-			update,
-		);
+		const grocerie = await Groceries.findOneAndUpdate(filter, update);
 
 		res.status(200).json({
 			success: true,
 			data: `You changed to: ${numberOfItems} groceries`,
 		});
-
 	} catch (error) {
 		next(error);
 	}
@@ -280,7 +273,7 @@ exports.getGroceriesInfo = async (req, res, next) => {
 			});
 		} else {
 			const returnInfo = {
-				name: "",
+				name: '',
 				size: 0,
 			};
 			res.status(200).json({
@@ -288,8 +281,6 @@ exports.getGroceriesInfo = async (req, res, next) => {
 				data: returnInfo,
 			});
 		}
-		
-		
 	} catch (error) {
 		return next(error);
 	}
