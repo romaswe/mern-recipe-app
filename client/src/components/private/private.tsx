@@ -9,6 +9,7 @@ import AdminComponent from './admin/admin';
 import MeasurementsComponent from './mesaurement/measurement';
 import RecipesListComponent from './recipes/recipesList';
 import { Groceries } from './groceries/groceries';
+import { AboutComponent } from './about/about';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
 const PrivateComponent = () => {
@@ -96,7 +97,7 @@ const PrivateComponent = () => {
 
 			{isActive('about') && (
 				<div className='col-12'>
-					<p>Här kommer om sidan</p>
+					<AboutComponent />
 				</div>
 			)}
 

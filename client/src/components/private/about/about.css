@@ -1,0 +1,8 @@
+.about-card {
+	box-shadow: 0 0 1rem rgba(17, 68, 34, 0.2);
+	margin: 0.25rem;
+	padding: 1rem;
+	position: relative;
+	min-height: 5rem;
+	border-radius: 0.5rem;
+}
