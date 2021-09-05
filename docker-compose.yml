@@ -62,7 +62,6 @@ services:
         image: recepie-app-client
         container_name: recepie-app-react-client
         restart: unless-stopped
-        command: npm run start
         volumes:
             - ./client/:/usr/app
             - /usr/app/node_modules
@@ -71,7 +70,7 @@ services:
         env_file:
             - ./client/.env
         ports:
-            - '80:80'
+            - '6688:80'
         networks:
             - app-network
 

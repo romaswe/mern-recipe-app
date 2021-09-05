@@ -37,7 +37,7 @@ const RecipesListComponent = () => {
 		<span className='error-message'>{error}</span>
 	) : (
 		<div className='col-12'>
-			{recipesList?.data ? (
+			{recipesList?.data && (
 				<div className='row'>
 					{recipesList?.data.map((recipe: Recipes, i: number) => {
 						return (
@@ -46,10 +46,6 @@ const RecipesListComponent = () => {
 							</div>
 						);
 					})}
-				</div>
-			) : (
-				<div className='col-12'>
-					<p>Just nu finns det inga recept att visa</p>
 				</div>
 			)}
 		</div>
