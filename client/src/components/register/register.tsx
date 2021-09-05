@@ -3,8 +3,6 @@ import { useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
-
 const RegisterComponent = () => {
 	const history = useHistory();
 	const [username, setUsername] = useState('');
@@ -34,7 +32,7 @@ const RegisterComponent = () => {
 
 		try {
 			const { data } = await axios.post(
-				apiUrl + '/api/auth/register',
+				'/api/auth/register',
 				{
 					username,
 					email,

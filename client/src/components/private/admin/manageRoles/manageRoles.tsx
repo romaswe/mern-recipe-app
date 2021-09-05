@@ -4,7 +4,6 @@ import { User, UserJSON } from '../../../../entities/users';
 import './manageRoles.css';
 import { UserCardComponent } from './userCard/userCard';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
 export const ManageRolesComponent = () => {
 	const [userList, setUserList] = useState<UserJSON>();
 	const [error, setError] = useState('');
@@ -21,7 +20,7 @@ export const ManageRolesComponent = () => {
 
 			try {
 				const { data } = await axios.get(
-					apiUrl + '/api/private/getUsers',
+					'/api/private/getUsers',
 					config
 				);
 				setUserList(data);

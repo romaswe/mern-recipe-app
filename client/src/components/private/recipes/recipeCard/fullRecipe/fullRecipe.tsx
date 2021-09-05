@@ -7,7 +7,6 @@ import { Ingrediens, Recipes } from '../../../../../entities/recipes';
 import { isViewer } from '../../../../../utils/userUtils';
 import './fullRecipe.css';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
 export const FullRecipe = (props: any) => {
 	const recipe: Recipes = props.recipe;
 	const [error, setError] = useState('');
@@ -43,7 +42,7 @@ export const FullRecipe = (props: any) => {
 						groceries: listToAdd,
 					};
 					await axios.post(
-						apiUrl + '/api/private/groceries',
+						'/api/private/groceries',
 						grocerie,
 						config
 					);

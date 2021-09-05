@@ -4,7 +4,6 @@ import { Recipes, RecipesListJSON } from '../../../entities/recipes';
 import { RecipeCard } from './recipeCard/recipeCard';
 import './recipesList.css';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
 const RecipesListComponent = () => {
 	const [error, setError] = useState('');
 	const [recipesList, setRecipesList] = useState<RecipesListJSON>();
@@ -22,7 +21,7 @@ const RecipesListComponent = () => {
 
 			try {
 				const { data } = await axios.get(
-					apiUrl + '/api/private/recipes',
+					'/api/private/recipes',
 					config
 				);
 				setRecipesList(data);

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Groceri, GroceriesJson } from '../../../../entities/groceries';
 import './groceriesInfo.css';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
 export const GroceriesInfo = (props: any) => {
 	const setGroceriesInfo = props.setGroceriesInfo;
 	const groceriesInfo: GroceriesJson = props.groceriesInfo;
@@ -27,11 +26,7 @@ export const GroceriesInfo = (props: any) => {
 		};
 
 		try {
-			await axios.put(
-				apiUrl + '/api/private/groceries',
-				grocerie,
-				config
-			);
+			await axios.put('/api/private/groceries', grocerie, config);
 
 			setGroceriesList({
 				...groceriesList,

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { User } from '../../../../../entities/users';
 import './userCard.css';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
 export const UserCardComponent = (props: any) => {
 	const user: User = props.user;
 	interface formItem {
@@ -29,11 +28,7 @@ export const UserCardComponent = (props: any) => {
 		};
 
 		try {
-			await axios.put(
-				apiUrl + '/api/private/changeUserRole',
-				body,
-				config
-			);
+			await axios.put('/api/private/changeUserRole', body, config);
 		} catch (error: any) {
 			setError(error.response.data.error);
 			setTimeout(() => {

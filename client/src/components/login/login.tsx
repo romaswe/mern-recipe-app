@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
 const LoginComponent = () => {
 	const history = useHistory();
 	const [email, setEmail] = useState('');
@@ -27,7 +26,7 @@ const LoginComponent = () => {
 
 		try {
 			const { data } = await axios.post(
-				apiUrl + '/api/auth/login',
+				'/api/auth/login',
 				{ email, password },
 				config
 			);

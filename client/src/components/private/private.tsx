@@ -12,7 +12,6 @@ import { Groceries } from './groceries/groceries';
 import { AboutComponent } from './about/about';
 import LogRocket from 'logrocket';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
 const PrivateComponent = () => {
 	const history = useHistory();
 	const [error, setError] = useState('');
@@ -31,10 +30,7 @@ const PrivateComponent = () => {
 			};
 
 			try {
-				const { data } = await axios.get(
-					apiUrl + '/api/private',
-					config
-				);
+				const { data } = await axios.get('/api/private', config);
 				setPrivateData(data.data);
 			} catch (error: any) {
 				localStorage.removeItem('authToken');

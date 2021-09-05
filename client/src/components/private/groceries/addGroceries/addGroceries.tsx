@@ -6,7 +6,6 @@ import { JwtData } from '../../../../entities/jwt';
 import { isViewer } from '../../../../utils/userUtils';
 import './addGroceries.css';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
 export const AddGroceries = (props: any) => {
 	const groceriesList = props.groceriesList;
 	const setGroceriesList = props.setGroceriesList;
@@ -41,11 +40,7 @@ export const AddGroceries = (props: any) => {
 				name: 'MyList',
 				groceries: [addGrocerie],
 			};
-			await axios.post(
-				apiUrl + '/api/private/groceries',
-				grocerie,
-				config
-			);
+			await axios.post('/api/private/groceries', grocerie, config);
 
 			if (groceriesList.data) {
 				setGroceriesList({

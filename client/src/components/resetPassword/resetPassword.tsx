@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import axios, { AxiosRequestConfig } from 'axios';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
-
 type Props = {
 	resetToken: string;
 };
@@ -36,7 +34,7 @@ const ResetPasswordComponent = ({ match }: RouteComponentProps<Props>) => {
 
 		try {
 			const { data } = await axios.put(
-				apiUrl + `/api/auth/resetpassword/${match.params.resetToken}`,
+				`/api/auth/resetpassword/${match.params.resetToken}`,
 				{
 					password,
 				},

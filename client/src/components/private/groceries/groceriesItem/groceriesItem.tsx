@@ -3,7 +3,6 @@ import { RiDeleteBin2Fill } from 'react-icons/ri';
 import axios from 'axios';
 import { Groceri } from '../../../../entities/groceries';
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
 export const GroceriesItem = (props: any) => {
 	const grocerieName: string = props.grocerieName;
 	const groceriesList = props.groceriesList;
@@ -29,11 +28,7 @@ export const GroceriesItem = (props: any) => {
 		};
 
 		try {
-			await axios.put(
-				apiUrl + '/api/private/groceries',
-				grocerie,
-				config
-			);
+			await axios.put('/api/private/groceries', grocerie, config);
 
 			setGroceriesList({
 				...groceriesList,

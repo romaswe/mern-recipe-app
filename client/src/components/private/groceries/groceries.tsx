@@ -6,7 +6,7 @@ import { AddGroceries } from './addGroceries/addGroceries';
 import './groceries.css';
 import { GroceriesInfo } from './groceriesInfo/groceriesInfo';
 import { GroceriesItem } from './groceriesItem/groceriesItem';
-const apiUrl = process.env.REACT_APP_BASE_URL;
+
 export const Groceries = (props: any) => {
 	const jwtData: JwtData = props.jwtData;
 	const [error, setError] = useState('');
@@ -23,7 +23,7 @@ export const Groceries = (props: any) => {
 		const fetchGroceriesList = async () => {
 			try {
 				const { data } = await axios.get(
-					apiUrl + `/api/private/getGrocerieList`,
+					`/api/private/getGrocerieList`,
 					config
 				);
 				setGroceriesList(data);
@@ -36,7 +36,7 @@ export const Groceries = (props: any) => {
 		const fetchGroceriesInformation = async () => {
 			try {
 				const { data } = await axios.get(
-					apiUrl + `/api/private/getGroceriesInfo`,
+					`/api/private/getGroceriesInfo`,
 					config
 				);
 

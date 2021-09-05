@@ -7,7 +7,6 @@ import './recipes.css';
 import StepsComponent from './steps/steps';
 
 const RecipesComponent = () => {
-	const apiUrl = process.env.REACT_APP_BASE_URL;
 	const [ingrediensList, setingrediensList] = useState<Ingrediens[]>([
 		{ name: '', amount: '', unit: '' },
 	]);
@@ -50,7 +49,7 @@ const RecipesComponent = () => {
 
 		try {
 			const { data } = await axios.post(
-				apiUrl + '/api/private/recipes',
+				'/api/private/recipes',
 				recipe,
 				config
 			);
