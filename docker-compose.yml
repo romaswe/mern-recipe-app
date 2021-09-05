@@ -32,6 +32,8 @@ services:
             MONGO_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
         volumes:
             - ./docker/res/db:/data/db
+        networks:
+            - app-network
 
     mongo-express:
         image: mongo-express
@@ -46,8 +48,10 @@ services:
             ME_CONFIG_MONGODB_ADMINPASSWORD: ${DATABASE_PASSWORD}
             ME_CONFIG_BASICAUTH_USERNAME: ${EXPRESS_USERNAME}
             ME_CONFIG_BASICAUTH_PASSWORD: ${EXPRESS_PASSWORD}
-            ME_CONFIG_MONGODB_ENABLE_ADMIN: 1
+            ME_CONFIG_MONGODB_ENABLE_ADMIN: 'true'
             ME_CONFIG_MONGODB_SERVER: mongo
+        networks:
+            - app-network
 
     client:
         build:
