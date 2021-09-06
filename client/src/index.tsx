@@ -6,18 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import LogRocket from 'logrocket';
 
 const appVersion = process.env.REACT_APP_VERSION;
-const logRocket = process.env.REACT_APP_LOGROCKET ?? '';
+const logRocketUrl = process.env.REACT_APP_LOGROCKET ?? '';
+
 // https://docs.logrocket.com/reference
-LogRocket.init(logRocket, {
+LogRocket.init(logRocketUrl, {
 	release: appVersion,
 	network: {
 		requestSanitizer: (request) => {
-			request.headers['Authorization'] = undefined;
+			request.headers['Authorization'] = undefined; // remove Authorization header from logrocket
+			request.headers['x-auth-token'] = undefined;
 			return request;
 		},
 	},
 });
-
 ReactDOM.render(
 	<React.StrictMode>
 		<App />
