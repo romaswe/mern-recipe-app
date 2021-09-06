@@ -55,7 +55,7 @@ const RegisterComponent = () => {
 
 	return (
 		<div className='register-screen grid'>
-			<div className='col-s-0 col-3'></div>
+			<div className='col-3'></div>
 			<div className='col-s-12 col-6 form-wrapper'>
 				<form
 					onSubmit={registerHandler}
@@ -136,7 +136,7 @@ const RegisterComponent = () => {
 					</span>
 				</form>
 			</div>
-			<div className='col-s-0 col-3'></div>
+			<div className='col-3'></div>
 		</div>
 	);
 };

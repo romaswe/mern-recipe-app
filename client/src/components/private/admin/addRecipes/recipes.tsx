@@ -122,7 +122,8 @@ const RecipesComponent = () => {
 						Tillgängliga kategorier är:{' '}
 						<b>
 							kyckling, fisk, kött, förrätt, varmrätt, efterrätt,
-							soppa, gryta, bröd, bakning och matlådor
+							soppa, gryta, bröd, bakning, fermentering,
+							konservering och matlådor
 						</b>
 					</p>
 				</div>

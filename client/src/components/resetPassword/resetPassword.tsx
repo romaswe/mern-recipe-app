@@ -53,7 +53,7 @@ const ResetPasswordComponent = ({ match }: RouteComponentProps<Props>) => {
 
 	return (
 		<div className='resetpassword-screen grid'>
-			<div className='col-s-0 col-3'></div>
+			<div className='col-3'></div>
 			<div className='col-s-12 col-6 form-wrapper'>
 				<form
 					onSubmit={resetPasswordHandler}
@@ -107,7 +107,7 @@ const ResetPasswordComponent = ({ match }: RouteComponentProps<Props>) => {
 					</button>
 				</form>
 			</div>
-			<div className='col-s-0 col-3'></div>
+			<div className='col-3'></div>
 		</div>
 	);
 };

@@ -44,7 +44,7 @@ const LoginComponent = () => {
 
 	return (
 		<div className='login-screen grid'>
-			<div className='col-s-0 col-3'></div>
+			<div className='col-3'></div>
 			<div className='col-s-12 col-6 form-wrapper'>
 				<form onSubmit={loginHandler} className='login-screen__form'>
 					<h3 className='login-screen__title'>Login</h3>
@@ -106,7 +106,7 @@ const LoginComponent = () => {
 					</div>
 				</form>
 			</div>
-			<div className='col-s-0 col-3'></div>
+			<div className='col-3'></div>
 		</div>
 	);
 };

@@ -33,9 +33,7 @@ export const Navnbar = (props: any) => {
 									<li
 										key='groceries'
 										className={`col-s-12 col-2 navbar-item ${
-											isActive('groceries')
-												? 'active'
-												: ''
+											isActive('groceries') && 'active'
 										}`}
 										onClick={() => {
 											handleOnclick('groceries');
@@ -47,7 +45,7 @@ export const Navnbar = (props: any) => {
 									<li
 										key='recipes'
 										className={`col-s-12 col-2 navbar-item ${
-											isActive('recipes') ? 'active' : ''
+											isActive('recipes') && 'active'
 										}`}
 										onClick={() => {
 											handleOnclick('recipes');
@@ -59,7 +57,7 @@ export const Navnbar = (props: any) => {
 									<li
 										key='tips'
 										className={`col-s-12 col-2 navbar-item ${
-											isActive('tips') ? 'active' : ''
+											isActive('tips') && 'active'
 										}`}
 										onClick={() => {
 											handleOnclick('tips');
@@ -72,9 +70,7 @@ export const Navnbar = (props: any) => {
 										<li
 											key='admin'
 											className={`col-s-12 col-2 navbar-item ${
-												isActive('admin')
-													? 'active'
-													: ''
+												isActive('admin') && 'active'
 											}`}
 											onClick={() => {
 												handleOnclick('admin');
@@ -87,7 +83,7 @@ export const Navnbar = (props: any) => {
 									<li
 										key='about'
 										className={`col-s-12 col-2 navbar-item ${
-											isActive('about') ? 'active' : ''
+											isActive('about') && 'active'
 										}`}
 										onClick={() => {
 											handleOnclick('about');
