@@ -159,7 +159,7 @@ select {
 @media only screen {
 	/* For mobile/tablets: */
 	.col-s-0 {
-		width: 0;
+		display: none;
 	}
 	.col-s-1 {
 		grid-column: span 1;
@@ -206,6 +206,9 @@ select {
 		margin-top: auto;
 		margin-bottom: auto;
 		padding-right: 1rem;
+	}
+	.col-0 {
+		display: none;
 	}
 	.col-1 {
 		grid-column: span 1;
