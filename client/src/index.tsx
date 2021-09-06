@@ -4,12 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import LogRocket from 'logrocket';
+import axios from 'axios';
 
 const appVersion = process.env.REACT_APP_VERSION;
 const logRocketUrl = process.env.REACT_APP_LOGROCKET ?? '';
+const enviroment = process.env.REACT_APP_ENVIROMENT ?? 'prod';
 
-// https://docs.logrocket.com/reference
 LogRocket.init(logRocketUrl, {
+	// https://docs.logrocket.com/reference
 	release: appVersion,
 	network: {
 		requestSanitizer: (request) => {
@@ -19,6 +21,11 @@ LogRocket.init(logRocketUrl, {
 		},
 	},
 });
+
+if (enviroment === 'dev') {
+	axios.defaults.baseURL = 'http://localhost:5000';
+}
+
 ReactDOM.render(
 	<React.StrictMode>
 		<App />
