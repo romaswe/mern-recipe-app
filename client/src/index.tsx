@@ -10,20 +10,20 @@ const appVersion = process.env.REACT_APP_VERSION;
 const logRocketUrl = process.env.REACT_APP_LOGROCKET ?? '';
 const enviroment = process.env.REACT_APP_ENVIROMENT ?? 'prod';
 
-LogRocket.init(logRocketUrl, {
-	// https://docs.logrocket.com/reference
-	release: appVersion,
-	network: {
-		requestSanitizer: (request) => {
-			request.headers['Authorization'] = undefined; // remove Authorization header from logrocket
-			request.headers['x-auth-token'] = undefined;
-			return request;
-		},
-	},
-});
-
 if (enviroment === 'dev') {
 	axios.defaults.baseURL = 'http://localhost:5000';
+} else if ('prod') {
+	LogRocket.init(logRocketUrl, {
+		// https://docs.logrocket.com/reference
+		release: appVersion,
+		network: {
+			requestSanitizer: (request) => {
+				request.headers['Authorization'] = undefined; // remove Authorization header from logrocket
+				request.headers['x-auth-token'] = undefined;
+				return request;
+			},
+		},
+	});
 }
 
 ReactDOM.render(
