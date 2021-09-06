@@ -6,8 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import LogRocket from 'logrocket';
 
 const appVersion = process.env.REACT_APP_VERSION;
+const logRocket = process.env.REACT_APP_LOGROCKET ?? '';
 // https://docs.logrocket.com/reference
-LogRocket.init('ppaxyp/recipe-app', {
+LogRocket.init(logRocket, {
 	release: appVersion,
 	network: {
 		requestSanitizer: (request) => {

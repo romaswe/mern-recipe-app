@@ -52,4 +52,5 @@ The env file in root is used for configure the server.
 
 We need a `.env` file in the client folder containing.
 The env file in root is used for configure the client.  
-`REACT_APP_VERSION=APPLICATION VERSION`
+`REACT_APP_VERSION=APPLICATION VERSION`  
+`REACT_APP_LOGROCKET=LOGROCKET APP ID`
