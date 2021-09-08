@@ -12,8 +12,15 @@ exports.getPrivateRoute = (req, res, next) => {
 };
 
 exports.getRecipes = async (req, res, next) => {
+	const page = req.query.page ?? 1;
+	const limit = req.query.limit ?? 10;
 	try {
-		const recipes = await Recipe.find({});
+		const options = {
+			page: page,
+			limit: limit,
+			sort: { name: 'desc' },
+		};
+		const recipes = await Recipe.paginate({}, options);
 		res.status(200).json({
 			success: true,
 			data: recipes,
@@ -86,9 +93,15 @@ exports.getGrocerieList = async (req, res, next) => {
 		if (!user) {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
+		//const options = {
+		//	select: 'groceries name -_id',
+		//	limit: 5,
+		//};
+		//const mQuery = Groceries.findOne({ owner: decoded.id });
 		const grocerieList = await Groceries.findOne({
 			owner: decoded.id,
 		}).select('groceries -_id');
+		//const grocerieList = await Groceries.paginate(mQuery, options);
 		res.status(200).json({
 			success: true,
 			data: grocerieList,

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 var MongoseSchema = mongoose.Schema;
 const GroceriesSchema = new MongoseSchema({
@@ -13,5 +14,6 @@ const GroceriesSchema = new MongoseSchema({
 	groceries: [{ type: String }],
 });
 
+GroceriesSchema.plugin(mongoosePaginate);
 const Groceries = mongoose.model('Groceries', GroceriesSchema);
 module.exports = Groceries;

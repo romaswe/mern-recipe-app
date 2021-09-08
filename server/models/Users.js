@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const UserSchema = new mongoose.Schema({
 	username: {
@@ -64,5 +65,6 @@ UserSchema.methods.getResetPasswordToken = function () {
 	return resetToken;
 };
 
+UserSchema.plugin(mongoosePaginate);
 const User = mongoose.model('User', UserSchema);
 module.exports = User;

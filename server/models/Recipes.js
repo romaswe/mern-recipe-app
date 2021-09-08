@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 var listIngrediens = new mongoose.Schema({
 	name: String,
 	amount: String,
@@ -26,5 +28,6 @@ const RecipeSchema = new mongoose.Schema({
 	instructions: [{ type: String }],
 });
 
+RecipeSchema.plugin(mongoosePaginate);
 const Recipe = mongoose.model('Recipe', RecipeSchema);
 module.exports = Recipe;

@@ -58,7 +58,9 @@ export const UserCardComponent = (props: any) => {
 				<div className='col-12'>
 					<hr className='rounded'></hr>
 					<h4>Återställ Lösenord</h4>
-					<p>/passwordreset/{user.resetPasswordToken}</p>
+					<a href='recipe.forsth.dev/passwordreset/{user.resetPasswordToken}'>
+						Reset link
+					</a>
 					<p>Giltig till: {user.resetPasswordExpire}</p>
 				</div>
 			)}

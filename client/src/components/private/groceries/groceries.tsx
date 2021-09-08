@@ -23,7 +23,7 @@ export const Groceries = (props: any) => {
 		const fetchGroceriesList = async () => {
 			try {
 				const { data } = await axios.get(
-					`/api/private/getGrocerieList`,
+					`/api/private/groceries`,
 					config
 				);
 				setGroceriesList(data);

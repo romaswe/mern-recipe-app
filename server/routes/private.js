@@ -23,7 +23,7 @@ router.route('/getRecipeByName/:recipeName').get(protect, getRecipeByName);
 
 router.route('/recipes').post(adminProtect, addRecipe);
 
-router.route('/getGrocerieList').get(protect, getGrocerieList);
+router.route('/groceries').get(protect, getGrocerieList);
 
 router.route('/groceries').post(protect, addGroceries);
 

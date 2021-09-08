@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Recipes, RecipesListJSON } from '../../../entities/recipes';
+
 import { RecipeCard } from './recipeCard/recipeCard';
 import './recipesList.css';
 
@@ -38,13 +39,18 @@ const RecipesListComponent = () => {
 		<div className='col-12'>
 			{recipesList?.data && (
 				<div className='row'>
-					{recipesList?.data.map((recipe: Recipes, i: number) => {
-						return (
-							<div className='col-s-12 col-6 col-xl-3' key={i}>
-								<RecipeCard recipe={recipe} />
-							</div>
-						);
-					})}
+					{recipesList?.data.docs.map(
+						(recipe: Recipes, i: number) => {
+							return (
+								<div
+									className='col-s-12 col-6 col-xl-3'
+									key={i}
+								>
+									<RecipeCard recipe={recipe} />
+								</div>
+							);
+						}
+					)}
 				</div>
 			)}
 		</div>
