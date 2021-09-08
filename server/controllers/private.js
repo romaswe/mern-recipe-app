@@ -13,7 +13,7 @@ exports.getPrivateRoute = (req, res, next) => {
 
 exports.getRecipes = async (req, res, next) => {
 	const page = req.query.page ?? 1;
-	const limit = req.query.limit ?? 10;
+	const limit = req.query.limit ?? 25;
 	try {
 		const options = {
 			page: page,
