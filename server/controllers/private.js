@@ -18,7 +18,10 @@ exports.getRecipes = async (req, res, next) => {
 		const options = {
 			page: page,
 			limit: limit,
-			sort: { name: 'desc' },
+			collation: {
+				locale: 'sv',
+			},
+			sort: { name: 1 },
 		};
 		const recipes = await Recipe.paginate({}, options);
 		res.status(200).json({
