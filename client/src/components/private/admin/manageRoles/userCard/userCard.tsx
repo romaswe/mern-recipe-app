@@ -51,6 +51,7 @@ export const UserCardComponent = (props: any) => {
 					<option value='admin'>Admin</option>
 					<option value='user'>User</option>
 					<option value='viewer'>Viewer</option>
+					<option value='disabled'>Disabled</option>
 				</select>
 			</div>
 

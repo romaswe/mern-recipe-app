@@ -27,6 +27,10 @@ exports.protect = async (req, res, next) => {
 			return next(new ErrorResponse('No user found with this id', 404));
 		}
 
+		if (user.role === 'disabled') {
+			return next(new ErrorResponse('User account is disabled', 401));
+		}
+
 		req.user = user;
 
 		next();
