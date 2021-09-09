@@ -96,18 +96,20 @@ exports.getGrocerieList = async (req, res, next) => {
 		if (!user) {
 			return next(new ErrorResponse('Not a valid user', 401));
 		}
-		//const options = {
-		//	select: 'groceries name -_id',
-		//	limit: 5,
-		//};
-		//const mQuery = Groceries.findOne({ owner: decoded.id });
-		const grocerieList = await Groceries.findOne({
-			owner: decoded.id,
-		}).select('groceries -_id');
-		//const grocerieList = await Groceries.paginate(mQuery, options);
+
+		const options = {
+			select: 'groceries name -_id',
+			limit: 5,
+			collation: {
+				locale: 'sv',
+			},
+			sort: { name: 1 },
+		};
+		const mQuery = Groceries.findOne({ owner: decoded.id });
+		const grocerieList = await Groceries.paginate(mQuery, options);
 		res.status(200).json({
 			success: true,
-			data: grocerieList,
+			data: grocerieList.docs[0],
 		});
 	} catch (error) {
 		return next(error);
@@ -303,8 +305,18 @@ exports.getGroceriesInfo = async (req, res, next) => {
 };
 
 exports.getUsers = async (req, res, next) => {
+	const page = req.query.page ?? 1;
+	const limit = req.query.limit ?? 10;
 	try {
-		const users = await User.find({});
+		const options = {
+			page: page,
+			limit: limit,
+			collation: {
+				locale: 'sv',
+			},
+			sort: { email: 1 },
+		};
+		const users = await User.paginate({}, options);
 		res.status(200).json({
 			success: true,
 			data: users,
