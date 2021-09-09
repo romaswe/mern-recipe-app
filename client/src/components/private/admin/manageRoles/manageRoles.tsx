@@ -20,7 +20,7 @@ export const ManageRolesComponent = () => {
 		if (userDoc?.data.hasNextPage) {
 			try {
 				const { data } = await axios.get(
-					`/api/private/getUsers?page=${userDoc?.data.nextPage}`,
+					`/api/admin/getUsers?page=${userDoc?.data.nextPage}`,
 					config
 				);
 				const mData: UserJSON = data;
@@ -48,10 +48,7 @@ export const ManageRolesComponent = () => {
 			};
 
 			try {
-				const { data } = await axios.get(
-					'/api/private/getUsers',
-					config
-				);
+				const { data } = await axios.get('/api/admin/getUsers', config);
 				const mData: UserJSON = data;
 				setUserDoc(mData);
 				setUserList(mData.data.docs);

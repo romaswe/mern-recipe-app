@@ -49,7 +49,7 @@ const RecipesComponent = () => {
 
 		try {
 			const { data } = await axios.post(
-				'/api/private/recipes',
+				'/api/admin/recipes',
 				recipe,
 				config
 			);

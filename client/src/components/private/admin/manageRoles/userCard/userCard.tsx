@@ -28,7 +28,7 @@ export const UserCardComponent = (props: any) => {
 		};
 
 		try {
-			await axios.put('/api/private/changeUserRole', body, config);
+			await axios.put('/api/admin/changeUserRole', body, config);
 		} catch (error: any) {
 			setError(error.response.data.error);
 			setTimeout(() => {

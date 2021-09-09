@@ -15,6 +15,8 @@ app.use(compression()); //Compress all routes
 app.use(helmet());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/private', require('./routes/private'));
+app.use('/api/public', require('./routes/public'));
+app.use('/api/admin', require('./routes/admin'));
 
 // Error Handler (Last middleware that shuld be used)
 app.use(errorHandler);
