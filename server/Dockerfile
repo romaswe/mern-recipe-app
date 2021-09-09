@@ -6,12 +6,12 @@ ARG NODE_ENV=development
 
 # Create App Directory
 RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install Dependencies
-COPY package*.json ./
-
-RUN npm install
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm ci --silent
 
 # Copy app source code
 COPY . .
