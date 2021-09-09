@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { GroceriesJson } from '../../../entities/groceries';
+import { Groceri, GroceriesJson } from '../../../entities/groceries';
 import { JwtData } from '../../../entities/jwt';
 import { AddGroceries } from './addGroceries/addGroceries';
 import './groceries.css';
@@ -80,11 +80,11 @@ export const Groceries = (props: any) => {
 				{groceriesList?.data && (
 					<div className='row'>
 						{groceriesList?.data.groceries.map(
-							(grocerieName: string, i: number) => {
+							(groceri: Groceri, i: number) => {
 								return (
 									<GroceriesItem
 										key={i}
-										grocerieName={grocerieName}
+										grocerieName={groceri.name}
 										groceriesList={groceriesList}
 										setGroceriesList={setGroceriesList}
 										setGroceriesInfo={setGroceriesInfo}

@@ -2,14 +2,19 @@
 
 export interface GroceriesJson {
 	success: boolean;
-	data: Groceri;
+	data: GrocerisObj;
 }
 
-export interface Groceri {
-	groceries: string[];
+export interface GrocerisObj {
+	groceries: Groceri[];
 	_id?: string;
 	owner?: string;
 	name?: string;
 	size?: number;
 	__v?: number;
+}
+
+export interface Groceri {
+	name: string;
+	amount: number;
 }

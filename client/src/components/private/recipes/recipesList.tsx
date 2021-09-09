@@ -11,8 +11,6 @@ const RecipesListComponent = () => {
 	const [recipeDoc, setRecipeDoc] = useState<RecipesListJSON>();
 
 	const fetchMoreData = async () => {
-		console.log('Fetch more data');
-
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',

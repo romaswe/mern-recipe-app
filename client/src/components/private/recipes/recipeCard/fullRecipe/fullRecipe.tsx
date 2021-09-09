@@ -1,7 +1,7 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { useState } from 'react';
-import { Groceri } from '../../../../../entities/groceries';
+import { Groceri, GrocerisObj } from '../../../../../entities/groceries';
 import { JwtData } from '../../../../../entities/jwt';
 import { Ingrediens, Recipes } from '../../../../../entities/recipes';
 import { isViewer } from '../../../../../utils/userUtils';
@@ -28,16 +28,17 @@ export const FullRecipe = (props: any) => {
 					)}`,
 				},
 			};
-			let listToAdd: Array<string> = [];
+			let listToAdd: Array<Groceri> = [];
 			if (recipe.ingrediens) {
 				recipe.ingrediens.map((ingredient: Ingrediens, i: number) => {
-					return listToAdd.push(
-						`${ingredient.amount}${ingredient.unit} ${ingredient.name}`
-					);
+					return listToAdd.push({
+						name: `${ingredient.amount}${ingredient.unit} ${ingredient.name}`,
+						amount: 1,
+					});
 				});
 
 				if (listToAdd) {
-					const grocerie: Groceri = {
+					const grocerie: GrocerisObj = {
 						name: 'MyList',
 						groceries: listToAdd,
 					};
@@ -62,12 +63,6 @@ export const FullRecipe = (props: any) => {
 		}
 	};
 
-	const checkArray = (array: Array<string>) => {
-		if (array.length > 0) {
-			return true;
-		}
-		return false;
-	};
 	return (
 		<div className='row'>
 			<div className='col-12'>
@@ -142,7 +137,7 @@ export const FullRecipe = (props: any) => {
 				</button>
 			</div>
 			<div className='col-6'>
-				{recipe.instructions && checkArray(recipe.instructions) && (
+				{recipe.instructions && recipe.instructions.length > 0 && (
 					<div>
 						<h3>Instruktioner</h3>
 						{recipe.instructions.map((step: string, i: number) => {

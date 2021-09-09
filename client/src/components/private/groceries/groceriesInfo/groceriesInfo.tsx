@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Groceri, GroceriesJson } from '../../../../entities/groceries';
+import { GrocerisObj, GroceriesJson } from '../../../../entities/groceries';
 import './groceriesInfo.css';
 
 export const GroceriesInfo = (props: any) => {
@@ -20,7 +20,7 @@ export const GroceriesInfo = (props: any) => {
 			},
 		};
 
-		const grocerie: Groceri = {
+		const grocerie: GrocerisObj = {
 			name: 'MyList',
 			groceries: [],
 		};

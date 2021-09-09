@@ -11,8 +11,6 @@ export const ManageRolesComponent = () => {
 	const [error, setError] = useState('');
 
 	const fetchMoreData = async () => {
-		console.log('Fetch more data');
-
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
@@ -27,8 +25,6 @@ export const ManageRolesComponent = () => {
 				);
 				const mData: UserJSON = data;
 				setUserDoc(mData);
-				console.log(mData);
-
 				if (userList) {
 					const newArray = [...userList, ...mData.data.docs];
 					setUserList(newArray);

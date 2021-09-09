@@ -1,7 +1,7 @@
 import './groceriesItem.css';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import axios from 'axios';
-import { Groceri } from '../../../../entities/groceries';
+import { GrocerisObj } from '../../../../entities/groceries';
 
 export const GroceriesItem = (props: any) => {
 	const grocerieName: string = props.grocerieName;
@@ -22,7 +22,7 @@ export const GroceriesItem = (props: any) => {
 			},
 		};
 
-		const grocerie: Groceri = {
+		const grocerie: GrocerisObj = {
 			name: 'MyList',
 			groceries: tempList,
 		};

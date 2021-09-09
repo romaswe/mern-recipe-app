@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 var MongoseSchema = mongoose.Schema;
+var grocerieObject = new mongoose.Schema({
+	name: String,
+	amount: Number,
+});
 const GroceriesSchema = new MongoseSchema({
 	owner: {
 		type: String,
@@ -11,7 +15,7 @@ const GroceriesSchema = new MongoseSchema({
 	name: {
 		type: String,
 	},
-	groceries: [{ type: String }],
+	groceries: [grocerieObject],
 });
 
 GroceriesSchema.plugin(mongoosePaginate);

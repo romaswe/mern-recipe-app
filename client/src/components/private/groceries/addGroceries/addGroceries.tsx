@@ -1,7 +1,7 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { useState } from 'react';
-import { Groceri } from '../../../../entities/groceries';
+import { GrocerisObj } from '../../../../entities/groceries';
 import { JwtData } from '../../../../entities/jwt';
 import { isViewer } from '../../../../utils/userUtils';
 import './addGroceries.css';
@@ -14,6 +14,7 @@ export const AddGroceries = (props: any) => {
 
 	const [addGrocerie, setAddGrocerie] = useState('');
 	const [error, setError] = useState('');
+
 	const handleAddClick = async () => {
 		var token = localStorage.getItem('authToken') ?? '';
 		const jwtData: JwtData = jwt_decode(token);
@@ -36,9 +37,9 @@ export const AddGroceries = (props: any) => {
 					)}`,
 				},
 			};
-			const grocerie: Groceri = {
+			const grocerie: GrocerisObj = {
 				name: 'MyList',
-				groceries: [addGrocerie],
+				groceries: [{ name: addGrocerie, amount: 1 }],
 			};
 			await axios.post('/api/private/groceries', grocerie, config);
 
@@ -48,7 +49,7 @@ export const AddGroceries = (props: any) => {
 					data: {
 						groceries: [
 							...groceriesList.data.groceries,
-							addGrocerie,
+							{ name: addGrocerie, amount: 1 },
 						],
 					},
 				});
@@ -63,7 +64,7 @@ export const AddGroceries = (props: any) => {
 				setGroceriesList({
 					...groceriesList,
 					data: {
-						groceries: [addGrocerie],
+						groceries: [{ name: addGrocerie, amount: 1 }],
 					},
 				});
 
