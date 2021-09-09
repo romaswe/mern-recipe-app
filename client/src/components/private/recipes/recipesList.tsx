@@ -19,21 +19,22 @@ const RecipesListComponent = () => {
 				Authorization: `Bearer ${localStorage.getItem('authToken')}`,
 			},
 		};
-
-		try {
-			const { data } = await axios.get(
-				`/api/private/recipes?page=${recipeDoc?.data.nextPage}`,
-				config
-			);
-			const mData: RecipesListJSON = data;
-			setRecipeDoc(mData);
-			if (recipesList) {
-				const newArray = [...recipesList, ...mData.data.docs];
-				setRecipesList(newArray);
+		if (recipeDoc?.data.hasNextPage) {
+			try {
+				const { data } = await axios.get(
+					`/api/private/recipes?page=${recipeDoc?.data.nextPage}`,
+					config
+				);
+				const mData: RecipesListJSON = data;
+				setRecipeDoc(mData);
+				if (recipesList) {
+					const newArray = [...recipesList, ...mData.data.docs];
+					setRecipesList(newArray);
+				}
+			} catch (error: any) {
+				console.log(error.response.data.error);
+				setError(error.response.data.error);
 			}
-		} catch (error: any) {
-			console.log(error.response.data.error);
-			setError(error.response.data.error);
 		}
 	};
 
@@ -68,40 +69,44 @@ const RecipesListComponent = () => {
 	) : (
 		<div className='col-12'>
 			{recipeDoc?.data && (
-				<InfiniteScroll
-					dataLength={recipesList?.length ?? 0} //This is important field to render the next data
-					next={fetchMoreData}
-					hasMore={recipeDoc.data.hasNextPage}
-					loader={
-						<div style={{ textAlign: 'center' }}>
-							<h3>
-								Just nu går det inte att hämta mer recept om det
-								inte går att scrolla
-							</h3>
-							<h4>Testa gärna på en mindre skärm</h4>
-						</div>
-					}
-					endMessage={
-						<p style={{ textAlign: 'center' }}>
-							<b>Alla recept är hämtade</b>
-						</p>
-					}
-				>
-					{recipesList && (
-						<div className='row'>
-							{recipesList.map((recipe: Recipes, i: number) => {
-								return (
-									<div
-										className='col-s-12 col-6 col-xl-3'
-										key={i}
-									>
-										<RecipeCard recipe={recipe} />
-									</div>
-								);
-							})}
-						</div>
+				<div>
+					<InfiniteScroll
+						dataLength={recipesList?.length ?? 0} //This is important field to render the next data
+						next={fetchMoreData}
+						hasMore={recipeDoc.data.hasNextPage}
+						loader={undefined}
+						endMessage={
+							<p style={{ textAlign: 'center' }}>
+								<b>Alla recept är hämtade</b>
+							</p>
+						}
+					>
+						{recipesList && (
+							<div className='row'>
+								{recipesList.map(
+									(recipe: Recipes, i: number) => {
+										return (
+											<div
+												className='col-s-12 col-6 col-xl-3'
+												key={i}
+											>
+												<RecipeCard recipe={recipe} />
+											</div>
+										);
+									}
+								)}
+							</div>
+						)}
+					</InfiniteScroll>
+					{recipeDoc?.data.hasNextPage && (
+						<button
+							className='submit-button'
+							onClick={fetchMoreData}
+						>
+							Hämta fler recept
+						</button>
 					)}
-				</InfiniteScroll>
+				</div>
 			)}
 		</div>
 	);
