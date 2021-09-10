@@ -5,6 +5,8 @@ import './userCard.css';
 
 export const UserCardComponent = (props: any) => {
 	const user: User = props.user;
+	const homepageUrl = process.env.REACT_APP_HOMEPAGE_URL;
+
 	interface formItem {
 		name: string;
 		value: string;
@@ -60,7 +62,7 @@ export const UserCardComponent = (props: any) => {
 					<hr className='rounded'></hr>
 					<h4>Återställ Lösenord</h4>
 					<a
-						href={`recipe.forsth.dev/passwordreset/${user.resetPasswordToken}`}
+						href={`${homepageUrl}/passwordreset/${user.resetPasswordToken}`}
 					>
 						Reset link
 					</a>

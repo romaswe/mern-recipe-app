@@ -15,6 +15,15 @@ code {
 		monospace;
 }
 
+.card {
+	box-shadow: 0 0 1rem rgba(17, 68, 34, 0.2);
+	margin: 0.5rem;
+	padding: 1rem;
+	position: relative;
+	min-height: 5rem;
+	border-radius: 1rem;
+}
+
 .form-text-align {
 	/* The design is mobile first so if we are in mobile we want the text to be at start, else at end (see media queries */
 	text-align: start;

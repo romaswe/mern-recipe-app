@@ -25,7 +25,6 @@ if (enviroment === 'dev') {
 		},
 	});
 }
-
 ReactDOM.render(
 	<React.StrictMode>
 		<App />

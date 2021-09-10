@@ -16,6 +16,11 @@ export interface PaginategDoc {
 	nextPage: null | number;
 }
 
+export interface SingleRecipe {
+	success: boolean;
+	data: Recipes;
+}
+
 export interface Recipes {
 	instructions?: string[];
 	_id?: string;
