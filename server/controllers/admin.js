@@ -20,8 +20,10 @@ exports.addRecipe = async (req, res, next) => {
 		instructions,
 	} = req.body;
 	try {
+		const cleanName = name.replace(/_/g, ' ').trim();
+		console.log(cleanName);
 		const recipe = await Recipe.create({
-			name,
+			name: cleanName,
 			url,
 			notes,
 			description,
@@ -31,7 +33,7 @@ exports.addRecipe = async (req, res, next) => {
 		});
 		res.status(200).json({
 			success: true,
-			data: `You added recipe ${name}`,
+			data: `You added recipe ${cleanName}`,
 		});
 	} catch (error) {
 		next(error);

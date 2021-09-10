@@ -7,6 +7,7 @@ import { Ingrediens, Recipes } from '../../../../../entities/recipes';
 import { isViewer } from '../../../../../utils/userUtils';
 import { GrAdd } from 'react-icons/gr';
 import './fullRecipe.css';
+import { Link } from 'react-router-dom';
 
 export const FullRecipe = (props: any) => {
 	const recipe: Recipes = props.recipe;
@@ -116,11 +117,20 @@ export const FullRecipe = (props: any) => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							<p>Länk till receptet</p>
+							<p>Länk till orginal receptet</p>
 						</a>
 					</div>
 				)}
-				{/* We dont have support for categories yet but someday we will *wink* 
+				<div className='col-12 url-wrapper'>
+					<Link
+						to={`/recipe/${recipe.name.replaceAll(' ', '_')}`}
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						Länk till att dela receptet
+					</Link>
+				</div>
+				{/* We dont have support for categories yet but someday we will *wink*  
         {recipe.categories && checkArray(recipe.categories) && (
 					<div className='col-6'>
 						<h3>Kategorier</h3>

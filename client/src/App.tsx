@@ -5,11 +5,12 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 // Screens
-import LoginComponent from './components/login/login'
+import LoginComponent from './components/login/login';
 import RegisterComponent from './components/register/register';
 import ForgotPasswordComponent from './components/forgotPassword/forgotPassword';
 import ResetPasswordComponent from './components/resetPassword/resetPassword';
 import PrivateComponent from './components/private/private';
+import { PublicRecipeComponent } from './components/publicRecipe/publicRecipe';
 
 const App = () => {
 	return (
@@ -18,7 +19,11 @@ const App = () => {
 				<Switch>
 					<PrivateRoute exact path='/' component={PrivateComponent} />
 					<Route exact path='/login' component={LoginComponent} />
-					<Route exact path='/register' component={RegisterComponent} />
+					<Route
+						exact
+						path='/register'
+						component={RegisterComponent}
+					/>
 					<Route
 						exact
 						path='/forgotpassword'
@@ -28,6 +33,12 @@ const App = () => {
 						exact
 						path='/passwordreset/:resetToken'
 						component={ResetPasswordComponent}
+					/>
+
+					<Route
+						exact
+						path='/recipe/:recipeName'
+						component={PublicRecipeComponent}
 					/>
 				</Switch>
 			</div>
