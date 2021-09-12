@@ -79,6 +79,12 @@ export const PublicRecipeComponent = ({
 									</a>
 								)}
 							</div>
+							{recipe?.notes && (
+								<div className='col-12 card'>
+									<h3>Notiser</h3>
+									{recipe.notes}
+								</div>
+							)}
 							<div className='col-6 card'>
 								{recipe.ingrediens && (
 									<div>
@@ -146,6 +152,7 @@ export const PublicRecipeComponent = ({
 					)}
 				</div>
 			)}
+
 			<div className='col-12 card'>
 				<h3>För fler recept besök</h3>
 				<Link to={``} rel='noopener noreferrer'>

@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { GrocerisObj, GroceriesJson } from '../../../../entities/groceries';
+import { ModalPrompt } from '../../../../entities/modalPrompt';
+import { PromptEnums } from '../../../../entities/promptEnums';
+import { ModalBoxComponent } from '../../../modalBox/modalBox';
 import './groceriesInfo.css';
 
 export const GroceriesInfo = (props: any) => {
@@ -10,6 +13,7 @@ export const GroceriesInfo = (props: any) => {
 	const setGroceriesList = props.setGroceriesList;
 
 	const [error, setError] = useState('');
+	const [showModal, setShowModal] = useState(false);
 
 	// handle click event of the Remove button
 	const handleRemoveClick = async () => {
@@ -46,6 +50,15 @@ export const GroceriesInfo = (props: any) => {
 			setError(error.response.data.error);
 		}
 	};
+
+	const modal: ModalPrompt = {
+		type: PromptEnums.warning,
+		headerText: 'Tabort inköpslistan',
+		message:
+			'Du håller nu på att ta bort allt innehåll i inköpslistan. Är du säker på att du vill göra det?',
+		showModal: { set: setShowModal, get: showModal },
+		negativeButton: { name: 'Tabort', action: handleRemoveClick },
+	};
 	return (
 		<div className='col-s-12 col-6'>
 			<div className='grocerie-info-wrapper'>
@@ -66,12 +79,13 @@ export const GroceriesInfo = (props: any) => {
 				<div className='remove-button-wrapper'>
 					<button
 						className='remove-button'
-						onClick={() => handleRemoveClick()}
+						onClick={() => setShowModal(!showModal)}
 					>
 						Tabort allt i listan!
 					</button>
 				</div>
 			</div>
+			{showModal && <ModalBoxComponent prompt={modal} />}
 		</div>
 	);
 };

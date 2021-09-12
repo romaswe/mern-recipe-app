@@ -1,0 +1,51 @@
+#modal-wrapper {
+	/* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+#modal-content {
+	width: 80%;
+	margin: auto;
+	padding: 20px;
+	box-shadow: 0 0 1rem rgba(17, 68, 34, 0.2);
+	border-radius: 1rem;
+}
+.action-buttons-wrapper {
+	text-align: end;
+}
+
+hr.rounded {
+	border-top: 1px solid rgba(128, 128, 128, 0.685);
+	border-radius: 5px;
+}
+
+.info {
+	background-color: white;
+	min-height: 3rem;
+}
+
+.warning {
+	background-color: rgb(216, 216, 34);
+	min-height: 3rem;
+}
+
+.Error {
+	background-color: rgb(211, 32, 32);
+	min-height: 3rem;
+}
+
+.showModal {
+	display: block;
+}
+.hideModal {
+	display: none;
+}
