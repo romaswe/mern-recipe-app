@@ -54,7 +54,7 @@ export const PublicRecipeComponent = ({
 							to={`/recipe/${match.params.recipeName}`}
 							rel='noopener noreferrer'
 						>
-							<h3>{recipeName}</h3>
+							<h3>{decodeURIComponent(recipeName)}</h3>
 						</Link>
 					</li>
 				</ul>

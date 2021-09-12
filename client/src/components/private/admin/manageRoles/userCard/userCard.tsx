@@ -62,7 +62,7 @@ export const UserCardComponent = (props: any) => {
 					<hr className='rounded'></hr>
 					<h4>Återställ Lösenord</h4>
 					<a
-						href={`${homepageUrl}/passwordreset/${user.resetPasswordToken}`}
+						href={`${homepageUrl}passwordreset/${user.resetPasswordToken}`}
 					>
 						Reset link
 					</a>

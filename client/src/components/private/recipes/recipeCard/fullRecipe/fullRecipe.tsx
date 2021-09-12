@@ -123,7 +123,9 @@ export const FullRecipe = (props: any) => {
 				)}
 				<div className='col-12 url-wrapper'>
 					<Link
-						to={`/recipe/${recipe.name.replaceAll(' ', '_')}`}
+						to={`/recipe/${encodeURIComponent(
+							recipe.name.replaceAll(' ', '_')
+						)}`}
 						target='_blank'
 						rel='noopener noreferrer'
 					>
