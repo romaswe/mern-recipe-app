@@ -5,6 +5,8 @@ const express = require('express');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/error');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
 
 connectDB();
 
@@ -17,6 +19,38 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/private', require('./routes/private'));
 app.use('/api/public', require('./routes/public'));
 app.use('/api/admin', require('./routes/admin'));
+const options = {
+	definition: {
+		openapi: '3.0.0',
+		info: {
+			title: 'Hello World',
+			version: '1.0.0',
+		},
+		tags: [
+			{
+				name: 'Public',
+				description: 'Public routes',
+			},
+			{
+				name: 'Admin',
+				description: 'Admin routes',
+			},
+			{
+				name: 'Private',
+				description: 'Private routes',
+			},
+			{
+				name: 'Auth',
+				description: 'Auth routes',
+			},
+		],
+	},
+	apis: ['./routes/*.js'], // files containing annotations as above
+};
+
+const openapiSpecification = swaggerJsdoc(options);
+console.log(openapiSpecification);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 // Error Handler (Last middleware that shuld be used)
 app.use(errorHandler);
