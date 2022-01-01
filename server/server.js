@@ -23,25 +23,25 @@ const options = {
 	definition: {
 		openapi: '3.0.0',
 		info: {
-			title: 'Hello World',
+			title: 'Recipe API',
 			version: '1.0.0',
 		},
 		tags: [
 			{
-				name: 'Public',
-				description: 'Public routes',
-			},
-			{
 				name: 'Admin',
 				description: 'Admin routes',
+			},
+			{
+				name: 'Auth',
+				description: 'Auth routes',
 			},
 			{
 				name: 'Private',
 				description: 'Private routes',
 			},
 			{
-				name: 'Auth',
-				description: 'Auth routes',
+				name: 'Public',
+				description: 'Public routes',
 			},
 		],
 	},

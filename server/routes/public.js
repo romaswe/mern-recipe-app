@@ -4,7 +4,7 @@ const router = express.Router();
 const { getRecipeByName, getPublicRoute } = require('../controllers/public');
 /**
  * @openapi
- * /api/public/:
+ * /api/public:
  *   get:
  *     tags:
  *     - Public
@@ -18,12 +18,12 @@ router.route('/').get(getPublicRoute);
 
 /**
  * @openapi
- * /recipe/{recipeName}:
+ * /api/public/recipe/{recipeName}:
  *   get:
  *     tags:
  *     - Public
  *     summary: Get public route
- *     description: Get public route description
+ *     description: Get single recipe by name
  *     parameters:
  *     - name: "recipeName"
  *       in: "path"
