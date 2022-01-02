@@ -19,6 +19,23 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/private', require('./routes/private'));
 app.use('/api/public', require('./routes/public'));
 app.use('/api/admin', require('./routes/admin'));
+const modleUser = {
+	required: ['username', 'email', 'password'],
+	properties: {
+		username: {
+			type: 'string',
+		},
+		email: {
+			type: 'string',
+		},
+		password: {
+			type: 'string',
+		},
+		role: {
+			type: 'string',
+		},
+	},
+};
 const options = {
 	definition: {
 		openapi: '3.0.0',
@@ -44,6 +61,11 @@ const options = {
 				description: 'Public routes',
 			},
 		],
+		components: {
+			schemas: {
+				user: modleUser,
+			},
+		},
 	},
 	apis: ['./routes/*.js'], // files containing annotations as above
 };
