@@ -59,8 +59,9 @@ The env file in **client** is used for configure the client.
 
 # To fix:
 
--   [ ] When creating a user you can pass roles and create a admin
+-   [x] When creating a user you can pass roles and create a admin
 -   [ ] Add week recipes where theres a recipes with similar ingredients
+-   [ ] Fix swagger so arguments/body are correct
 -   [ ] Add foodbox QR ide to the website
 -   [ ] Fix docker image for frontend
 -   [ ] Fix docker image for backend

@@ -16,7 +16,7 @@
 	"homepage": "https://bitbucket.org/romaswe/mern-recipe-app#readme",
 	"devDependencies": {
 		"concurrently": "^6.2.0",
-		"nodemon": "^2.0.12"
+		"nodemon": "^2.0.16"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
