@@ -6,6 +6,7 @@ const {
 	addRecipe,
 	getUsers,
 	setUserRole,
+	addGroupRecipes,
 } = require('../controllers/admin');
 const { adminProtect } = require('../middleware/auth');
 
@@ -64,5 +65,19 @@ router.route('/getUsers').get(adminProtect, getUsers);
  *         description: Returns a mysterious string.
  */
 router.route('/changeUserRole').put(adminProtect, setUserRole);
+
+/**
+ * @openapi
+ * /api/admin/setGroupRecipes:
+ *   put:
+ *     tags:
+ *     - Admin
+ *     summary: Add recipes to group
+ *     description: Add a recipe to a group in the database
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
+router.route('/setGroupRecipes').post(adminProtect, addGroupRecipes);
 
 module.exports = router;

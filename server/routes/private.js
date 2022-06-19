@@ -11,6 +11,7 @@ const {
 	setGroceries,
 	getUsers,
 	setUserRole,
+	getGroupRecipes,
 } = require('../controllers/private');
 const { protect } = require('../middleware/auth');
 
@@ -112,4 +113,5 @@ router.route('/groceries').put(protect, setGroceries);
  */
 router.route('/getGroceriesInfo').get(protect, getGroceriesInfo);
 
+router.route('/getGroupRecipes/:groupName').get(protect, getGroupRecipes);
 module.exports = router;

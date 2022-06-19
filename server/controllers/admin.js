@@ -1,5 +1,6 @@
 const Recipe = require('../models/Recipes');
 const User = require('../models/Users');
+const GroupRecipes = require('../models/GroupRecipes');
 const ErrorResponse = require('../utils/errorResponse');
 
 exports.getAdminRoute = (req, res, next) => {
@@ -70,6 +71,44 @@ exports.setUserRole = async (req, res, next) => {
 		res.status(200).json({
 			success: true,
 			data: `Role changed to ${role}`,
+		});
+	} catch (error) {
+		return next(error);
+	}
+};
+
+exports.addGroupRecipes = async (req, res, next) => {
+	const { name, description, recipes } = req.body;
+	let token;
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if (!token) {
+		return next(
+			new ErrorResponse('Not authorized to access this route', 401)
+		);
+	}
+
+	try {
+		//const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		//const user = await User.findById(decoded.id);
+		//if (!user) {
+		//	return next(new ErrorResponse('Not a valid user', 401));
+		//}
+
+		const cleanName = name.replace(/_/g, ' ').trim();
+		const groupRecipe = await GroupRecipes.create({
+			name: cleanName,
+			description,
+			recipes,
+		});
+		res.status(200).json({
+			success: true,
+			data: `You added groupRecipe ${cleanName}`,
 		});
 	} catch (error) {
 		return next(error);

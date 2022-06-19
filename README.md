@@ -66,3 +66,4 @@ The env file in **client** is used for configure the client.
 -   [ ] Fix docker image for frontend
 -   [ ] Fix docker image for backend
 -   [ ] Fix compose that runs images above
+-   [ ] Make a general token checker for all routes
