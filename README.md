@@ -56,3 +56,12 @@ The env file in **client** is used for configure the client.
 `REACT_APP_LOGROCKET=LOGROCKET APP ID`  
 `REACT_APP_ENVIROMENT=ENVIROMENT`  
 `REACT_APP_HOMEPAGE_URL=URL TO HOMEPAGE`
+
+# To fix:
+
+-   [ ] When creating a user you can pass roles and create a admin
+-   [ ] Add week recipes where theres a recipes with similar ingredients
+-   [ ] Add foodbox QR ide to the website
+-   [ ] Fix docker image for frontend
+-   [ ] Fix docker image for backend
+-   [ ] Fix compose that runs images above
