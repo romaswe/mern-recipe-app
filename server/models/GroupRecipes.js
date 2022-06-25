@@ -6,7 +6,7 @@ var groupRecipeSchema = new MongoseSchema({
 	description: {
 		type: String,
 	},
-	name: {
+	groupName: {
 		type: String,
 		required: [true, 'Please provide the name of the group of recipes'],
 		unique: true,

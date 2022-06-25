@@ -286,7 +286,7 @@ exports.getGroupRecipes = async (req, res, next) => {
 			);
 		}
 		const groupRecipeResponse = await GroupRecipes.findOne({
-			name: groupName,
+			groupName: groupName,
 		}).populate('recipes');
 		console.log(groupRecipeResponse);
 		res.status(200).json({

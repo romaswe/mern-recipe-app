@@ -78,7 +78,7 @@ exports.setUserRole = async (req, res, next) => {
 };
 
 exports.addGroupRecipes = async (req, res, next) => {
-	const { name, description, recipes } = req.body;
+	const { groupName, description, recipes } = req.body;
 	let token;
 	if (
 		req.headers.authorization &&
@@ -100,9 +100,9 @@ exports.addGroupRecipes = async (req, res, next) => {
 		//	return next(new ErrorResponse('Not a valid user', 401));
 		//}
 
-		const cleanName = name.replace(/_/g, ' ').trim();
+		const cleanName = groupName.replace(/_/g, ' ').trim();
 		const groupRecipe = await GroupRecipes.create({
-			name: cleanName,
+			groupName: cleanName,
 			description,
 			recipes,
 		});
