@@ -94,12 +94,6 @@ exports.addGroupRecipes = async (req, res, next) => {
 	}
 
 	try {
-		//const decoded = jwt.verify(token, process.env.JWT_SECRET);
-		//const user = await User.findById(decoded.id);
-		//if (!user) {
-		//	return next(new ErrorResponse('Not a valid user', 401));
-		//}
-
 		const cleanName = groupName.replace(/_/g, ' ').trim();
 		const groupRecipe = await GroupRecipes.create({
 			groupName: cleanName,
@@ -114,3 +108,5 @@ exports.addGroupRecipes = async (req, res, next) => {
 		return next(error);
 	}
 };
+
+exports.deleteGroupRecipes = async (req, res, next) => {};
