@@ -61,7 +61,9 @@ The env file in **client** is used for configure the client.
 
 -   [x] When creating a user you can pass roles and create a admin
 -   [ ] Add week recipes where theres a recipes with similar ingredients
--   [ ] Unclutter adminsite, add buttons to hide/show segments
+    -   [ ] Frontend
+    -   [x] Backend
+-   [x] Unclutter adminsite, add buttons to hide/show segments
 -   [ ] Add delete recipes
 -   [ ] Add delete group recipes
 -   [ ] Fix swagger so arguments/body are correct
@@ -69,3 +71,17 @@ The env file in **client** is used for configure the client.
 -   [ ] Fix docker image for frontend
 -   [ ] Fix docker image for backend
 -   [ ] Fix compose that runs images above
+-   [ ] Add new roles to make handle so user can add recipes
+-   [ ] Add local support
+    -   [ ] SE
+    -   [ ] ENG
+-   [ ] Search, add so you can search for recipes
+-   [ ] Improve groceries list
+    -   [ ] Add quantity to items
+    -   [ ] Name lists and have multiple lists
+-   [ ] Redesign frontend
+    -   [ ] List recipes
+    -   [ ] Recipes page (public)
+    -   [ ] Groceries
+    -   [ ] Admin
+    -   [ ] About page

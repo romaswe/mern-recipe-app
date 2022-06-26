@@ -78,7 +78,7 @@ exports.setUserRole = async (req, res, next) => {
 };
 
 exports.addGroupRecipes = async (req, res, next) => {
-	const { groupName, description, recipes } = req.body;
+	const { groupName, description, recipes, notes } = req.body;
 	let token;
 	if (
 		req.headers.authorization &&
@@ -99,6 +99,7 @@ exports.addGroupRecipes = async (req, res, next) => {
 			groupName: cleanName,
 			description,
 			recipes,
+			notes,
 		});
 		res.status(200).json({
 			success: true,

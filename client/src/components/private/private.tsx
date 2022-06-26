@@ -11,6 +11,7 @@ import RecipesListComponent from './recipes/recipesList';
 import { Groceries } from './groceries/groceries';
 import { AboutComponent } from './about/about';
 import LogRocket from 'logrocket';
+import GroupRecipesListComponent from './groupRecipes/groupRecipesList';
 
 const PrivateComponent = () => {
 	const history = useHistory();
@@ -89,6 +90,12 @@ const PrivateComponent = () => {
 			{isActive('recipes') && (
 				<div className='col-12'>
 					<RecipesListComponent />
+				</div>
+			)}
+
+			{isActive('groupRecipes') && (
+				<div className='col-12'>
+					<GroupRecipesListComponent />
 				</div>
 			)}
 

@@ -55,6 +55,18 @@ export const Navnbar = (props: any) => {
 									</li>
 
 									<li
+										key='groupRecipes'
+										className={`col-s-12 col-2 navbar-item ${
+											isActive('groupRecipes') && 'active'
+										}`}
+										onClick={() => {
+											handleOnclick('groupRecipes');
+										}}
+									>
+										Grupp Recept
+									</li>
+
+									<li
 										key='tips'
 										className={`col-s-12 col-2 navbar-item ${
 											isActive('tips') && 'active'

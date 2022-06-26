@@ -11,6 +11,9 @@ var groupRecipeSchema = new MongoseSchema({
 		required: [true, 'Please provide the name of the group of recipes'],
 		unique: true,
 	},
+	notes: {
+		type: String,
+	},
 	recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }],
 });
 groupRecipeSchema.plugin(mongoosePaginate);
