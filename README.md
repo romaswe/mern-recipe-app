@@ -74,7 +74,6 @@ The env file in **client** is used for configure the client.
 -   [ ] Add new roles to make handle so user can add recipes
 -   [ ] Add local support
     -   [ ] SE
-    -   [ ] ENG
 -   [ ] Search, add so you can search for recipes
 -   [ ] Improve groceries list
     -   [ ] Add quantity to items
