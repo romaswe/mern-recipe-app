@@ -109,5 +109,38 @@ exports.addGroupRecipes = async (req, res, next) => {
 		return next(error);
 	}
 };
+exports.deleteRecipes = async (req, res, next) => {
+	let id = req.params.id;
+	if (!id) {
+		return next(new ErrorResponse('No id found', 400));
+	}
 
-exports.deleteGroupRecipes = async (req, res, next) => {};
+	try {
+		const numberOfDeletedEntriess = await Recipe.deleteOne({ _id: id });
+		res.status(200).json({
+			success: true,
+			data: `Number of deleted provided: ${numberOfDeletedEntriess}`,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
+exports.deleteGroupRecipes = async (req, res, next) => {
+	let id = req.params.id;
+	if (!id) {
+		return next(new ErrorResponse('No id provided', 400));
+	}
+
+	try {
+		const numberOfDeletedEntriess = await GroupRecipes.deleteOne({
+			_id: id,
+		});
+		res.status(200).json({
+			success: true,
+			data: `Number of deleted entries: ${numberOfDeletedEntriess}`,
+		});
+	} catch (error) {
+		next(error);
+	}
+};

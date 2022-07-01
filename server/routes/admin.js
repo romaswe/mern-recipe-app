@@ -7,6 +7,8 @@ const {
 	getUsers,
 	setUserRole,
 	addGroupRecipes,
+	deleteRecipes,
+	deleteGroupRecipes,
 } = require('../controllers/admin');
 const { adminProtect } = require('../middleware/auth');
 
@@ -79,5 +81,11 @@ router.route('/changeUserRole').put(adminProtect, setUserRole);
  *         description: Returns a mysterious string.
  */
 router.route('/setGroupRecipes').post(adminProtect, addGroupRecipes);
+
+router.route('/deleteRecipeById/:id').delete(adminProtect, deleteRecipes);
+
+router
+	.route('/deleteGroupRecipeById/:id')
+	.delete(adminProtect, deleteGroupRecipes);
 
 module.exports = router;
