@@ -119,7 +119,9 @@ exports.deleteRecipes = async (req, res, next) => {
 		const numberOfDeletedEntriess = await Recipe.deleteOne({ _id: id });
 		res.status(200).json({
 			success: true,
-			data: `Number of deleted provided: ${numberOfDeletedEntriess}`,
+			data: `Number of deleted provided: ${JSON.stringify(
+				numberOfDeletedEntriess
+			)}`,
 		});
 	} catch (error) {
 		next(error);
@@ -138,7 +140,30 @@ exports.deleteGroupRecipes = async (req, res, next) => {
 		});
 		res.status(200).json({
 			success: true,
-			data: `Number of deleted entries: ${numberOfDeletedEntriess}`,
+			data: `Number of deleted entries: ${JSON.stringify(
+				numberOfDeletedEntriess
+			)}`,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
+exports.bulkDeleteRecipes = async (req, res, next) => {
+	const { ids } = req.body;
+	if (!ids) {
+		return next(new ErrorResponse('No ids provided', 400));
+	}
+
+	try {
+		const numberOfDeletedEntriess = await Recipe.deleteMany({
+			_id: { $in: ids },
+		});
+		res.status(200).json({
+			success: true,
+			data: `Number of deleted entries: ${JSON.stringify(
+				numberOfDeletedEntriess
+			)}`,
 		});
 	} catch (error) {
 		next(error);

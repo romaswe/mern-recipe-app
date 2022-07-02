@@ -338,3 +338,5 @@ exports.getGroupRecipesByGroupName = async (req, res, next) => {
 		return next(error);
 	}
 };
+
+exports.searchRecipesByName = async (req, res, next) => {};
