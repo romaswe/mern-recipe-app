@@ -9,12 +9,55 @@ import { JwtData } from '../../../entities/jwt';
 
 const RecipesListComponent = (props: any) => {
 	const [error, setError] = useState('');
+	const [success, setSuccess] = useState('');
 	const [recipesList, setRecipesList] = useState<Recipes[]>();
 	const [recipeDoc, setRecipeDoc] = useState<RecipesListJSON>();
 	const [recipeIdList, setRecipeIdList] = useState<String[]>();
 	const decodedJWT: JwtData = props.jwtData;
+	const [groupRecipeName, setGroupRecipeName] = useState('');
+	const [recipeDescription, setRecipeDescription] = useState('');
+	const [recipeNotes, setRecipeNotes] = useState('');
 
-	const handleAddClick = async () => {
+	const handleAddToGroupClick = async (e: any) => {
+		e.preventDefault();
+
+		const groupRecipe = {
+			groupName: groupRecipeName.trim(),
+			description: recipeDescription.trim() ?? '',
+			notes: recipeNotes.trim() ?? '',
+			recipes: recipeIdList ?? [],
+		};
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+			},
+		};
+
+		try {
+			const { data } = await axios.post(
+				'/api/admin/setGroupRecipes',
+				groupRecipe,
+				config
+			);
+
+			setSuccess(data.data);
+			clearFields();
+		} catch (error: any) {
+			setError(error.response.data.error);
+			setTimeout(() => {
+				setError('');
+			}, 5000);
+		}
+	};
+
+	const clearFields = () => {
+		setRecipeNotes('');
+		setRecipeDescription('');
+		setGroupRecipeName('');
+	};
+
+	const handleDeleteClick = async () => {
 		console.log('Do the delete: ' + recipeIdList);
 
 		if (recipeIdList) {
@@ -35,6 +78,9 @@ const RecipesListComponent = (props: any) => {
 			} catch (error: any) {
 				console.log(error.response.data.error);
 				setError(error.response.data.error);
+				setTimeout(() => {
+					setError('');
+				}, 5000);
 			}
 		}
 	};
@@ -91,17 +137,82 @@ const RecipesListComponent = (props: any) => {
 		<span className='error-message'>{error}</span>
 	) : (
 		<div className='col-12'>
+			{success && <span className='success-message'>{success}</span>}
+
 			{recipeDoc?.data && (
 				<div className='row'>
 					{isAdmin(decodedJWT) && (
 						<div className='col-12'>
-							<button
-								className='remove-grocerie-button'
-								onClick={handleAddClick}
-							>
-								Delete {recipeIdList?.length ?? '0'} marked
-								recipes
-							</button>
+							<h3>Skapa en grupp av recept</h3>
+							<div className='row'>
+								<form
+									className='row'
+									onSubmit={handleAddToGroupClick}
+								>
+									<div className='input-wrapper'>
+										<input
+											className='col-6'
+											type='text'
+											required
+											id='name'
+											autoComplete='true'
+											placeholder='Skriv Namn'
+											onChange={(e) =>
+												setGroupRecipeName(
+													e.target.value
+												)
+											}
+											value={groupRecipeName}
+										/>
+									</div>
+									<div className='input-wrapper'>
+										<input
+											className='col-6'
+											type='text'
+											id='description'
+											autoComplete='true'
+											placeholder='Skriv beskrivning'
+											onChange={(e) =>
+												setRecipeDescription(
+													e.target.value
+												)
+											}
+											value={recipeDescription}
+										/>
+									</div>
+									<div className='input-wrapper'>
+										<input
+											className='col-6'
+											type='text'
+											id='notes'
+											autoComplete='true'
+											placeholder='Skriv notis'
+											onChange={(e) =>
+												setRecipeNotes(e.target.value)
+											}
+											value={recipeNotes}
+										/>
+									</div>
+									<div className='col-12'>
+										<button
+											type='submit'
+											className='submit-button'
+										>
+											Add {recipeIdList?.length ?? '0'}{' '}
+											marked recipes to group
+										</button>
+									</div>
+								</form>
+							</div>
+							<div className='col-12'>
+								<button
+									className='remove-button'
+									onClick={handleDeleteClick}
+								>
+									Delete {recipeIdList?.length ?? '0'} marked
+									recipes
+								</button>
+							</div>
 						</div>
 					)}
 					<div className='col-12'>

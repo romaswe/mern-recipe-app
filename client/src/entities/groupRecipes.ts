@@ -2,10 +2,10 @@
 
 export interface GroupRecipesList {
     success: boolean;
-    data: GroupRecipes;
+    data: GroupRecipesDoc;
 }
 
-export interface GroupRecipes {
+export interface GroupRecipesDoc {
     docs: GroupRecipes[];
     totalDocs: number;
     limit: number;
@@ -19,12 +19,12 @@ export interface GroupRecipes {
 }
 
 export interface GroupRecipes {
-    _id: string;
-    description: string;
+    _id?: string;
+    description?: string;
     groupName: string;
-    notes: string;
-    recipes: Recipe[];
-    __v: number;
+    notes?: string;
+    recipes?: Recipe[];
+    __v?: number;
 }
 
 export interface Recipe {
