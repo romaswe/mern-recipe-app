@@ -6,7 +6,7 @@ import { ManageRolesComponent } from './manageRoles/manageRoles';
 const AdminComponent = () => {
 	const [showAddRecipes, setShowAddRecipes] = useState(false);
 	const [showManageRoles, setShowManageRoles] = useState(false);
-	const [showGroupRecipes, setShowGroupRecipes] = useState(false);
+	//const [showGroupRecipes, setShowGroupRecipes] = useState(false);
 
 	return (
 		<div className='row'>
@@ -24,13 +24,6 @@ const AdminComponent = () => {
 					onClick={() => setShowManageRoles(!showManageRoles)}
 				>
 					Hide/Show Manage roles
-				</button>
-				<button
-					type='button'
-					className='standard-button'
-					onClick={() => setShowGroupRecipes(!showGroupRecipes)}
-				>
-					Hide/Show Group recipes
 				</button>
 			</div>
 			{showAddRecipes && (

@@ -89,13 +89,13 @@ const PrivateComponent = () => {
 
 			{isActive('recipes') && (
 				<div className='col-12'>
-					<RecipesListComponent />
+					<RecipesListComponent jwtData={decodedJWT.current} />
 				</div>
 			)}
 
 			{isActive('groupRecipes') && (
 				<div className='col-12'>
-					<GroupRecipesListComponent />
+					<GroupRecipesListComponent jwtData={decodedJWT.current} />
 				</div>
 			)}
 

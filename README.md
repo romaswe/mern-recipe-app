@@ -64,7 +64,7 @@ The env file in **client** is used for configure the client.
     -   [ ] Frontend
     -   [x] Backend
 -   [x] Unclutter adminsite, add buttons to hide/show segments
--   [ ] Add delete recipes
+-   [x] Add delete recipes
 -   [ ] Add delete group recipes
 -   [ ] Fix swagger so arguments/body are correct
 -   [ ] Add foodbox QR ide to the website
@@ -72,6 +72,7 @@ The env file in **client** is used for configure the client.
 -   [ ] Fix docker image for backend
 -   [ ] Fix compose that runs images above
 -   [ ] Add new roles to make handle so user can add recipes
+-   [ ] Be able to edit recipes
 -   [ ] Add local support
     -   [ ] SE
 -   [ ] Search, add so you can search for recipes

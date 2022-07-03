@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { GroupRecipes, GroupRecipesList } from '../../../entities/groupRecipes';
 import { GroupRecipeCard } from './groupRecipesCard/groupRecipesCard';
 
-const GroupRecipesListComponent = () => {
+const GroupRecipesListComponent = (props: any) => {
 	const [error, setError] = useState('');
 	const [groupRecipeDoc, setGroupRecipeDoc] = useState<GroupRecipesList>();
 	const [groupRecipesList, setGroupRecipesList] = useState<GroupRecipes[]>();
