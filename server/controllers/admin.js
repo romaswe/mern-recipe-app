@@ -169,3 +169,24 @@ exports.bulkDeleteRecipes = async (req, res, next) => {
 		next(error);
 	}
 };
+
+exports.bulkDeleteGroupRecipes = async (req, res, next) => {
+	const { ids } = req.body;
+	if (!ids) {
+		return next(new ErrorResponse('No ids provided', 400));
+	}
+
+	try {
+		const numberOfDeletedEntriess = await GroupRecipes.deleteMany({
+			_id: { $in: ids },
+		});
+		res.status(200).json({
+			success: true,
+			data: `Number of deleted entries: ${JSON.stringify(
+				numberOfDeletedEntriess
+			)}`,
+		});
+	} catch (error) {
+		next(error);
+	}
+};

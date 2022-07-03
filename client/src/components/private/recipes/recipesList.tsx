@@ -75,6 +75,7 @@ const RecipesListComponent = (props: any) => {
 			try {
 				await axios.delete(`/api/admin/bulkDeleteRecipes`, config);
 				fetchRecipesList();
+				setRecipeIdList([]);
 			} catch (error: any) {
 				console.log(error.response.data.error);
 				setError(error.response.data.error);

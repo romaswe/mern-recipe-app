@@ -10,6 +10,7 @@ const {
 	deleteRecipes,
 	deleteGroupRecipes,
 	bulkDeleteRecipes,
+	bulkDeleteGroupRecipes,
 } = require('../controllers/admin');
 const { adminProtect } = require('../middleware/auth');
 
@@ -90,5 +91,9 @@ router
 	.delete(adminProtect, deleteGroupRecipes);
 
 router.route('/bulkDeleteRecipes').delete(adminProtect, bulkDeleteRecipes);
+
+router
+	.route('/bulkDeleteGroupRecipes')
+	.delete(adminProtect, bulkDeleteGroupRecipes);
 
 module.exports = router;
