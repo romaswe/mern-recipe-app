@@ -1,5 +1,6 @@
 const Recipe = require('../models/Recipes');
 const User = require('../models/Users');
+const GroupRecipes = require('../models/GroupRecipes');
 const ErrorResponse = require('../utils/errorResponse');
 
 exports.getAdminRoute = (req, res, next) => {
@@ -73,5 +74,119 @@ exports.setUserRole = async (req, res, next) => {
 		});
 	} catch (error) {
 		return next(error);
+	}
+};
+
+exports.addGroupRecipes = async (req, res, next) => {
+	const { groupName, description, recipes, notes } = req.body;
+	let token;
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if (!token) {
+		return next(
+			new ErrorResponse('Not authorized to access this route', 401)
+		);
+	}
+
+	try {
+		const cleanName = groupName.replace(/_/g, ' ').trim();
+		const groupRecipe = await GroupRecipes.create({
+			groupName: cleanName,
+			description,
+			recipes,
+			notes,
+		});
+		res.status(200).json({
+			success: true,
+			data: `You added groupRecipe ${cleanName}`,
+		});
+	} catch (error) {
+		return next(error);
+	}
+};
+exports.deleteRecipes = async (req, res, next) => {
+	let id = req.params.id;
+	if (!id) {
+		return next(new ErrorResponse('No id found', 400));
+	}
+
+	try {
+		const numberOfDeletedEntriess = await Recipe.deleteOne({ _id: id });
+		res.status(200).json({
+			success: true,
+			data: `Number of deleted provided: ${JSON.stringify(
+				numberOfDeletedEntriess
+			)}`,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
+exports.deleteGroupRecipes = async (req, res, next) => {
+	let id = req.params.id;
+	if (!id) {
+		return next(new ErrorResponse('No id provided', 400));
+	}
+
+	try {
+		const numberOfDeletedEntriess = await GroupRecipes.deleteOne({
+			_id: id,
+		});
+		res.status(200).json({
+			success: true,
+			data: `Number of deleted entries: ${JSON.stringify(
+				numberOfDeletedEntriess
+			)}`,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
+exports.bulkDeleteRecipes = async (req, res, next) => {
+	const { ids } = req.body;
+	if (!ids) {
+		return next(new ErrorResponse('No ids provided', 400));
+	}
+
+	try {
+		const numberOfDeletedEntriess = await Recipe.deleteMany({
+			_id: { $in: ids },
+		});
+		res.status(200).json({
+			success: true,
+			data: `Number of deleted entries: ${JSON.stringify(
+				numberOfDeletedEntriess
+			)}`,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
+exports.bulkDeleteGroupRecipes = async (req, res, next) => {
+	const { ids } = req.body;
+	if (!ids) {
+		return next(new ErrorResponse('No ids provided', 400));
+	}
+
+	try {
+		const numberOfDeletedEntriess = await GroupRecipes.deleteMany({
+			_id: { $in: ids },
+		});
+		res.status(200).json({
+			success: true,
+			data: `Number of deleted entries: ${JSON.stringify(
+				numberOfDeletedEntriess
+			)}`,
+		});
+	} catch (error) {
+		next(error);
 	}
 };

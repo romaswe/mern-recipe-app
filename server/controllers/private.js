@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const Groceries = require('../models/Groceries');
 const Recipe = require('../models/Recipes');
 const User = require('../models/Users');
+const GroupRecipes = require('../models/GroupRecipes');
 const ErrorResponse = require('../utils/errorResponse');
 
 exports.getPrivateRoute = (req, res, next) => {
@@ -261,3 +262,81 @@ exports.getGroceriesInfo = async (req, res, next) => {
 		return next(error);
 	}
 };
+
+exports.getGroupRecipes = async (req, res, next) => {
+	const page = req.query.page ?? 1;
+	const limit = req.query.limit ?? 10;
+	let token;
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if (!token) {
+		return next(
+			new ErrorResponse('Not authorized to access this route', 401)
+		);
+	}
+
+	try {
+		const options = {
+			page: page,
+			limit: limit,
+			populate: 'recipes',
+			collation: {
+				locale: 'sv',
+			},
+			sort: { groupName: 1 },
+		};
+		const groupRecipeResponse = await GroupRecipes.paginate({}, options);
+		//const groupRecipeResponse = await GroupRecipes.find({
+		//	groupName: groupName,
+		//}).populate('recipes');
+		console.log(groupRecipeResponse);
+		res.status(200).json({
+			success: true,
+			data: groupRecipeResponse,
+		});
+	} catch (error) {
+		return next(error);
+	}
+};
+
+exports.getGroupRecipesByGroupName = async (req, res, next) => {
+	let token;
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if (!token) {
+		return next(
+			new ErrorResponse('Not authorized to access this route', 401)
+		);
+	}
+
+	try {
+		let groupName = req.params.groupName;
+		if (!groupName) {
+			return next(
+				new ErrorResponse('Please provide the group name', 422) // Use better response code
+			);
+		}
+		const groupRecipeResponse = await GroupRecipes.findOne({
+			groupName: groupName,
+		}).populate('recipes');
+		console.log(groupRecipeResponse);
+		res.status(200).json({
+			success: true,
+			data: groupRecipeResponse,
+		});
+	} catch (error) {
+		return next(error);
+	}
+};
+
+exports.searchRecipesByName = async (req, res, next) => {};

@@ -56,3 +56,34 @@ The env file in **client** is used for configure the client.
 `REACT_APP_LOGROCKET=LOGROCKET APP ID`  
 `REACT_APP_ENVIROMENT=ENVIROMENT`  
 `REACT_APP_HOMEPAGE_URL=URL TO HOMEPAGE`
+
+# To fix:
+
+-   [x] When creating a user you can pass roles and create a admin
+-   [x] Add week recipes where theres a recipes with similar ingredients
+    -   [x] Frontend
+    -   [x] Backend
+-   [x] Unclutter adminsite, add buttons to hide/show segments
+-   [x] Add delete recipes
+-   [x] Add delete group recipes
+-   [ ] Add confirmation before delete recipes and group recipes
+-   [ ] Fix swagger so arguments/body are correct
+-   [ ] Add foodbox QR ide to the website
+-   [ ] Fix docker image for frontend
+-   [ ] Fix docker image for backend
+-   [ ] Fix compose that runs images above
+-   [ ] Add new roles to make handle so user can add recipes
+-   [ ] Be able to edit recipes
+-   [ ] Add local support
+    -   [ ] SE
+-   [ ] Search, add so you can search for recipes
+-   [ ] Search group recipes
+-   [ ] Improve groceries list
+    -   [ ] Add quantity to items
+    -   [ ] Name lists and have multiple lists
+-   [ ] Redesign frontend
+    -   [ ] List recipes
+    -   [ ] Recipes page (public)
+    -   [ ] Groceries
+    -   [ ] Admin
+    -   [ ] About page

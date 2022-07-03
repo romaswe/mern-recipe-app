@@ -8,8 +8,6 @@ const connectDB = async () => {
 		pass: process.env.DATABASE_PASSWORD,
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
-		useCreateIndex: true,
-		useFindAndModify: false,
 	});
 
 	console.log(`MongoDB Connected to ${url}`);

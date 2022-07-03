@@ -11,6 +11,8 @@ const {
 	setGroceries,
 	getUsers,
 	setUserRole,
+	getGroupRecipes,
+	getGroupRecipesByGroupName,
 } = require('../controllers/private');
 const { protect } = require('../middleware/auth');
 
@@ -111,5 +113,11 @@ router.route('/groceries').put(protect, setGroceries);
  *         description: Returns a mysterious string.
  */
 router.route('/getGroceriesInfo').get(protect, getGroceriesInfo);
+
+router
+	.route('/getGroupRecipesByName/:groupName')
+	.get(protect, getGroupRecipesByGroupName);
+
+router.route('/getGroupRecipes').get(protect, getGroupRecipes);
 
 module.exports = router;

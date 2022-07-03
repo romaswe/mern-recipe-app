@@ -8,7 +8,8 @@ var grocerieObject = new mongoose.Schema({
 });
 const GroceriesSchema = new MongoseSchema({
 	owner: {
-		type: String,
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
 		required: [true, 'Please provide the owner of the grocerielist'],
 		unique: true,
 	},
