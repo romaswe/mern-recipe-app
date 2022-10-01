@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import LogRocket from 'logrocket';
 import axios from 'axios';
 
-const appVersion = process.env.REACT_APP_VERSION;
-const logRocketUrl = process.env.REACT_APP_LOGROCKET ?? '';
-const enviroment = process.env.REACT_APP_ENVIROMENT ?? 'prod';
+const appVersion = window._env_.APP_VERSION;
+const logRocketUrl = window._env_.APP_LOGROCKET ?? '';
+const enviroment = window._env_.APP_ENVIROMENT ?? 'prod';
 
 if (enviroment === 'dev') {
 	axios.defaults.baseURL = 'http://localhost:5000';

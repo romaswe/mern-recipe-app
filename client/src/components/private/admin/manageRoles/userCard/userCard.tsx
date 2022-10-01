@@ -5,7 +5,7 @@ import './userCard.css';
 
 export const UserCardComponent = (props: any) => {
 	const user: User = props.user;
-	const homepageUrl = process.env.REACT_APP_HOMEPAGE_URL;
+	const homepageUrl = window._env_.APP_HOMEPAGE_URL;
 
 	interface formItem {
 		name: string;

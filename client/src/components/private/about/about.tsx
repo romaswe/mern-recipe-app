@@ -1,6 +1,6 @@
 import './about.css';
 export const AboutComponent = () => {
-	const appVersion = process.env.REACT_APP_VERSION;
+	const appVersion = window._env_.APP_VERSION;
 	return (
 		<div className='row'>
 			<div className='col-s-12 col-6 about-card'>

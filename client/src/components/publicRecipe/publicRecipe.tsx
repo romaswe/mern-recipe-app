@@ -11,7 +11,7 @@ export const PublicRecipeComponent = ({
 	match,
 }: RouteComponentProps<Props>) => {
 	const recipeName = match.params.recipeName.replaceAll('_', ' ');
-	const homepageUrl = process.env.REACT_APP_HOMEPAGE_URL;
+	const homepageUrl = window._env_.APP_HOMEPAGE_URL;
 	const homepageCleanedURL = homepageUrl?.split('https://').pop();
 
 	const [recipe, setRecipe] = useState<Recipes>();
