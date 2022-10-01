@@ -73,3 +73,6 @@ yarn-error.log*
 /build
 
 
+# Client
+/public/env-config.js
+env-config.js

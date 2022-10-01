@@ -52,10 +52,10 @@ The env file in **server** is used for configure the server.
 
 We need a `.env` file in the **client** folder containing.
 The env file in **client** is used for configure the client.  
-`REACT_APP_VERSION=APPLICATION VERSION`  
-`REACT_APP_LOGROCKET=LOGROCKET APP ID`  
-`REACT_APP_ENVIROMENT=ENVIROMENT`  
-`REACT_APP_HOMEPAGE_URL=URL TO HOMEPAGE`
+`APP_VERSION=APPLICATION VERSION`  
+`APP_LOGROCKET=LOGROCKET APP ID`  
+`APP_ENVIROMENT=ENVIROMENT`  
+`APP_HOMEPAGE_URL=URL TO HOMEPAGE`
 
 # To fix:
 
