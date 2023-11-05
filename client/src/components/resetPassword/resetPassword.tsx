@@ -44,10 +44,11 @@ const ResetPasswordComponent = ({ match }: RouteComponentProps<Props>) => {
 			console.log(data);
 			setSuccess(data.data);
 		} catch (error) {
-			setError(error.response.data.error);
-			setTimeout(() => {
-				setError('');
-			}, 5000);
+			// TODO: Fix this
+			//setError(error?.response?.data.error);
+			//setTimeout(() => {
+			//	setError('');
+			//}, 5000);
 		}
 	};
 

@@ -48,10 +48,11 @@ export const FullRecipe = (props: any) => {
 			}, 5000);
 		} catch (error) {
 			console.log(error);
-			setError(error?.response?.data.error);
-			setTimeout(() => {
-				setError('');
-			}, 5000);
+			// TODO: Fix this
+			//setError(error?.response?.data.error);
+			//setTimeout(() => {
+			//	setError('');
+			//}, 5000);
 		}
 	};
 

@@ -97,3 +97,4 @@ The env file in **client** is used for configure the client.
 -   [ ] Meal prep
     -   [ ] Plan week of recepies
 -   [ ] Suggestion of recipes using similar ingredients
+-   [ ] Frontend 2.0
