@@ -44,7 +44,8 @@ We need a `.env` file in the **server** folder containing.
 The env file in **server** is used for configure the server.  
 `PORT=PORT TO RUN THE SERVER`  
 `DATABASE_USERNAME=DATABASE USERNAME` **Note that this should be the same as in the root folder**  
-`DATABASE_PASSWORD=DATABASE PASSWORD` **Note that this should be the same as in the root folder**  
+`DATABASE_PASSWORD=DATABASE PASSWORD` **Note that this should be the same as in the root folder**
+`DATABASE_NAME=DATABASE NAME`  
 `DATABASE_DOMAIN=mongodb://DOMAIN/DATABASE`  
 `JWT_SECRET=SUPER SECRET FOR JWT`  
 `JWT_EXPIRE=TIME FOR JWT TO BE VALID`  
@@ -76,8 +77,10 @@ The env file in **client** is used for configure the client.
 -   [ ] Be able to edit recipes
 -   [ ] Add local support
     -   [ ] SE
--   [ ] Search, add so you can search for recipes
--   [ ] Search group recipes
+    -   [ ] ENG
+-   [ ] Search
+    -   [ ] Add so you can search for recipes
+    -   [ ] Search group of recipes
 -   [ ] Improve groceries list
     -   [ ] Add quantity to items
     -   [ ] Name lists and have multiple lists
@@ -87,3 +90,10 @@ The env file in **client** is used for configure the client.
     -   [ ] Groceries
     -   [ ] Admin
     -   [ ] About page
+-   [ ] Add webscraping support
+    -   [ ] Ica
+    -   [ ] Coop
+    -   [ ] Gui
+-   [ ] Meal prep
+    -   [ ] Plan week of recepies
+-   [ ] Suggestion of recipes using similar ingredients
