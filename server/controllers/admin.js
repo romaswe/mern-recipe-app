@@ -66,7 +66,8 @@ exports.getUsers = async (req, res, next) => {
 exports.setUserRole = async (req, res, next) => {
 	const { userID, role } = req.body;
 	try {
-		const update = { $set: { role: role } };
+		const roleArray = [role];
+		const update = { $set: { role: roleArray } };
 		const user = await User.findByIdAndUpdate(userID, update);
 		res.status(200).json({
 			success: true,

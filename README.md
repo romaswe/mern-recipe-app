@@ -73,7 +73,9 @@ The env file in **client** is used for configure the client.
 -   [ ] Fix docker image for frontend
 -   [ ] Fix docker image for backend
 -   [ ] Fix compose that runs images above
--   [ ] Add new roles to make handle so user can add recipes
+-   [ ] Change rolehandeling
+    -   [ ] Array of roles
+    -   [ ] Each function is a role
 -   [ ] Be able to edit recipes
 -   [ ] Add local support
     -   [ ] SE
@@ -97,4 +99,4 @@ The env file in **client** is used for configure the client.
 -   [ ] Meal prep
     -   [ ] Plan week of recepies
 -   [ ] Suggestion of recipes using similar ingredients
--   [ ] Frontend 2.0
+-   [ ] Frontend 2.0 (1.0 is just a poc and full of bugs)

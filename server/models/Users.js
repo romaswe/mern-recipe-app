@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
 		minlength: 6,
 		select: false,
 	},
-	role: { type: String, default: 'viewer' }, // Roles can be, viewer(can only se recipies), user(can add to crocery list) or admin(can add new recipies)
+	role: [{ type: String }], // Roles can be, viewer(can only se recipies), user(can add to crocery list) or admin(can add new recipies)
 	resetPasswordToken: String,
 	resetPasswordExpire: Date,
 });
@@ -44,8 +44,9 @@ UserSchema.methods.matchPasswords = async function (password) {
 };
 
 UserSchema.methods.getSignedToken = function () {
+	//TODO: change role to return full array when frontend is fixed
 	return jwt.sign(
-		{ id: this._id, role: this.role, username: this.username },
+		{ id: this._id, role: this.role[0], username: this.username },
 		process.env.JWT_SECRET,
 		{
 			expiresIn: process.env.JWT_EXPIRE,

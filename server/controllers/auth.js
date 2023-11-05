@@ -28,7 +28,7 @@ exports.login = async (req, res, next) => {
 	try {
 		const user = await User.findOne({ email }).select('+password');
 
-		if (user.role === 'disabled') {
+		if (user.role.includes('disabled')) {
 			return next(new ErrorResponse('User account is disabled', 401));
 		}
 

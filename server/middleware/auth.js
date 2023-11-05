@@ -27,7 +27,7 @@ exports.protect = async (req, res, next) => {
 			return next(new ErrorResponse('No user found with this id', 404));
 		}
 
-		if (user.role === 'disabled') {
+		if (user.role.includes('disabled')) {
 			return next(new ErrorResponse('User account is disabled', 401));
 		}
 
@@ -65,7 +65,8 @@ exports.adminProtect = async (req, res, next) => {
 		if (!user) {
 			return next(new ErrorResponse('No user found with this id', 404));
 		}
-		if (user.role != 'admin') {
+
+		if (!user.role.includes('admin')) {
 			next(
 				new ErrorResponse(
 					'Not authorized need to be admin to access this router',
