@@ -23,6 +23,7 @@ MERN stands for MongoDB, Express, React, Node, after the four key technologies t
     -   You can then reach the mongo-express GUI from `http://localhost:PORT/`
 -   To start client run `cd client` then `npm start`
 -   To start server run `cd server` then `npm run server`
+    -   You can then reach the swagger GUI from `http://localhost:PORT/api-docs/`
 
 ## For PROD
 
@@ -32,7 +33,7 @@ The app should now be reached on `http://localhost/`
 
 ### ENV
 
-To run this application you need a `.env` file in the **root** containing.
+To run this application you need a `.env` file in the **docker** containing.
 The env file in **root** is used for configure docker-compose.  
 `MONGO_EXPRESS_PORT=PORT FOR MONGO GUI`  
 `DATABASE_USERNAME=DATABASE USERNAME`  
@@ -43,8 +44,8 @@ The env file in **root** is used for configure docker-compose.
 We need a `.env` file in the **server** folder containing.
 The env file in **server** is used for configure the server.  
 `PORT=PORT TO RUN THE SERVER`  
-`DATABASE_USERNAME=DATABASE USERNAME` **Note that this should be the same as in the root folder**  
-`DATABASE_PASSWORD=DATABASE PASSWORD` **Note that this should be the same as in the root folder**
+`DATABASE_USERNAME=DATABASE USERNAME` **Note that this should be the same as in the docker folder**  
+`DATABASE_PASSWORD=DATABASE PASSWORD` **Note that this should be the same as in the docker folder**
 `DATABASE_NAME=DATABASE NAME`  
 `DATABASE_DOMAIN=mongodb://DOMAIN/DATABASE`  
 `JWT_SECRET=SUPER SECRET FOR JWT`  

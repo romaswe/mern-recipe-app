@@ -65,14 +65,12 @@ yarn-error.log*
 /docker/res/*
 /docker/mongodbRes/*
 
-
 # testing
 /coverage
 
 # production
 /build
 
-
 # Client
-/public/env-config.js
-env-config.js
+client/public
+client/build
