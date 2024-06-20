@@ -51,6 +51,10 @@ The env file in **server** is used for configure the server.
 `JWT_SECRET=SUPER SECRET FOR JWT`  
 `JWT_EXPIRE=TIME FOR JWT TO BE VALID`  
 `PASSWORD_RESET_URL=URL TO THE FRONTEND PAGE FOR PASSWORD RESET`
+`ADMIN_USERNAME=admin`
+`ADMIN_EMAIL=admin@admin.com`
+`ADMIN_PASSWORD=adminadmin`
+`CREATE_MOCK_DATA=true`
 
 We need a `.env` file in the **client** folder containing.
 The env file in **client** is used for configure the client.  

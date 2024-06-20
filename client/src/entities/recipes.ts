@@ -30,6 +30,7 @@ export interface Recipes {
 	description?: string;
 	categories?: string[];
 	ingrediens?: Ingrediens[];
+	tags?: string[];
 	__v?: number;
 }
 

@@ -24,8 +24,8 @@ const RecipeSchema = new mongoose.Schema({
 	},
 	categories: [{ type: String }],
 	ingrediens: [listIngrediens],
-
 	instructions: [{ type: String }],
+	tags: [{ type: String }],
 });
 
 RecipeSchema.plugin(mongoosePaginate);

@@ -28,16 +28,37 @@ const UserSchema = new mongoose.Schema({
 	resetPasswordToken: String,
 	resetPasswordExpire: Date,
 });
+// Function to hash a single password
+async function hashPassword(password) {
+	const salt = await bcrypt.genSalt(10);
+	return bcrypt.hash(password, salt);
+}
 
+// Pre-save hook to hash the password before saving
 UserSchema.pre('save', async function (next) {
 	if (!this.isModified('password')) {
-		next();
+		return next();
 	}
 
-	const salt = await bcrypt.genSalt(10);
-	this.password = await bcrypt.hash(this.password, salt);
+	this.password = await hashPassword(this.password);
 	next();
 });
+
+// Function to hash passwords for multiple users
+async function hashPasswords(users) {
+	return Promise.all(
+		users.map(async (user) => {
+			user.password = await hashPassword(user.password);
+			return user;
+		})
+	);
+}
+
+// Function to insert multiple users with hashed passwords
+async function insertUsers(users) {
+	const hashedUsers = await hashPasswords(users);
+	return User.insertMany(hashedUsers);
+}
 
 UserSchema.methods.matchPasswords = async function (password) {
 	return await bcrypt.compare(password, this.password);
@@ -68,4 +89,7 @@ UserSchema.methods.getResetPasswordToken = function () {
 
 UserSchema.plugin(mongoosePaginate);
 const User = mongoose.model('User', UserSchema);
-module.exports = User;
+module.exports = {
+	User,
+	insertUsers,
+};

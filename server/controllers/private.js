@@ -133,7 +133,7 @@ exports.addGroceries = async (req, res, next) => {
 };
 
 exports.deleteGroceries = async (req, res, next) => {
-	// This needs work, if you send in "1" and have 2 "1" in the array, both are removed
+	// TODO: This needs work, if you send in "1" and have 2 "1" in the array, both are removed
 	const { name, groceries } = req.body;
 	let token;
 	const numberOfItems = groceries.length;
@@ -323,7 +323,7 @@ exports.getGroupRecipesByGroupName = async (req, res, next) => {
 		let groupName = req.params.groupName;
 		if (!groupName) {
 			return next(
-				new ErrorResponse('Please provide the group name', 422) // Use better response code
+				new ErrorResponse('Please provide the group name', 422) // TODO: Use better response code
 			);
 		}
 		const groupRecipeResponse = await GroupRecipes.findOne({
