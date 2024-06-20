@@ -48,6 +48,7 @@ const setupinitialData = async () => {
 	}
 };
 
+// TODO: The create mock data function should be moved to a separate file
 const createMockData = async () => {
 	const testRecipes = [
 		{
