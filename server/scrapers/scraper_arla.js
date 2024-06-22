@@ -79,31 +79,6 @@ async function scrapeArlaRecipe(url) {
 	}
 }
 
-scrapeArlaRecipe(
-	'https://www.arla.se/recept/oxfile-med-pepparsas-och-ugnsrostad-potatis/'
-).then((recipe) => {
-	if (recipe) {
-		console.log(recipe);
-	} else {
-		console.error('Failed to scrape the recipe.');
-	}
-});
-
-//export default {
-//	scrapeArlaRecipe,
-//};
-
-/* 
-Usage:
-const { scrapeIcaRecipe } = require('./scraper');
-
-const recipeUrl = 'https://www.ica.se/recept/vitloksrostad-farskpotatis-med-spenat-713530/';
-scrapeIcaRecipe(recipeUrl).then(recipe => {
-    if (recipe) {
-        console.log(recipe);
-    } else {
-        console.error('Failed to scrape the recipe.');
-    }
-});
-
-*/
+export default {
+	scrapeArlaRecipe,
+};
