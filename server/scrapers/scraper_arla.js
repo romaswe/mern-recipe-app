@@ -1,6 +1,6 @@
 const { JSDOM } = require('jsdom');
 
-async function scrapeIcaRecipe(url) {
+async function scrapeArlaRecipe(url) {
 	try {
 		const response = await fetch(url);
 		const data = await response.text();
@@ -9,37 +9,32 @@ async function scrapeIcaRecipe(url) {
 
 		const name =
 			document
-				.querySelector('h1.recipe-header__title')
+				.querySelector('h1.c-recipe__title.u-text-break')
 				?.textContent.trim() || '';
 
 		const notesArray = Array.from(
-			document.querySelectorAll('div.ingredients-list-group__card__ingr')
+			document.querySelectorAll('[data-placement="RecipeTips"]')
 		).map((el) => el.textContent.trim());
 		const notes = notesArray.join(' ');
 
 		const description =
 			document
-				.querySelector('div.recipe-header__preamble p')
+				.querySelector('div.c-recipe__description')
 				?.textContent.trim() || '';
 
 		const categories = Array.from(
-			document.querySelectorAll('div.more-like-this__categories a')
+			document.querySelectorAll(
+				'div.o-content-box.c-recipe__details span.c-tag'
+			)
 		).map((el) => el.textContent.trim());
 
 		const ingrediens = Array.from(
-			document.querySelectorAll('div.ingredients-list-group__card')
+			document.querySelectorAll('div.c-recipe__ingredients-inner tr')
 		)
 			.map((el) => {
 				const name =
-					el
-						.querySelector(
-							'span.ingredients-list-group__card__ingr'
-						)
-						?.textContent.trim() || '';
-				let amount =
-					el
-						.querySelector('span.ingredients-list-group__card__qty')
-						?.textContent.trim() || '';
+					el.querySelector('th span')?.textContent.trim() || '';
+				let amount = el.querySelector('td')?.textContent.trim() || '';
 				let unit = ''; // Initialize unit
 				if (amount.match(/^\d+(\s*-\s*\d*)?$/)) {
 					// TODO: this unit should me localized when thats implemented
@@ -59,15 +54,10 @@ async function scrapeIcaRecipe(url) {
 			);
 
 		const instructions = Array.from(
-			document.querySelectorAll('div.cooking-steps-card')
-		).map((el) => {
-			const step =
-				el
-					.querySelector('div.cooking-steps-main__text')
-					?.textContent.trim() || '';
-
-			return step;
-		});
+			document.querySelectorAll(
+				'ul.u-bare-list.c-recipe__instructions-steps-list.u-ml--m.c-recipe__instructions-steps-multi li'
+			)
+		).map((el) => el.textContent.trim());
 
 		const tags = Array.from(
 			document.querySelectorAll('div.tags__item')
@@ -91,20 +81,5 @@ async function scrapeIcaRecipe(url) {
 }
 
 export default {
-	scrapeIcaRecipe,
+	scrapeArlaRecipe,
 };
-
-/* 
-Usage:
-const { scrapeIcaRecipe } = require('./scraper');
-
-const recipeUrl = 'https://www.ica.se/recept/vitloksrostad-farskpotatis-med-spenat-713530/';
-scrapeIcaRecipe(recipeUrl).then(recipe => {
-    if (recipe) {
-        console.log(recipe);
-    } else {
-        console.error('Failed to scrape the recipe.');
-    }
-});
-
-*/
