@@ -1,11 +1,10 @@
-const { JSDOM } = require('jsdom');
+const { parseHTML } = require('linkedom');
 
 async function scrapeArlaRecipe(url) {
 	try {
 		const response = await fetch(url);
 		const data = await response.text();
-		const dom = new JSDOM(data);
-		const document = dom.window.document;
+		const { document } = parseHTML(data);
 
 		const name =
 			document
@@ -80,6 +79,31 @@ async function scrapeArlaRecipe(url) {
 	}
 }
 
-export default {
-	scrapeArlaRecipe,
-};
+scrapeArlaRecipe(
+	'https://www.arla.se/recept/oxfile-med-pepparsas-och-ugnsrostad-potatis/'
+).then((recipe) => {
+	if (recipe) {
+		console.log(recipe);
+	} else {
+		console.error('Failed to scrape the recipe.');
+	}
+});
+
+//export default {
+//	scrapeArlaRecipe,
+//};
+
+/* 
+Usage:
+const { scrapeIcaRecipe } = require('./scraper');
+
+const recipeUrl = 'https://www.ica.se/recept/vitloksrostad-farskpotatis-med-spenat-713530/';
+scrapeIcaRecipe(recipeUrl).then(recipe => {
+    if (recipe) {
+        console.log(recipe);
+    } else {
+        console.error('Failed to scrape the recipe.');
+    }
+});
+
+*/

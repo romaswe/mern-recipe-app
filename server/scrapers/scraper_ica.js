@@ -1,11 +1,10 @@
-const { JSDOM } = require('jsdom');
+const { parseHTML } = require('linkedom');
 
 async function scrapeIcaRecipe(url) {
 	try {
 		const response = await fetch(url);
 		const data = await response.text();
-		const dom = new JSDOM(data);
-		const document = dom.window.document;
+		const { document } = parseHTML(data);
 
 		const name =
 			document
