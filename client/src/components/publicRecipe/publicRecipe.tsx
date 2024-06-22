@@ -86,10 +86,10 @@ export const PublicRecipeComponent = ({
 								</div>
 							)}
 							<div className='col-6 card'>
-								{recipe.ingrediens && (
+								{recipe.ingredients && (
 									<div>
 										<h3>Ingridienser</h3>
-										{recipe.ingrediens.map(
+										{recipe.ingredients.map(
 											(
 												ingredient: Ingrediens,
 												i: number

@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const User = require('../models/Users');
+const { User } = require('../models/Users');
 const ErrorResponse = require('../utils/errorResponse');
 
 exports.register = async (req, res, next) => {

@@ -27,7 +27,7 @@ async function scrapeArlaRecipe(url) {
 			)
 		).map((el) => el.textContent.trim());
 
-		const ingrediens = Array.from(
+		const ingredients = Array.from(
 			document.querySelectorAll('div.c-recipe__ingredients-inner tr')
 		)
 			.map((el) => {
@@ -68,7 +68,7 @@ async function scrapeArlaRecipe(url) {
 			notes,
 			description,
 			categories,
-			ingrediens,
+			ingredients,
 			instructions,
 			tags,
 		};

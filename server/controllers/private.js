@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const Groceries = require('../models/Groceries');
 const Recipe = require('../models/Recipes');
-const User = require('../models/Users');
+const { User } = require('../models/Users');
 const GroupRecipes = require('../models/GroupRecipes');
 const ErrorResponse = require('../utils/errorResponse');
 

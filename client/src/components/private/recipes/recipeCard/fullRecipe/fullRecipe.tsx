@@ -73,8 +73,8 @@ export const FullRecipe = (props: any) => {
 				},
 			};
 			let listToAdd: Array<Groceri> = [];
-			if (recipe.ingrediens) {
-				recipe.ingrediens.map((ingredient: Ingrediens, i: number) => {
+			if (recipe.ingredients) {
+				recipe.ingredients.map((ingredient: Ingrediens, i: number) => {
 					return listToAdd.push({
 						name: `${ingredient.amount}${ingredient.unit} ${ingredient.name}`,
 						amount: 1,
@@ -156,10 +156,10 @@ export const FullRecipe = (props: any) => {
 			</div>
 
 			<div className='col-6'>
-				{recipe.ingrediens && (
+				{recipe.ingredients && (
 					<div>
 						<h3>Ingridienser</h3>
-						{recipe.ingrediens.map(
+						{recipe.ingredients.map(
 							(ingredient: Ingrediens, i: number) => {
 								return (
 									<div className='col-12' key={i}>

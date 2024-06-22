@@ -1,9 +1,9 @@
 import { Ingrediens } from '../../../../../entities/recipes';
-import './ingrediens.css';
+import './ingredients.css';
 
 const IngrediensComponent = (props: any) => {
-	const setingrediensList = props.setingrediensList;
-	const ingrediensList = props.ingrediensList;
+	const setingredientsList = props.setingredientsList;
+	const ingredientsList = props.ingredientsList;
 
 	interface formItem {
 		name: string;
@@ -13,7 +13,7 @@ const IngrediensComponent = (props: any) => {
 	// handle input change
 	const handleIngrediensInputChange = (e: any, index: number) => {
 		const item: formItem = e.target;
-		const list = [...ingrediensList];
+		const list = [...ingredientsList];
 		switch (item.name) {
 			case 'amount':
 				list[index].amount = item.value;
@@ -30,20 +30,20 @@ const IngrediensComponent = (props: any) => {
 				break;
 		}
 
-		setingrediensList(list);
+		setingredientsList(list);
 	};
 
 	// handle click event of the Remove button
 	const handleRemoveClick = (index: number) => {
-		const list = [...ingrediensList];
+		const list = [...ingredientsList];
 		list.splice(index, 1);
-		setingrediensList(list);
+		setingredientsList(list);
 	};
 
 	// handle click event of the Add button
 	const handleAddClick = () => {
-		setingrediensList([
-			...ingrediensList,
+		setingredientsList([
+			...ingredientsList,
 			{ name: '', amount: '', unit: '' },
 		]);
 	};
@@ -68,7 +68,7 @@ const IngrediensComponent = (props: any) => {
 	return (
 		<div>
 			<h4>Ingredienser</h4>
-			{ingrediensList.map((x: Ingrediens, i: number) => {
+			{ingredientsList.map((x: Ingrediens, i: number) => {
 				return (
 					<div className='row' key={i}>
 						<div className='col-12'>
@@ -121,7 +121,7 @@ const IngrediensComponent = (props: any) => {
 							</select>
 						</div>
 						<div className='btn-box col-12'>
-							{ingrediensList.length !== 1 && (
+							{ingredientsList.length !== 1 && (
 								<button
 									className='remove-button'
 									onClick={() => handleRemoveClick(i)}
@@ -129,7 +129,7 @@ const IngrediensComponent = (props: any) => {
 									Ta bort
 								</button>
 							)}
-							{ingrediensList.length - 1 === i && (
+							{ingredientsList.length - 1 === i && (
 								<button
 									className='add-button'
 									onClick={handleAddClick}

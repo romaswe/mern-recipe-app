@@ -2,12 +2,12 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Ingrediens, Recipes } from '../../../../entities/recipes';
 import MeasurementsComponent from '../../mesaurement/measurement';
-import IngrediensComponent from './ingrediens/ingrediens';
+import IngrediensComponent from './ingredients/ingredients';
 import './recipes.css';
 import StepsComponent from './steps/steps';
 
 const RecipesComponent = () => {
-	const [ingrediensList, setingrediensList] = useState<Ingrediens[]>([
+	const [ingredientsList, setingredientsList] = useState<Ingrediens[]>([
 		{ name: '', amount: '', unit: '' },
 	]);
 	const [stepsList, setstepsList] = useState<string[]>(['']);
@@ -36,7 +36,7 @@ const RecipesComponent = () => {
 			categories: categories,
 			notes: recipeNotes.trim(),
 			description: recipeDescription.trim(),
-			ingrediens: ingrediensList,
+			ingredients: ingredientsList,
 			instructions: stepsList,
 		};
 
@@ -65,7 +65,7 @@ const RecipesComponent = () => {
 	};
 
 	const clearFields = () => {
-		setingrediensList([{ name: '', amount: '', unit: '' }]);
+		setingredientsList([{ name: '', amount: '', unit: '' }]);
 		setstepsList(['']);
 		setRecipeName('');
 		setRecipeURL('');
@@ -151,8 +151,8 @@ const RecipesComponent = () => {
 				</div>
 				<div className='dynamic'>
 					<IngrediensComponent
-						ingrediensList={ingrediensList}
-						setingrediensList={setingrediensList}
+						ingredientsList={ingredientsList}
+						setingredientsList={setingredientsList}
 					/>
 					<StepsComponent
 						stepsList={stepsList}

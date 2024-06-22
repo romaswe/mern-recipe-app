@@ -140,7 +140,7 @@ const MeasurementsComponent = () => {
 							<li>3 dl vatten</li>
 						</ul>
 						<p>
-							Koka upp alla ingredienser i en kastrull. Rör om så
+							Koka upp alla ingredientser i en kastrull. Rör om så
 							att sockret löser sig. Häll lagen över tunt skivade
 							grönsaker eller rotfrukter i väl rengjorda burkar
 							och låt svalna. Förvara i kyl!

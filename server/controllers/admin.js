@@ -1,5 +1,5 @@
 const Recipe = require('../models/Recipes');
-const User = require('../models/Users');
+const { User } = require('../models/Users');
 const GroupRecipes = require('../models/GroupRecipes');
 const ErrorResponse = require('../utils/errorResponse');
 
@@ -17,7 +17,7 @@ exports.addRecipe = async (req, res, next) => {
 		notes,
 		description,
 		categories,
-		ingrediens,
+		ingredients,
 		instructions,
 	} = req.body;
 	try {
@@ -29,7 +29,7 @@ exports.addRecipe = async (req, res, next) => {
 			notes,
 			description,
 			categories,
-			ingrediens,
+			ingredients,
 			instructions,
 		});
 		res.status(200).json({

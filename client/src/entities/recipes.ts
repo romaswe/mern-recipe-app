@@ -29,7 +29,7 @@ export interface Recipes {
 	notes?: string;
 	description?: string;
 	categories?: string[];
-	ingrediens?: Ingrediens[];
+	ingredients?: Ingrediens[];
 	tags?: string[];
 	__v?: number;
 }

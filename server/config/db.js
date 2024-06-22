@@ -57,7 +57,7 @@ const createMockData = async () => {
 			notes: 'This is a test note for Lorem Ipsum Cake.',
 			description: 'A delicious cake made from lorem ipsum ingredients.',
 			categories: ['Dessert', 'Cake'],
-			ingrediens: [
+			ingredients: [
 				{ name: 'Flour', quantity: '2 cups' },
 				{ name: 'Sugar', quantity: '1 cup' },
 				{ name: 'Butter', quantity: '1/2 cup' },
@@ -77,7 +77,7 @@ const createMockData = async () => {
 			notes: 'This is a test note for Dolor Sit Amet Salad.',
 			description: 'A refreshing salad with dolor sit amet ingredients.',
 			categories: ['Salad', 'Healthy'],
-			ingrediens: [
+			ingredients: [
 				{ name: 'Lettuce', quantity: '1 head' },
 				{ name: 'Tomatoes', quantity: '2' },
 				{ name: 'Cucumber', quantity: '1' },
@@ -98,7 +98,7 @@ const createMockData = async () => {
 			description:
 				'A hearty bread made with consectetur adipiscing ingredients.',
 			categories: ['Bread', 'Baking'],
-			ingrediens: [
+			ingredients: [
 				{ name: 'Yeast', quantity: '1 packet' },
 				{ name: 'Warm Water', quantity: '1 cup' },
 				{ name: 'Salt', quantity: '1 tsp' },

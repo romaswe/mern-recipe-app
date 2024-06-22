@@ -25,7 +25,7 @@ async function scrapeIcaRecipe(url) {
 			document.querySelectorAll('div.more-like-this__categories a')
 		).map((el) => el.textContent.trim());
 
-		const ingrediens = Array.from(
+		const ingredients = Array.from(
 			document.querySelectorAll('div.ingredients-list-group__card')
 		)
 			.map((el) => {
@@ -78,7 +78,7 @@ async function scrapeIcaRecipe(url) {
 			notes,
 			description,
 			categories,
-			ingrediens,
+			ingredients,
 			instructions,
 			tags,
 		};

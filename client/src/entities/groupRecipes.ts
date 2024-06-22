@@ -34,7 +34,7 @@ export interface Recipe {
     notes: string;
     description: string;
     categories: string[];
-    ingrediens: Ingrediens[];
+    ingredients: Ingrediens[];
     instructions: string[];
     __v: number;
 }
