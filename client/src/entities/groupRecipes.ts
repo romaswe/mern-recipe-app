@@ -34,12 +34,12 @@ export interface Recipe {
     notes: string;
     description: string;
     categories: string[];
-    ingredients: Ingrediens[];
+    ingredients: Ingredients[];
     instructions: string[];
     __v: number;
 }
 
-export interface Ingrediens {
+export interface Ingredients {
     name: string;
     amount: string;
     unit: string;

@@ -29,12 +29,12 @@ export interface Recipes {
 	notes?: string;
 	description?: string;
 	categories?: string[];
-	ingredients?: Ingrediens[];
+	ingredients?: Ingredients[];
 	tags?: string[];
 	__v?: number;
 }
 
-export interface Ingrediens {
+export interface Ingredients {
 	_id?: string;
 	amount: string;
 	unit: string;

@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import { useState } from 'react';
 import { Groceri, GrocerisObj } from '../../../../../entities/groceries';
 import { JwtData } from '../../../../../entities/jwt';
-import { Ingrediens, Recipes } from '../../../../../entities/recipes';
+import { Ingredients, Recipes } from '../../../../../entities/recipes';
 import { isViewer } from '../../../../../utils/userUtils';
 import { GrAdd } from 'react-icons/gr';
 import './fullRecipe.css';
@@ -14,7 +14,7 @@ export const FullRecipe = (props: any) => {
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState('');
 
-	const addToGrocerieList = async (ingredient: Ingrediens) => {
+	const addToGrocerieList = async (ingredient: Ingredients) => {
 		var token = localStorage.getItem('authToken') ?? '';
 		const jwtData: JwtData = jwt_decode(token);
 		setError('');
@@ -42,7 +42,7 @@ export const FullRecipe = (props: any) => {
 				],
 			};
 			await axios.post('/api/private/groceries', grocerie, config);
-			setSuccess('Ingrediens tillagd');
+			setSuccess('Ingredients tillagd');
 			setTimeout(() => {
 				setSuccess('');
 			}, 5000);
@@ -74,7 +74,7 @@ export const FullRecipe = (props: any) => {
 			};
 			let listToAdd: Array<Groceri> = [];
 			if (recipe.ingredients) {
-				recipe.ingredients.map((ingredient: Ingrediens, i: number) => {
+				recipe.ingredients.map((ingredient: Ingredients, i: number) => {
 					return listToAdd.push({
 						name: `${ingredient.amount}${ingredient.unit} ${ingredient.name}`,
 						amount: 1,
@@ -92,7 +92,7 @@ export const FullRecipe = (props: any) => {
 						config
 					);
 
-					setSuccess('Ingredienserna tillagd');
+					setSuccess('Ingredientserna tillagd');
 					setTimeout(() => {
 						setSuccess('');
 					}, 5000);
@@ -160,7 +160,7 @@ export const FullRecipe = (props: any) => {
 					<div>
 						<h3>Ingridienser</h3>
 						{recipe.ingredients.map(
-							(ingredient: Ingrediens, i: number) => {
+							(ingredient: Ingredients, i: number) => {
 								return (
 									<div className='col-12' key={i}>
 										<div className='row ingredent-row'>

@@ -1,7 +1,7 @@
-import { Ingrediens } from '../../../../../entities/recipes';
+import { Ingredients } from '../../../../../entities/recipes';
 import './ingredients.css';
 
-const IngrediensComponent = (props: any) => {
+const IngredientsComponent = (props: any) => {
 	const setingredientsList = props.setingredientsList;
 	const ingredientsList = props.ingredientsList;
 
@@ -11,7 +11,7 @@ const IngrediensComponent = (props: any) => {
 	}
 
 	// handle input change
-	const handleIngrediensInputChange = (e: any, index: number) => {
+	const handleIngredientsInputChange = (e: any, index: number) => {
 		const item: formItem = e.target;
 		const list = [...ingredientsList];
 		switch (item.name) {
@@ -67,8 +67,8 @@ const IngrediensComponent = (props: any) => {
 
 	return (
 		<div>
-			<h4>Ingredienser</h4>
-			{ingredientsList.map((x: Ingrediens, i: number) => {
+			<h4>Ingredientser</h4>
+			{ingredientsList.map((x: Ingredients, i: number) => {
 				return (
 					<div className='row' key={i}>
 						<div className='col-12'>
@@ -78,7 +78,7 @@ const IngrediensComponent = (props: any) => {
 								value={x.name}
 								required
 								onChange={(e) =>
-									handleIngrediensInputChange(e, i)
+									handleIngredientsInputChange(e, i)
 								}
 							/>
 							<input
@@ -91,7 +91,7 @@ const IngrediensComponent = (props: any) => {
 								value={x.amount}
 								onKeyDown={(e) => handleKeyDown(e)}
 								onChange={(e) =>
-									handleIngrediensInputChange(e, i)
+									handleIngredientsInputChange(e, i)
 								}
 							/>
 
@@ -101,7 +101,7 @@ const IngrediensComponent = (props: any) => {
 								placeholder='Skriv Enhet'
 								value={x.unit}
 								onChange={(e) =>
-									handleIngrediensInputChange(e, i)
+									handleIngredientsInputChange(e, i)
 								}
 							>
 								<option disabled value=''>
@@ -145,4 +145,4 @@ const IngrediensComponent = (props: any) => {
 	);
 };
 
-export default IngrediensComponent;
+export default IngredientsComponent;

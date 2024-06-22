@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
-var listIngrediens = new mongoose.Schema({
+var listIngredients = new mongoose.Schema({
 	name: String,
 	amount: String,
 	unit: String,
@@ -23,7 +23,7 @@ const RecipeSchema = new mongoose.Schema({
 		type: String,
 	},
 	categories: [{ type: String }],
-	ingredients: [listIngrediens],
+	ingredients: [listIngredients],
 	instructions: [{ type: String }],
 	tags: [{ type: String }],
 });

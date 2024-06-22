@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Ingrediens, Recipes } from '../../../../entities/recipes';
+import { Ingredients, Recipes } from '../../../../entities/recipes';
 import MeasurementsComponent from '../../mesaurement/measurement';
-import IngrediensComponent from './ingredients/ingredients';
+import IngredientsComponent from './ingredients/ingredients';
 import './recipes.css';
 import StepsComponent from './steps/steps';
 
 const RecipesComponent = () => {
-	const [ingredientsList, setingredientsList] = useState<Ingrediens[]>([
+	const [ingredientsList, setingredientsList] = useState<Ingredients[]>([
 		{ name: '', amount: '', unit: '' },
 	]);
 	const [stepsList, setstepsList] = useState<string[]>(['']);
@@ -150,7 +150,7 @@ const RecipesComponent = () => {
 					/>
 				</div>
 				<div className='dynamic'>
-					<IngrediensComponent
+					<IngredientsComponent
 						ingredientsList={ingredientsList}
 						setingredientsList={setingredientsList}
 					/>

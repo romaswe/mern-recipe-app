@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Ingrediens, Recipes, SingleRecipe } from '../../entities/recipes';
+import { Ingredients, Recipes, SingleRecipe } from '../../entities/recipes';
 import './publicRecipe.css';
 
 type Props = {
@@ -91,7 +91,7 @@ export const PublicRecipeComponent = ({
 										<h3>Ingridienser</h3>
 										{recipe.ingredients.map(
 											(
-												ingredient: Ingrediens,
+												ingredient: Ingredients,
 												i: number
 											) => {
 												return (
