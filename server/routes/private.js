@@ -66,6 +66,22 @@ router.route('/groceries').get(protect, getGrocerieList);
  *     - Private
  *     summary: Add groceries
  *     description: Add groceries to the database
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               groceries:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                     quantity:
+ *                       type: number
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
@@ -80,6 +96,22 @@ router.route('/groceries').post(protect, addGroceries);
  *     - Private
  *     summary: Delete groceries
  *     description: Delete groceries from the database
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               groceries:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                     quantity:
+ *                       type: number
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
@@ -94,6 +126,22 @@ router.route('/groceries').delete(protect, deleteGroceries);
  *     - Private
  *     summary: Update groceries
  *     description: Update groceries in the database
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               groceries:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                     quantity:
+ *                       type: number
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
@@ -108,16 +156,43 @@ router.route('/groceries').put(protect, setGroceries);
  *     - Private
  *     summary: Get groceries info
  *     description: Get groceries info from the database
+ */
+router.route('/getGroceriesInfo').get(protect, getGroceriesInfo);
+
+/**
+ * @openapi
+ * /api/private/getGroupRecipesByName/{groupName}:
+ *   get:
+ *     tags:
+ *     - Private
+ *     summary: Get group recipes by name
+ *     description: Get group recipes by group name
+ *     parameters:
+ *       - in: path
+ *         name: groupName
+ *         required: true
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
-router.route('/getGroceriesInfo').get(protect, getGroceriesInfo);
-
 router
 	.route('/getGroupRecipesByName/:groupName')
 	.get(protect, getGroupRecipesByGroupName);
 
+/**
+ * @openapi
+ * /api/private/getGroupRecipes:
+ *   get:
+ *     tags:
+ *     - Private
+ *     summary: Get group recipes
+ *     description: Get all group recipes
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 router.route('/getGroupRecipes').get(protect, getGroupRecipes);
 
 module.exports = router;

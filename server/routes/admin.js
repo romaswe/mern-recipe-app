@@ -37,6 +37,35 @@ router.route('/').get(getAdminRoute);
  *     - Admin
  *     summary: Add a new recipe
  *     description: Add a new recipe to the database
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               ingredients:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               instructions:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *             required:
+ *             - name
+ *             - description
+ *             - ingredients
+ *             - instructions
+ *             - tags
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
@@ -50,7 +79,18 @@ router.route('/recipes').post(adminProtect, addRecipe);
  *     tags:
  *     - Admin
  *     summary: Add a new recipe by scraping a website
- *     description: Add a new recipe to the database
+ *     description: Add a new recipe to the database by scraping a website
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               url:
+ *                 type: string
+ *             required:
+ *             - url
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
@@ -79,6 +119,20 @@ router.route('/getUsers').get(adminProtect, getUsers);
  *     - Admin
  *     summary: Change user role
  *     description: Change user role in the database
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *             required:
+ *             - userId
+ *             - role
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
@@ -93,20 +147,123 @@ router.route('/changeUserRole').put(adminProtect, setUserRole);
  *     - Admin
  *     summary: Add recipes to group
  *     description: Add a recipe to a group in the database
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               recipeId:
+ *                 type: string
+ *               groupId:
+ *                 type: string
+ *             required:
+ *             - recipeId
+ *             - groupId
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
 router.route('/setGroupRecipes').post(adminProtect, addGroupRecipes);
 
+/**
+ * @openapi
+ * /api/admin/deleteRecipeById:
+ *   delete:
+ *     tags:
+ *     - Admin
+ *     summary: Delete a recipe by ID
+ *     description: Delete a recipe from the database by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 router.route('/deleteRecipeById/:id').delete(adminProtect, deleteRecipes);
 
+/**
+ * @openapi
+ * /api/admin/deleteGroupRecipeById:
+ *   delete:
+ *     tags:
+ *     - Admin
+ *     summary: Delete a group recipe by ID
+ *     description: Delete a group recipe from the database by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 router
 	.route('/deleteGroupRecipeById/:id')
 	.delete(adminProtect, deleteGroupRecipes);
 
+/**
+ * @openapi
+ * /api/admin/bulkDeleteRecipes:
+ *   delete:
+ *     tags:
+ *     - Admin
+ *     summary: Delete multiple recipes by ID
+ *     description: Delete multiple recipes from the database by ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               recipeIds:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *             required:
+ *             - recipeIds
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 router.route('/bulkDeleteRecipes').delete(adminProtect, bulkDeleteRecipes);
 
+/**
+ * @openapi
+ * /api/admin/bulkDeleteGroupRecipes:
+ *   delete:
+ *     tags:
+ *     - Admin
+ *     summary: Delete multiple group recipes by ID
+ *     description: Delete multiple group recipes from the database by ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               groupId:
+ *                 type: string
+ *               recipeIds:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *             required:
+ *             - groupId
+ *             - recipeIds
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 router
 	.route('/bulkDeleteGroupRecipes')
 	.delete(adminProtect, bulkDeleteGroupRecipes);

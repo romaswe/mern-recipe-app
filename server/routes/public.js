@@ -27,9 +27,9 @@ router.route('/').get(getPublicRoute);
  *     parameters:
  *     - name: "recipeName"
  *       in: "path"
- *       description: "Name of recipe to return"
  *       required: true
- *       type: "string"
+ *       schema:
+ *         type: "string"
  *     responses:
  *       200:
  *         description: Returns a mysterious string.

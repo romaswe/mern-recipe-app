@@ -15,10 +15,28 @@ const {
  *     tags:
  *     - Auth
  *     summary: Register a new user
- *     description: Get public route description
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               password:
+ *                 type: string
+ *                 format: password
  *     responses:
  *       200:
- *         description: Returns a mysterious string.
+ *         description: User registered successfully
+ *       400:
+ *         description: Invalid request body
+ *       500:
+ *         description: Internal server error
  */
 router.route('/register').post(register);
 
@@ -29,10 +47,28 @@ router.route('/register').post(register);
  *     tags:
  *     - Auth
  *     summary: Login a user
- *     description: Get public route description
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               password:
+ *                 type: string
+ *                 format: password
  *     responses:
  *       200:
- *         description: Returns a mysterious string.
+ *         description: User logged in successfully
+ *       400:
+ *         description: Invalid request body
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
  */
 router.route('/login').post(login);
 
@@ -43,31 +79,57 @@ router.route('/login').post(login);
  *     tags:
  *     - Auth
  *     summary: Generate new password reset token
- *     description: Get public route description
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
  *     responses:
  *       200:
- *         description: Returns a mysterious string.
+ *         description: Password reset token generated
+ *       400:
+ *         description: Invalid request body
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
  */
 router.route('/forgotpassword').post(forgotpassword);
 
 /**
  * @openapi
- * /api/auth/resetpassword/{resetToken}:
- *   put:
+ * /api/auth/resetpassword:
+ *   post:
  *     tags:
  *     - Auth
- *     summary: Change password with reset token
- *     description: Get public route description
- *     parameters:
- *     - name: "resetToken"
- *       in: "path"
- *       description: "Reset token"
+ *     summary: Reset user password
+ *     requestBody:
  *       required: true
- *       type: "string"
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               token:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *                 format: password
  *     responses:
  *       200:
- *         description: Returns a mysterious string.
+ *         description: Password reset successful
+ *       400:
+ *         description: Invalid request body
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
  */
-router.route('/resetpassword/:resetToken').put(resetpassword);
+router.route('/resetpassword').post(resetpassword);
 
 module.exports = router;
