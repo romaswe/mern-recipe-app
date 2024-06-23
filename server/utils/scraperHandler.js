@@ -22,7 +22,9 @@ const scraper = async (url) => {
 		default:
 			console.log('URL did not match any known case');
 			// Add your logic for handling unknown URLs
-			throw new Error('URL did not match any known case');
+			throw new Error(
+				'URL did not match any known case, we only support koket.se, arla.se, ica.se'
+			);
 	}
 };
 
