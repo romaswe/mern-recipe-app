@@ -33,11 +33,13 @@ exports.login = async (req, res, next) => {
 		}
 
 		if (!user) {
+			// TODO: Have a more generic error and not say if its email or password that is wrong
 			return next(new ErrorResponse('Invalid credentials (Email)', 401));
 		}
 
 		const isMatch = await user.matchPasswords(password);
 		if (!isMatch) {
+			// TODO: Have a more generic error and not say if its email or password that is wrong
 			return next(
 				new ErrorResponse('Invalid credentials (Password)', 401)
 			);

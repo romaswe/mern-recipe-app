@@ -35,20 +35,7 @@ exports.getRecipes = async (req, res, next) => {
 };
 
 exports.getGrocerieList = async (req, res, next) => {
-	let token;
-	if (
-		req.headers.authorization &&
-		req.headers.authorization.startsWith('Bearer')
-	) {
-		token = req.headers.authorization.split(' ')[1];
-	}
-
-	if (!token) {
-		return next(
-			new ErrorResponse('Not authorized to access this route', 401)
-		);
-	}
-
+	const token = getToken(req);
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 		const user = await User.findById(decoded.id);
@@ -77,27 +64,11 @@ exports.getGrocerieList = async (req, res, next) => {
 
 exports.addGroceries = async (req, res, next) => {
 	const { name, groceries } = req.body;
-	let token;
+	const token = getToken(req);
 
-	if (
-		req.headers.authorization &&
-		req.headers.authorization.startsWith('Bearer')
-	) {
-		token = req.headers.authorization.split(' ')[1];
-	}
-
-	if (!token) {
-		return next(
-			new ErrorResponse('Not authorized to access this route', 401)
-		);
-	}
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 		const owner = decoded.id;
-		const user = await User.findById(owner);
-		if (!user) {
-			return next(new ErrorResponse('Not a valid user', 401));
-		}
 		const filter = { owner: owner, name: name };
 		const update = { $push: { groceries: groceries } }; // Use push to add, or use addToSet to only add unique
 		const findGroceriList = await Groceries.findOne(filter);
@@ -135,29 +106,12 @@ exports.addGroceries = async (req, res, next) => {
 exports.deleteGroceries = async (req, res, next) => {
 	// TODO: This needs work, if you send in "1" and have 2 "1" in the array, both are removed
 	const { name, groceries } = req.body;
-	let token;
+	const token = getToken(req);
 	const numberOfItems = groceries.length;
-
-	if (
-		req.headers.authorization &&
-		req.headers.authorization.startsWith('Bearer')
-	) {
-		token = req.headers.authorization.split(' ')[1];
-	}
-
-	if (!token) {
-		return next(
-			new ErrorResponse('Not authorized to access this route', 401)
-		);
-	}
 
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 		const owner = decoded.id;
-		const user = await User.findById(owner);
-		if (!user) {
-			return next(new ErrorResponse('Not a valid user', 401));
-		}
 
 		const filter = { owner: owner, name: name };
 		const update = { $pull: { groceries: { $in: groceries } } };
@@ -175,29 +129,12 @@ exports.deleteGroceries = async (req, res, next) => {
 
 exports.setGroceries = async (req, res, next) => {
 	const { name, groceries } = req.body;
-	let token;
+	const token = getToken(req);
 	const numberOfItems = groceries.length;
-
-	if (
-		req.headers.authorization &&
-		req.headers.authorization.startsWith('Bearer')
-	) {
-		token = req.headers.authorization.split(' ')[1];
-	}
-
-	if (!token) {
-		return next(
-			new ErrorResponse('Not authorized to access this route', 401)
-		);
-	}
 
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 		const owner = decoded.id;
-		const user = await User.findById(owner);
-		if (!user) {
-			return next(new ErrorResponse('Not a valid user', 401));
-		}
 
 		const filter = { owner: owner, name: name };
 		const update = { groceries: groceries };
@@ -214,27 +151,7 @@ exports.setGroceries = async (req, res, next) => {
 };
 
 exports.getGroceriesInfo = async (req, res, next) => {
-	let token;
-	if (
-		req.headers.authorization &&
-		req.headers.authorization.startsWith('Bearer')
-	) {
-		token = req.headers.authorization.split(' ')[1];
-	}
-
-	if (!token) {
-		return next(
-			new ErrorResponse('Not authorized to access this route', 401)
-		);
-	}
-
 	try {
-		const decoded = jwt.verify(token, process.env.JWT_SECRET);
-		const user = await User.findById(decoded.id);
-		if (!user) {
-			return next(new ErrorResponse('Not a valid user', 401));
-		}
-
 		const grocerieInfo = await Groceries.findOne({
 			owner: decoded.id,
 		}).select('name groceries -_id');
@@ -266,19 +183,6 @@ exports.getGroceriesInfo = async (req, res, next) => {
 exports.getGroupRecipes = async (req, res, next) => {
 	const page = req.query.page ?? 1;
 	const limit = req.query.limit ?? 10;
-	let token;
-	if (
-		req.headers.authorization &&
-		req.headers.authorization.startsWith('Bearer')
-	) {
-		token = req.headers.authorization.split(' ')[1];
-	}
-
-	if (!token) {
-		return next(
-			new ErrorResponse('Not authorized to access this route', 401)
-		);
-	}
 
 	try {
 		const options = {
@@ -305,20 +209,6 @@ exports.getGroupRecipes = async (req, res, next) => {
 };
 
 exports.getGroupRecipesByGroupName = async (req, res, next) => {
-	let token;
-	if (
-		req.headers.authorization &&
-		req.headers.authorization.startsWith('Bearer')
-	) {
-		token = req.headers.authorization.split(' ')[1];
-	}
-
-	if (!token) {
-		return next(
-			new ErrorResponse('Not authorized to access this route', 401)
-		);
-	}
-
 	try {
 		let groupName = req.params.groupName;
 		if (!groupName) {
@@ -338,5 +228,16 @@ exports.getGroupRecipesByGroupName = async (req, res, next) => {
 		return next(error);
 	}
 };
+
+function getToken(req) {
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		return req.headers.authorization.split(' ')[1];
+	}
+	// We should never need to return an empty string here, because we are validating the token in the middleware
+	return '';
+}
 
 exports.searchRecipesByName = async (req, res, next) => {};

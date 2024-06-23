@@ -80,19 +80,6 @@ exports.setUserRole = async (req, res, next) => {
 
 exports.addGroupRecipes = async (req, res, next) => {
 	const { groupName, description, recipes, notes } = req.body;
-	let token;
-	if (
-		req.headers.authorization &&
-		req.headers.authorization.startsWith('Bearer')
-	) {
-		token = req.headers.authorization.split(' ')[1];
-	}
-
-	if (!token) {
-		return next(
-			new ErrorResponse('Not authorized to access this route', 401)
-		);
-	}
 
 	try {
 		const cleanName = groupName.replace(/_/g, ' ').trim();
