@@ -25,26 +25,13 @@ async function scrapeKoketRecipe(url) {
 			document.querySelectorAll('div.themes_wrapper__XnOUd a')
 		).map((el) => el.textContent.trim());
 
-		// TODO: fix units, now we get units in one long string in the name and dont have a good way to separate it to the correct format
-		// Maybe we can check if the string starts with a number and then parse on spaces for amount, unit and name
 		const ingredients = Array.from(
 			document.querySelectorAll('#ingredients span')
 		)
 			.map((el) => {
-				const name = el.querySelector('span')?.textContent.trim() || '';
-				let amount = el.querySelector('td')?.textContent.trim() || '';
-				let unit = ''; // Initialize unit
-				if (amount.match(/^\d+(\s*-\s*\d*)?$/)) {
-					// TODO: this unit should me localized when thats implemented
-					unit = 'st'; // Set unit to 'st' if amount is just a number or number with a dash
-				} else {
-					const match = amount.match(/^([\d\s\/.-]+)(.*)$/);
-					if (match) {
-						amount = match[1].trim();
-						unit = match[2].trim();
-					}
-				}
-				return { name, amount, unit };
+				const ingredientRow =
+					el.querySelector('span')?.textContent.trim() || '';
+				return parseIngredient(ingredientRow);
 			})
 			.filter(
 				(ingredient) =>
@@ -74,6 +61,27 @@ async function scrapeKoketRecipe(url) {
 	} catch (error) {
 		console.error('Error scraping recipe:', error);
 	}
+}
+
+function parseIngredient(ingredient) {
+	// TODO: this unit should me localized when thats implemented
+	const regex = /^(\d+[,\.]?\d*)\s*(g|dl|tsk|msk|kg|l|ml)?\s*(.*)$/i;
+	const match = ingredient.match(regex);
+
+	if (match) {
+		return {
+			name: match[3].trim(),
+			amount: match[1].replace(',', '.'),
+			// TODO: this unit should me localized when thats implemented
+			unit: match[2] ? match[2].trim() : 'st',
+		};
+	}
+
+	return {
+		name: ingredient.name,
+		amount: '',
+		unit: '',
+	};
 }
 
 export default {
