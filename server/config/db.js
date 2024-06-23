@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const { User, insertUsers } = require('../models/Users');
 const Recipes = require('../models/Recipes');
+const roles = require('../utils/roleHandler');
+
 const url = process.env.DATABASE_DOMAIN;
 console.log(url);
 const connectDB = async () => {
@@ -119,7 +121,7 @@ const createMockData = async () => {
 			username: 'johnDoe',
 			email: 'john.doe@example.com',
 			password: 'password123',
-			role: ['viewer'],
+			role: [roles.VIEWER],
 			resetPasswordToken: null,
 			resetPasswordExpire: null,
 		},
@@ -127,7 +129,7 @@ const createMockData = async () => {
 			username: 'janeSmith',
 			email: 'jane.smith@example.com',
 			password: 'securePass1',
-			role: ['user'],
+			role: [roles.USER],
 			resetPasswordToken: null,
 			resetPasswordExpire: null,
 		},
@@ -135,7 +137,7 @@ const createMockData = async () => {
 			username: 'adminUser',
 			email: 'admin.user@example.com',
 			password: 'adminPass1!',
-			role: ['admin'],
+			role: [roles.ADMIN],
 			resetPasswordToken: null,
 			resetPasswordExpire: null,
 		},
@@ -143,7 +145,7 @@ const createMockData = async () => {
 			username: 'aliceBrown',
 			email: 'alice.brown@example.com',
 			password: 'alicePass12',
-			role: ['viewer', 'user'],
+			role: [roles.VIEWER, roles.USER],
 			resetPasswordToken: null,
 			resetPasswordExpire: null,
 		},
@@ -151,7 +153,7 @@ const createMockData = async () => {
 			username: 'bobGreen',
 			email: 'bob.green@example.com',
 			password: 'bobPassword34',
-			role: ['user', 'admin'],
+			role: [roles.USER, roles.ADMIN],
 			resetPasswordToken: 'abcd1234', // Example token, you would generate this dynamically
 			resetPasswordExpire: new Date(Date.now() + 3600000), // 1 hour from now
 		},

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoosePaginate = require('mongoose-paginate-v2');
+const roles = require('../utils/roleHandler');
 
 const UserSchema = new mongoose.Schema({
 	username: {
@@ -24,7 +25,11 @@ const UserSchema = new mongoose.Schema({
 		minlength: 6,
 		select: false,
 	},
-	role: [{ type: String }], // Roles can be, viewer(can only se recipies), user(can add to crocery list) or admin(can add new recipies)
+	role: {
+		type: [String],
+		enum: Object.values(roles),
+		default: [roles.VIEWER],
+	},
 	resetPasswordToken: String,
 	resetPasswordExpire: Date,
 });

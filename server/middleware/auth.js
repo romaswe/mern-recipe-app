@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const ErrorResponse = require('../utils/errorResponse');
 const { User } = require('../models/Users');
+const roles = require('../utils/roleHandler');
 
 exports.protect = async (req, res, next) => {
 	let token;
@@ -27,7 +28,7 @@ exports.protect = async (req, res, next) => {
 			return next(new ErrorResponse('No user found with this id', 404));
 		}
 
-		if (user.role.includes('disabled')) {
+		if (user.role.includes(roles.DISABLED)) {
 			return next(new ErrorResponse('User account is disabled', 401));
 		}
 
@@ -66,7 +67,7 @@ exports.adminProtect = async (req, res, next) => {
 			return next(new ErrorResponse('No user found with this id', 404));
 		}
 
-		if (!user.role.includes('admin')) {
+		if (!user.role.includes(roles.ADMIN)) {
 			next(
 				new ErrorResponse(
 					'Not authorized need to be admin to access this router',
