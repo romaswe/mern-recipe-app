@@ -2,6 +2,7 @@ const Recipe = require('../models/Recipes');
 const { User } = require('../models/Users');
 const GroupRecipes = require('../models/GroupRecipes');
 const ErrorResponse = require('../utils/errorResponse');
+const scraper = require('../utils/scraperHandler');
 
 exports.getAdminRoute = (req, res, next) => {
 	res.status(200).json({
@@ -23,7 +24,7 @@ exports.addRecipe = async (req, res, next) => {
 	try {
 		const cleanName = name.replace(/_/g, ' ').trim();
 		console.log(cleanName);
-		const recipe = await Recipe.create({
+		await Recipe.create({
 			name: cleanName,
 			url,
 			notes,
@@ -39,6 +40,21 @@ exports.addRecipe = async (req, res, next) => {
 	} catch (error) {
 		next(error);
 	}
+};
+
+exports.addScrapedRecipe = async (req, res, next) => {
+	const { url } = req.body;
+	try {
+		const recipe = await scraper(url);
+		await Recipe.create(recipe);
+		res.status(200).json({
+			success: true,
+			data: `Added ${recipe.name}`,
+		});
+	} catch (error) {
+		next(error);
+	}
+	console.log('we did a thing!');
 };
 
 exports.getUsers = async (req, res, next) => {

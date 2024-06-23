@@ -11,6 +11,7 @@ const {
 	deleteGroupRecipes,
 	bulkDeleteRecipes,
 	bulkDeleteGroupRecipes,
+	addScrapedRecipe,
 } = require('../controllers/admin');
 const { adminProtect } = require('../middleware/auth');
 
@@ -41,6 +42,20 @@ router.route('/').get(getAdminRoute);
  *         description: Returns a mysterious string.
  */
 router.route('/recipes').post(adminProtect, addRecipe);
+
+/**
+ * @openapi
+ * /api/admin/recipe/scraping:
+ *   post:
+ *     tags:
+ *     - Admin
+ *     summary: Add a new recipe by scraping a website
+ *     description: Add a new recipe to the database
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
+router.route('/recipe/scraping').post(adminProtect, addScrapedRecipe);
 
 /**
  * @openapi

@@ -89,7 +89,7 @@ async function scrapeIcaRecipe(url) {
 	}
 }
 
-export default {
+module.exports = {
 	scrapeIcaRecipe,
 };
 

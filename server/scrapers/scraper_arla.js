@@ -79,6 +79,6 @@ async function scrapeArlaRecipe(url) {
 	}
 }
 
-export default {
+module.exports = {
 	scrapeArlaRecipe,
 };

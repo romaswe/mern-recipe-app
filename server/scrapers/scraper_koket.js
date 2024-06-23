@@ -84,6 +84,6 @@ function parseIngredient(ingredient) {
 	};
 }
 
-export default {
+module.exports = {
 	scrapeKoketRecipe,
 };
