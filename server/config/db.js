@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { User } = require('../models/Users');
 const createMockData = require('../utils/testData');
+const roles = require('../utils/roleHandler');
 
 const url = process.env.DATABASE_DOMAIN;
 console.log(url);
@@ -27,13 +28,13 @@ const connectDB = async () => {
 const setupinitialData = async () => {
 	// create admin user if no admin user exists
 	try {
-		const user = await User.findOne({ role: 'admin' });
+		const user = await User.findOne({ role: roles.ADMIN });
 		if (!user) {
 			await User.create({
 				username: process.env.ADMIN_USERNAME,
 				email: process.env.ADMIN_EMAIL,
 				password: process.env.ADMIN_PASSWORD,
-				role: ['admin'],
+				role: [roles.ADMIN],
 			});
 		}
 	} catch (error) {
