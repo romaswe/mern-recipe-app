@@ -1,36 +1,33 @@
 const { parseHTML } = require('linkedom');
 
-async function scrapeKoketRecipe(url) {
+async function scrapeGardsallskapetRecipe(url) {
 	try {
 		const response = await fetch(url);
 		const data = await response.text();
 		const { document } = parseHTML(data);
 
 		const name =
-			document
-				.querySelector('h1.recipe_title__Al9fM')
-				?.textContent.trim() || '';
+			document.querySelector('div.recipe-title')?.textContent.trim() ||
+			'';
 
-		const notesArray = Array.from(
-			document.querySelectorAll('div.description_description__b75w_ p')
-		).map((el) => el.textContent.trim());
+		const notesArray = Array.from(document.querySelectorAll('')).map((el) =>
+			el.textContent.trim()
+		);
 		const notes = notesArray.join(' ');
 
 		const description =
-			document
-				.querySelector('div.description_description__b75w_ p')
-				?.textContent.trim() || '';
+			document.querySelector('div.recipe-title')?.textContent.trim() ||
+			'';
 
 		const categories = Array.from(
-			document.querySelectorAll('div.themes_wrapper__XnOUd a')
+			document.querySelectorAll('div.recipe-meattype-value')
 		).map((el) => el.textContent.trim());
 
 		const ingredients = Array.from(
-			document.querySelectorAll('#ingredients span')
+			document.querySelectorAll('div.recipe-ingredients li')
 		)
 			.map((el) => {
-				const ingredientRow =
-					el.querySelector('span')?.textContent.trim() || '';
+				const ingredientRow = el.textContent.trim();
 				return parseIngredient(ingredientRow);
 			})
 			.filter(
@@ -39,7 +36,7 @@ async function scrapeKoketRecipe(url) {
 			);
 
 		const instructions = Array.from(
-			document.querySelectorAll('section.instructions_wrapper__f2NmG li')
+			document.querySelectorAll('div.recipe-description li')
 		).map((el) => el.textContent.trim());
 
 		const tags = Array.from(
@@ -84,6 +81,15 @@ function parseIngredient(ingredient) {
 	};
 }
 
+async function test() {
+	const url =
+		'https://www.gardssallskapet.se/kottguiden/recept/grillad-njurtapp-med-bakpotatis';
+	const recept = await scrapeGardsallskapetRecipe(url);
+	console.log(recept);
+}
+
+test();
+
 module.exports = {
-	scrapeKoketRecipe,
+	scrapeGardsallskapetRecipe,
 };
