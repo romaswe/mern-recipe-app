@@ -81,15 +81,6 @@ function parseIngredient(ingredient) {
 	};
 }
 
-async function test() {
-	const url =
-		'https://www.gardssallskapet.se/kottguiden/recept/grillad-njurtapp-med-bakpotatis';
-	const recept = await scrapeGardsallskapetRecipe(url);
-	console.log(recept);
-}
-
-test();
-
 module.exports = {
 	scrapeGardsallskapetRecipe,
 };
