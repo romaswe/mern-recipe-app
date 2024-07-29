@@ -4,6 +4,7 @@ const { scrapeKoketRecipe } = require('../scrapers/scraper_koket');
 const {
 	scrapeGardsallskapetRecipe,
 } = require('../scrapers/scraper_gardssallskapet');
+const { scrapeGodareRecipe } = require('../scrapers/scraper_godare');
 
 const scraper = async (url) => {
 	switch (true) {
@@ -26,6 +27,11 @@ const scraper = async (url) => {
 			console.log('Matched gardssallskapet.se');
 			// Add your logic for handling gardssallskapet.se URLs
 			return await scrapeGardsallskapetRecipe(url);
+
+		case /^(https?:\/\/)?(www\.)?godare\.se\/recept\//.test(url):
+			console.log('Matched godare.se');
+			// Add your logic for handling godare.se URLs
+			return await scrapeGodareRecipe(url);
 
 		default:
 			console.log('URL did not match any known case');
