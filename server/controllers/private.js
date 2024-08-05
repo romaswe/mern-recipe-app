@@ -35,7 +35,9 @@ exports.getRecipes = async (req, res, next) => {
 };
 
 exports.getGrocerieList = async (req, res, next) => {
+	const token = getToken(req);
 	try {
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 		const options = {
 			select: 'groceries name -_id',
 			limit: 5,
@@ -144,7 +146,9 @@ exports.setGroceries = async (req, res, next) => {
 };
 
 exports.getGroceriesInfo = async (req, res, next) => {
+	const token = getToken(req);
 	try {
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 		const grocerieInfo = await Groceries.findOne({
 			owner: decoded.id,
 		}).select('name groceries -_id');

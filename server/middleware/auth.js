@@ -32,6 +32,17 @@ exports.protect = async (req, res, next) => {
 			return next(new ErrorResponse('User account is disabled', 401));
 		}
 
+		if (req.method !== 'GET') {
+			if (user.role.includes(roles.VIEWER)) {
+				return next(
+					new ErrorResponse(
+						'Viewers can only fetch and view data',
+						401
+					)
+				);
+			}
+		}
+
 		req.user = user;
 
 		next();
