@@ -7,6 +7,13 @@ services:
         restart: always
         ports:
             - 27017:27017
+        healthcheck:
+            test: echo 'db.runCommand("ping").ok'
+            interval: 10s
+            timeout: 10s
+            retries: 5
+            start_period: 40s
+
         environment:
             MONGO_INITDB_ROOT_USERNAME: ${DATABASE_USERNAME}
             MONGO_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
@@ -17,7 +24,8 @@ services:
         image: mongo-express
         container_name: mongoexpress
         depends_on:
-            - 'mongo'
+            mongo:
+                condition: service_healthy
         restart: always
         ports:
             - ${MONGO_EXPRESS_PORT}:8081
