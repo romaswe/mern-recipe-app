@@ -17,6 +17,21 @@ exports.register = async (req, res, next) => {
 	}
 };
 
+exports.registerV2 = async (req, res, next) => {
+	const { username, email, password } = req.body;
+	try {
+		const user = await User.create({
+			username,
+			email,
+			password,
+		});
+
+		sendTokenV2(user, 201, res);
+	} catch (error) {
+		next(error);
+	}
+};
+
 exports.login = async (req, res, next) => {
 	const { email, password } = req.body;
 	if (!email || !password) {
@@ -46,6 +61,38 @@ exports.login = async (req, res, next) => {
 		}
 
 		sendToken(user, 200, res);
+	} catch (error) {
+		return next(error);
+	}
+};
+
+exports.loginV2 = async (req, res, next) => {
+	const { email, password } = req.body;
+	if (!email || !password) {
+		return next(
+			new ErrorResponse('Please provide email and password', 400)
+		);
+	}
+
+	try {
+		const user = await User.findOne({ email }).select('+password');
+
+		if (user.role.includes('disabled')) {
+			return next(new ErrorResponse('User account is disabled', 401));
+		}
+
+		if (!user) {
+			console.log('Invalid credentials (Email)');
+			return next(new ErrorResponse('Invalid credentials', 401));
+		}
+
+		const isMatch = await user.matchPasswords(password);
+		if (!isMatch) {
+			console.log('Invalid credentials (Password)');
+			return next(new ErrorResponse('Invalid credentials', 401));
+		}
+
+		sendTokenV2(user, 200, res);
 	} catch (error) {
 		return next(error);
 	}
@@ -108,5 +155,10 @@ exports.resetpassword = async (req, res, next) => {
 
 const sendToken = (user, statusCode, res) => {
 	const token = user.getSignedToken();
+	res.status(statusCode).json({ success: true, token });
+};
+
+const sendTokenV2 = (user, statusCode, res) => {
+	const token = user.getSignedTokenV2();
 	res.status(statusCode).json({ success: true, token });
 };

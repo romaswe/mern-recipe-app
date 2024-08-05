@@ -70,9 +70,19 @@ UserSchema.methods.matchPasswords = async function (password) {
 };
 
 UserSchema.methods.getSignedToken = function () {
-	//TODO: change role to return full array when frontend is fixed
+	//V1 is returning a single role for backwards compatibility
 	return jwt.sign(
 		{ id: this._id, role: this.role[0], username: this.username },
+		process.env.JWT_SECRET,
+		{
+			expiresIn: process.env.JWT_EXPIRE,
+		}
+	);
+};
+
+UserSchema.methods.getSignedTokenV2 = function () {
+	return jwt.sign(
+		{ id: this._id, role: this.role, username: this.username },
 		process.env.JWT_SECRET,
 		{
 			expiresIn: process.env.JWT_EXPIRE,

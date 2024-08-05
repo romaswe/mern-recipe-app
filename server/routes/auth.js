@@ -3,7 +3,9 @@ const router = express.Router();
 
 const {
 	register,
+	registerV2,
 	login,
+	loginV2,
 	forgotpassword,
 	resetpassword,
 } = require('../controllers/auth');
@@ -42,6 +44,38 @@ router.route('/register').post(register);
 
 /**
  * @openapi
+ * /api/auth/v2/register:
+ *   post:
+ *     tags:
+ *     - Auth
+ *     summary: Register a new user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               password:
+ *                 type: string
+ *                 format: password
+ *     responses:
+ *       200:
+ *         description: User registered successfully
+ *       400:
+ *         description: Invalid request body
+ *       500:
+ *         description: Internal server error
+ */
+router.route('/v2/register').post(registerV2);
+
+/**
+ * @openapi
  * /api/auth/login:
  *   post:
  *     tags:
@@ -71,6 +105,38 @@ router.route('/register').post(register);
  *         description: Internal server error
  */
 router.route('/login').post(login);
+
+/**
+ * @openapi
+ * /api/auth/v2/login:
+ *   post:
+ *     tags:
+ *     - Auth
+ *     summary: Login a user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               password:
+ *                 type: string
+ *                 format: password
+ *     responses:
+ *       200:
+ *         description: User logged in successfully
+ *       400:
+ *         description: Invalid request body
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+router.route('/v2/login').post(loginV2);
 
 /**
  * @openapi
