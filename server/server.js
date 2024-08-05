@@ -43,6 +43,9 @@ const options = {
 			title: 'Recipe API',
 			version: '1.0.0',
 		},
+		security: {
+			bearerAuth: [],
+		},
 		tags: [
 			{
 				name: 'Admin',
@@ -65,11 +68,18 @@ const options = {
 			schemas: {
 				user: modleUser,
 			},
+			securitySchemes: {
+				bearerAuth: {
+					type: 'http',
+					scheme: 'bearer',
+					bearerFormat: 'JWT',
+					in: 'header',
+				},
+			},
 		},
 	},
-	apis: ['./routes/*.js'], // files containing annotations as above
+	apis: ['./routes/*.js'], // Adjust the path to your route files
 };
-
 const openapiSpecification = swaggerJsdoc(options);
 console.log(openapiSpecification);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));

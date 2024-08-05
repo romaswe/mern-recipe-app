@@ -33,6 +33,8 @@ router.route('/').get(getAdminRoute);
  * @openapi
  * /api/admin/recipes:
  *   post:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Admin
  *     summary: Add a new recipe
@@ -76,6 +78,8 @@ router.route('/recipes').post(adminProtect, addRecipe);
  * @openapi
  * /api/admin/recipe/scraping:
  *   post:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Admin
  *     summary: Add a new recipe by scraping a website
@@ -101,6 +105,8 @@ router.route('/recipe/scraping').post(adminProtect, addScrapedRecipe);
  * @openapi
  * /api/admin/getUsers:
  *   get:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Admin
  *     summary: Get users
@@ -115,6 +121,8 @@ router.route('/getUsers').get(adminProtect, getUsers);
  * @openapi
  * /api/admin/changeUserRole:
  *   put:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Admin
  *     summary: Change user role
@@ -143,6 +151,8 @@ router.route('/changeUserRole').put(adminProtect, setUserRole);
  * @openapi
  * /api/admin/setGroupRecipes:
  *   put:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Admin
  *     summary: Add recipes to group
@@ -171,6 +181,8 @@ router.route('/setGroupRecipes').post(adminProtect, addGroupRecipes);
  * @openapi
  * /api/admin/deleteRecipeById:
  *   delete:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Admin
  *     summary: Delete a recipe by ID
@@ -191,6 +203,8 @@ router.route('/deleteRecipeById/:id').delete(adminProtect, deleteRecipes);
  * @openapi
  * /api/admin/deleteGroupRecipeById:
  *   delete:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Admin
  *     summary: Delete a group recipe by ID
@@ -213,6 +227,8 @@ router
  * @openapi
  * /api/admin/bulkDeleteRecipes:
  *   delete:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Admin
  *     summary: Delete multiple recipes by ID
@@ -240,6 +256,8 @@ router.route('/bulkDeleteRecipes').delete(adminProtect, bulkDeleteRecipes);
  * @openapi
  * /api/admin/bulkDeleteGroupRecipes:
  *   delete:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Admin
  *     summary: Delete multiple group recipes by ID

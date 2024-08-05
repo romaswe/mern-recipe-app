@@ -34,6 +34,8 @@ router.route('/').get(protect, getPrivateRoute);
  * @openapi
  * /api/private/recipes:
  *   get:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Private
  *     summary: get recipes
@@ -51,6 +53,8 @@ router.route('/recipes').get(protect, getRecipes);
  *     tags:
  *     - Private
  *     summary: Get groceries
+ *     security:
+ *     - bearerAuth: []
  *     description: Get groceries from the database
  *     responses:
  *       200:
@@ -62,6 +66,8 @@ router.route('/groceries').get(protect, getGrocerieList);
  * @openapi
  * /api/private/groceries:
  *   post:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Private
  *     summary: Add groceries
@@ -92,6 +98,8 @@ router.route('/groceries').post(protect, addGroceries);
  * @openapi
  * /api/private/groceries:
  *   delete:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Private
  *     summary: Delete groceries
@@ -122,6 +130,8 @@ router.route('/groceries').delete(protect, deleteGroceries);
  * @openapi
  * /api/private/groceries:
  *   put:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Private
  *     summary: Update groceries
@@ -152,6 +162,8 @@ router.route('/groceries').put(protect, setGroceries);
  * @openapi
  * /api/private/getGroceriesInfo:
  *   get:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Private
  *     summary: Get groceries info
@@ -163,6 +175,8 @@ router.route('/getGroceriesInfo').get(protect, getGroceriesInfo);
  * @openapi
  * /api/private/getGroupRecipesByName/{groupName}:
  *   get:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Private
  *     summary: Get group recipes by name
@@ -185,6 +199,8 @@ router
  * @openapi
  * /api/private/getGroupRecipes:
  *   get:
+ *     security:
+ *     - bearerAuth: []
  *     tags:
  *     - Private
  *     summary: Get group recipes
